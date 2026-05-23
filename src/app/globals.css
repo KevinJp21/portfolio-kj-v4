@@ -1,26 +1,265 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  /* Surfaces — quiet shifts of lightness over a midnight ink hue */
+  --color-ink-950: #04060a;
+  --color-ink-900: #07090c;
+  --color-ink-850: #0b0e13;
+  --color-ink-800: #10131a;
+  --color-ink-700: #181c25;
+  --color-ink-600: #232834;
+
+  /* Foreground — bone parchment, drafted notes */
+  --color-bone-50: #fbf7ef;
+  --color-bone-100: #f4efe6;
+  --color-bone-200: #e6dfd1;
+  --color-bone-300: #c8c0af;
+  --color-bone-400: #8b8472;
+  --color-bone-500: #5a5446;
+
+  /* Accents — signal cyan, filament amber, deep iris glow */
+  --color-signal: #7be3ff;
+  --color-signal-deep: #2bb3d8;
+  --color-filament: #f6a847;
+  --color-filament-deep: #d97e15;
+  --color-iris: #8b7dff;
+  --color-iris-deep: #5a4cd6;
+
+  /* Semantic alias */
+  --color-bg: var(--color-ink-900);
+  --color-fg: var(--color-bone-100);
+  --color-muted: var(--color-bone-400);
+  --color-accent: var(--color-signal);
+
+  /* Border progression */
+  --color-rule-soft: rgba(244, 239, 230, 0.06);
+  --color-rule: rgba(244, 239, 230, 0.1);
+  --color-rule-strong: rgba(244, 239, 230, 0.18);
+
+  /* Fonts */
+  --font-display: var(--font-fraunces), "Times New Roman", serif;
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+
+  /* Easing & motion */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-back: cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+
+html,
+body {
+  background: var(--color-bg);
+  color: var(--color-fg);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+html {
+  overflow-x: clip;
+}
+
+html {
+  scroll-behavior: auto;
+  background:
+    radial-gradient(1200px 600px at 50% -10%, rgba(123, 227, 255, 0.08), transparent 60%),
+    radial-gradient(900px 500px at 90% 20%, rgba(139, 125, 255, 0.06), transparent 60%),
+    radial-gradient(700px 400px at 5% 70%, rgba(246, 168, 71, 0.045), transparent 60%),
+    var(--color-bg);
+  background-attachment: fixed;
+}
+
+/* Global scrollbar defaults */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-bone-300);
+  border-radius: 12px;
+}
+
+/* Selection */
+::selection {
+  background: var(--color-signal);
+  color: var(--color-ink-900);
+}
+
+/* Lenis smooth scroll */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: clip;
+}
+
+/* Grain — subtle, multiply, fixed */
+.grain::before {
+  content: "";
+  position: fixed;
+  inset: -50%;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.96  0 0 0 0 0.94  0 0 0 0 0.90  0 0 0 0.18 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  opacity: 0.55;
+  mix-blend-mode: overlay;
+  z-index: 1;
+}
+
+/* Blueprint grid — fixed background overlay */
+.blueprint {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  background-image:
+    linear-gradient(to right, rgba(244, 239, 230, 0.025) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(244, 239, 230, 0.025) 1px, transparent 1px);
+  background-size: calc(100vw / 12) 80px;
+  mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
+}
+
+/* Scanline — top-of-page subtle horizontal pulse */
+.scanline {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-signal), transparent);
+  opacity: 0.25;
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Utility — glass surface */
+.glass {
+  background: linear-gradient(180deg, rgba(16, 19, 26, 0.72), rgba(11, 14, 19, 0.85));
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  border: 1px solid var(--color-rule);
+}
+
+/* Utility — schematic chip */
+.chip-mono {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-bone-400);
+}
+
+/* Display typography — Fraunces tuned for editorial display */
+.font-display {
+  font-family: var(--font-display);
+  font-variation-settings: "opsz" 144, "SOFT" 30, "wght" 400;
+  font-feature-settings: "ss01", "ss02";
+  letter-spacing: -0.02em;
+}
+
+/* Italic accent — softer optical size + a touch of SOFT for warmth */
+.font-display.italic,
+em.font-display,
+.font-display em {
+  font-variation-settings: "opsz" 144, "SOFT" 100, "wght" 350;
+  font-style: italic;
+  letter-spacing: -0.015em;
+}
+
+/* Reveal mask for text — the word container clips its child; visible if JS is off */
+[data-reveal-word] {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+  line-height: 1.05;
+}
+[data-reveal-word] > span {
+  display: inline-block;
+  will-change: transform;
+}
+
+.italic [data-reveal-word],
+em [data-reveal-word] {
+  line-height: 1.2;
+  padding-bottom: 0.06em;
+}
+
+/* Section padding helpers */
+.section {
+  padding-block: clamp(96px, 14vw, 192px);
+}
+.section-x {
+  padding-inline: clamp(24px, 6vw, 96px);
+}
+
+/* Subtle ring on focus for a11y */
+:focus-visible {
+  outline: 2px solid var(--color-signal);
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+
+/* Marquee — Magic UI compatible animations. */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(-100% - var(--gap)));
   }
 }
+@keyframes marquee-vertical {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(calc(-100% - var(--gap)));
+  }
+}
+.animate-marquee {
+  animation: marquee var(--duration, 40s) linear infinite;
+}
+.animate-marquee-vertical {
+  animation: marquee-vertical var(--duration, 40s) linear infinite;
+}
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Pulse glow used for accent dots */
+@keyframes pulse-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(123, 227, 255, 0.55);
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(123, 227, 255, 0);
+  }
+}
+.pulse-dot {
+  animation: pulse-glow 2.4s ease-out infinite;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .animate-marquee,
+  .animate-marquee-vertical {
+    animation: none !important;
+  }
 }
