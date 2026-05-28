@@ -1,7 +1,5 @@
+import { HomeTemplate } from "@/features";
+
 export default function Home() {
-  return (
-    <div className="section">
-      Hola mundo
-    </div>
-  );
+  return <HomeTemplate />
 }

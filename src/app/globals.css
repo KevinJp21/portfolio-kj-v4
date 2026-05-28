@@ -46,6 +46,19 @@
   --ease-out-back: cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
+@layer utilities {
+  .section {
+    @apply py-[clamp(96px,14vw,192px)];
+  }
+
+  .section-x {
+    @apply px-[clamp(24px,6vw,96px)];
+  }
+
+  .default-container {
+    @apply max-w-[1440px] mx-auto;
+  }
+}
 
 html,
 body {
@@ -63,9 +76,21 @@ html {
 html {
   scroll-behavior: auto;
   background:
-    radial-gradient(1200px 600px at 50% -10%, rgba(123, 227, 255, 0.08), transparent 60%),
-    radial-gradient(900px 500px at 90% 20%, rgba(139, 125, 255, 0.06), transparent 60%),
-    radial-gradient(700px 400px at 5% 70%, rgba(246, 168, 71, 0.045), transparent 60%),
+    radial-gradient(
+      1200px 600px at 50% -10%,
+      rgba(123, 227, 255, 0.08),
+      transparent 60%
+    ),
+    radial-gradient(
+      900px 500px at 90% 20%,
+      rgba(139, 125, 255, 0.06),
+      transparent 60%
+    ),
+    radial-gradient(
+      700px 400px at 5% 70%,
+      rgba(246, 168, 71, 0.045),
+      transparent 60%
+    ),
     var(--color-bg);
   background-attachment: fixed;
 }
@@ -138,7 +163,12 @@ html.lenis body {
   left: 0;
   right: 0;
   height: 1px;
-  background: linear-gradient(90deg, transparent, var(--color-signal), transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--color-signal),
+    transparent
+  );
   opacity: 0.25;
   z-index: 2;
   pointer-events: none;
@@ -146,7 +176,11 @@ html.lenis body {
 
 /* Utility — glass surface */
 .glass {
-  background: linear-gradient(180deg, rgba(16, 19, 26, 0.72), rgba(11, 14, 19, 0.85));
+  background: linear-gradient(
+    180deg,
+    rgba(16, 19, 26, 0.72),
+    rgba(11, 14, 19, 0.85)
+  );
   backdrop-filter: blur(18px) saturate(140%);
   -webkit-backdrop-filter: blur(18px) saturate(140%);
   border: 1px solid var(--color-rule);
@@ -164,7 +198,10 @@ html.lenis body {
 /* Display typography — Fraunces tuned for editorial display */
 .font-display {
   font-family: var(--font-display);
-  font-variation-settings: "opsz" 144, "SOFT" 30, "wght" 400;
+  font-variation-settings:
+    "opsz" 144,
+    "SOFT" 30,
+    "wght" 400;
   font-feature-settings: "ss01", "ss02";
   letter-spacing: -0.02em;
 }
@@ -173,7 +210,10 @@ html.lenis body {
 .font-display.italic,
 em.font-display,
 .font-display em {
-  font-variation-settings: "opsz" 144, "SOFT" 100, "wght" 350;
+  font-variation-settings:
+    "opsz" 144,
+    "SOFT" 100,
+    "wght" 350;
   font-style: italic;
   letter-spacing: -0.015em;
 }
@@ -194,14 +234,6 @@ em.font-display,
 em [data-reveal-word] {
   line-height: 1.2;
   padding-bottom: 0.06em;
-}
-
-/* Section padding helpers */
-.section {
-  padding-block: clamp(96px, 14vw, 192px);
-}
-.section-x {
-  padding-inline: clamp(24px, 6vw, 96px);
 }
 
 /* Subtle ring on focus for a11y */
