@@ -1,8 +1,9 @@
-import { Hero } from "../components";
+import { Hero, AboutBlock } from "..";
 export const HomeTemplate = () => {
     return (
         <>
             <Hero />
+            <AboutBlock />
         </>
     )
 }

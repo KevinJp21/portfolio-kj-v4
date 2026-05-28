@@ -46,18 +46,16 @@
   --ease-out-back: cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-@layer utilities {
-  .section {
-    @apply py-[clamp(96px,14vw,192px)];
-  }
+@utility section {
+  @apply py-[clamp(96px,14vw,192px)];
+}
 
-  .section-x {
-    @apply px-[clamp(24px,6vw,96px)];
-  }
+@utility section-x {
+  @apply px-[clamp(24px,6vw,96px)];
+}
 
-  .default-container {
-    @apply max-w-[1440px] mx-auto;
-  }
+@utility default-container {
+  @apply max-w-[1440px] mx-auto;
 }
 
 html,
