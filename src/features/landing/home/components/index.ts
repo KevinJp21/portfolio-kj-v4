@@ -1,2 +1,4 @@
 export * from './hero'
 export * from './about-block'
+export * from './experience-timeline'
+export * from './featured-projects'
