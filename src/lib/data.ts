@@ -317,7 +317,7 @@ export const experience: {
 ];
 
 /* Stack — categorías y herramientas reales del Portfolio v3 */
-export type StackLevel = "daily" | "frequent" | "exploring";
+export type StackLevel = "daily" | "project" | "learning";
 
 export const stack: { category: string; items: { name: string; level: StackLevel }[] }[] = [
   {
@@ -328,55 +328,54 @@ export const stack: { category: string; items: { name: string; level: StackLevel
       { name: "React", level: "daily" },
       { name: "Next.js", level: "daily" },
       { name: "TailwindCSS", level: "daily" },
-      { name: "Remix", level: "exploring" },
-      { name: "GraphQL", level: "frequent" },
-      { name: "Angular", level: "exploring" },
+      { name: "Remix", level: "project" },
+      { name: "GraphQL", level: "project" },
+      { name: "Angular", level: "learning" },
     ],
   },
   {
     category: "Backend & Datos",
     items: [
-      { name: "Node.js", level: "frequent" },
-      { name: "Express", level: "frequent" },
-      { name: "Python", level: "frequent" },
-      { name: "Flask", level: "frequent" },
-      { name: "MySQL", level: "frequent" },
-      { name: "SQLAlchemy", level: "frequent" },
-      { name: "Shopify · Liquid", level: "frequent" },
-      { name: "PHP", level: "exploring" },
-      { name: "Java", level: "exploring" },
+      { name: "Node.js", level: "project" },
+      { name: "Express", level: "project" },
+      { name: "Python", level: "project" },
+      { name: "Flask", level: "project" },
+      { name: "MySQL", level: "project" },
+      { name: "SQLAlchemy", level: "project" },
+      { name: "Shopify · Liquid", level: "project" },
+      { name: "PHP", level: "project" },
+      { name: "Java", level: "project" },
     ],
   },
   {
     category: "Inteligencia Artificial",
     items: [
-      { name: "TensorFlow", level: "frequent" },
-      { name: "Keras", level: "frequent" },
-      { name: "NLTK", level: "frequent" },
-      { name: "Pandas", level: "frequent" },
-      { name: "NumPy", level: "frequent" },
-      { name: "SciKit-Learn", level: "exploring" },
-      { name: "Matplotlib", level: "exploring" },
-      { name: "Seaborn", level: "exploring" },
+      { name: "TensorFlow", level: "project" },
+      { name: "Keras", level: "project" },
+      { name: "NLTK", level: "project" },
+      { name: "Pandas", level: "project" },
+      { name: "NumPy", level: "project" },
+      { name: "SciKit-Learn", level: "project" },
+      { name: "Matplotlib", level: "project" },
+      { name: "Seaborn", level: "project" },
     ],
   },
   {
-    category: "Herramientas & Workflow",
+    category: "Herramientas",
     items: [
       { name: "Git", level: "daily" },
       { name: "npm", level: "daily" },
       { name: "pnpm", level: "daily" },
-      { name: "Vercel", level: "daily" },
-      { name: "Figma", level: "frequent" },
-      { name: "Cloudflare", level: "frequent" },
+      { name: "Cloudflare", level: "project" },
+      { name: "Docker", level: "learning" },
     ],
   },
 ];
 
 export const stackLevelLabel: Record<StackLevel, string> = {
   daily: "Diario",
-  frequent: "Frecuente",
-  exploring: "Explorando",
+  project: "Por proyecto",
+  learning: "Aprendiendo",
 };
 
 /* Servicios — basados en la experiencia real de los 4 proyectos del v3 */
@@ -448,7 +447,7 @@ export const keywords: string[] = [
 
 export const navLinks = [
   { href: "/", label: "Inicio", code: "00" },
-  { href: "/projects", label: "Proyectos", code: "01" },
+  { href: "/blog", label: "Blog", code: "01" },
   { href: "/about", label: "Sobre mí", code: "02" },
   { href: "/contact", label: "Contacto", code: "03" },
 ] as const;

@@ -2,18 +2,18 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { navLinks } from "@/lib/data";
 import { cn } from "@/lib/utils";
 import { MoveRight } from "lucide-react";
-
 
 export function Navbar() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const navRef = useRef<HTMLElement>(null);
+  const menuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const onScroll = () => {
@@ -33,9 +33,100 @@ export function Navbar() {
     );
   }, []);
 
+  const closeMenu = useCallback((onComplete?: () => void) => {
+    const menu = menuRef.current;
+
+    if (!menu) {
+      onComplete?.();
+      return;
+    }
+
+    gsap
+      .timeline({
+        onComplete: () => onComplete?.(),
+      })
+      .to(
+        menu.querySelectorAll(".mobile-nav-item, .mobile-nav-cta"),
+        {
+          y: 10,
+          autoAlpha: 0,
+          duration: 0.2,
+          stagger: 0.025,
+          ease: "power2.in",
+        },
+        0
+      )
+      .to(
+        menu,
+        { y: -12, autoAlpha: 0, duration: 0.28, ease: "power2.in" },
+        0.05
+      );
+  }, []);
+
+  const toggleMenu = useCallback(() => {
+    if (open) {
+      closeMenu(() => setOpen(false));
+      return;
+    }
+    setOpen(true);
+  }, [closeMenu, open]);
+
   useEffect(() => {
-    setOpen(false);
-  }, [pathname]);
+    if (!open) return;
+
+    document.body.style.overflow = "hidden";
+
+    const ctx = gsap.context(() => {
+      const menu = menuRef.current;
+      if (!menu) return;
+
+      gsap.set(menu, {
+        y: -14,
+        autoAlpha: 0,
+        scaleY: 0.96,
+        transformOrigin: "top center",
+      });
+      gsap.set(menu.querySelectorAll(".mobile-nav-item, .mobile-nav-cta"), {
+        y: 18,
+        autoAlpha: 0,
+      });
+
+      gsap
+        .timeline()
+        .to(menu, {
+          y: 0,
+          autoAlpha: 1,
+          scaleY: 1,
+          duration: 0.45,
+          ease: "power3.out",
+        })
+        .to(
+          menu.querySelectorAll(".mobile-nav-item"),
+          {
+            y: 0,
+            autoAlpha: 1,
+            duration: 0.4,
+            ease: "power3.out",
+            stagger: 0.05,
+          },
+          0.1
+        )
+        .to(
+          menu.querySelector(".mobile-nav-cta"),
+          { y: 0, autoAlpha: 1, duration: 0.4, ease: "power3.out" },
+          0.22
+        );
+    }, menuRef);
+
+    return () => {
+      document.body.style.overflow = "";
+      ctx.revert();
+    };
+  }, [open]);
+
+  useEffect(() => {
+    closeMenu(() => setOpen(false));
+  }, [pathname, closeMenu]);
 
   return (
     <header
@@ -47,7 +138,7 @@ export function Navbar() {
     >
       <nav
         className={cn(
-          "flex w-full max-w-[1320px] items-center justify-between rounded-2xl border border-rule px-4 py-3 transition-all duration-500 md:px-6",
+          "flex w-full default-container items-center justify-between rounded-2xl border border-rule px-4 py-3 transition-all duration-500 lg:px-6",
           scrolled ? "glass" : "border-transparent bg-transparent"
         )}
       >
@@ -57,7 +148,7 @@ export function Navbar() {
           data-cursor-label="Index"
           className="group flex items-center gap-3"
         >
-          <span className="hidden flex-col leading-none md:flex">
+          <span className="hidden flex-col leading-none lg:flex">
             <span className="text-xs font-medium tracking-tight text-bone-100">
               Kevin J. Pineda
             </span>
@@ -65,7 +156,7 @@ export function Navbar() {
           </span>
         </Link>
 
-        <ul className="hidden items-center gap-1 md:flex">
+        <ul className="hidden items-center gap-1 lg:flex">
           {navLinks.map((link) => {
             const active =
               link.href === "/"
@@ -99,7 +190,7 @@ export function Navbar() {
           })}
         </ul>
 
-        <div className="hidden items-center gap-3 md:flex">
+        <div className="hidden items-center gap-3 lg:flex">
           <span className="flex items-center gap-2 rounded-full border border-rule px-3 py-1.5 text-[10px] uppercase tracking-[0.18em] text-bone-400">
             <span className="pulse-dot inline-block h-1.5 w-1.5 rounded-full bg-signal" />
             disponible · 2026
@@ -119,8 +210,8 @@ export function Navbar() {
           type="button"
           aria-label={open ? "Cerrar menú" : "Abrir menú"}
           aria-expanded={open}
-          onClick={() => setOpen((v) => !v)}
-          className="inline-flex h-10 w-10 flex-col items-center justify-center gap-1.5 rounded-full border border-rule md:hidden"
+          onClick={toggleMenu}
+          className="inline-flex h-10 w-10 flex-col items-center justify-center gap-1.5 rounded-full border border-rule lg:hidden"
         >
           <span
             className={cn(
@@ -131,47 +222,50 @@ export function Navbar() {
           <span
             className={cn(
               "block h-px w-5 bg-bone-100 transition-transform duration-300",
-              open && "-translate-y-[3px] -rotate-45"
+              open && "translate-y-[-3px] -rotate-45"
             )}
           />
         </button>
       </nav>
 
       {open && (
-        <div className="fixed inset-x-4 top-20 z-40 origin-top rounded-2xl border border-rule glass p-6 md:hidden">
-          <ul className="space-y-2">
-            {navLinks.map((link) => {
-              const active =
-                link.href === "/"
-                  ? pathname === "/"
-                  : pathname.startsWith(link.href);
-              return (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className={cn(
-                      "flex items-center justify-between rounded-xl border border-rule-soft px-4 py-3 text-base",
-                      active ? "bg-ink-800 text-bone-100" : "text-bone-300"
-                    )}
-                  >
-                    <span className="flex items-center gap-3">
-                      <span className="chip-mono">{link.code}</span>
-                      {link.label}
-                    </span>
-                    <MoveRight size={14} />
-                  </Link>
-                </li>
-              );
-            })}
-          </ul>
-          <Link
-            href="/contact"
-            className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-bone-100 px-4 py-3 text-sm font-medium text-ink-900"
+          <div
+            ref={menuRef}
+            className="mobile-nav-panel fixed inset-x-4 top-22 z-40 origin-top rounded-2xl border border-rule glass p-6 lg:hidden"
           >
-            Empezar proyecto
-            <MoveRight size={14} />
-          </Link>
-        </div>
+            <ul className="space-y-2">
+              {navLinks.map((link) => {
+                const active =
+                  link.href === "/"
+                    ? pathname === "/"
+                    : pathname.startsWith(link.href);
+                return (
+                  <li key={link.href} className="mobile-nav-item">
+                    <Link
+                      href={link.href}
+                      className={cn(
+                        "flex items-center justify-between rounded-xl border border-rule-soft px-4 py-3 text-base",
+                        active ? "bg-ink-800 text-bone-100" : "text-bone-300"
+                      )}
+                    >
+                      <span className="flex items-center gap-3">
+                        <span className="chip-mono">{link.code}</span>
+                        {link.label}
+                      </span>
+                      <MoveRight size={14} />
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
+            <Link
+              href="/contact"
+              className="mobile-nav-cta mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-bone-100 px-4 py-3 text-sm font-medium text-ink-900"
+            >
+              Empezar proyecto
+              <MoveRight size={14} />
+            </Link>
+          </div>
       )}
     </header>
   );

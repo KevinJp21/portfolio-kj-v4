@@ -6,8 +6,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ArrowUpRight } from "lucide-react";
 import { projects } from "@/lib/data";
-import { SectionHeader } from "@/components";
-import { ProjectCard } from "@/features/landing/components";
+import { SectionHeader, ProjectCard } from "@/components";
 
 const FEATURED = projects.slice(0, 4);
 

@@ -1,4 +1,4 @@
-import { Hero, AboutBlock, ExperienceTimeline, FeaturedProjects } from "..";
+import { Hero, AboutBlock, ExperienceTimeline, FeaturedProjects, StackOrbital } from "..";
 export const HomeTemplate = () => {
     return (
         <>
@@ -6,6 +6,7 @@ export const HomeTemplate = () => {
             <AboutBlock />
             <ExperienceTimeline />
             <FeaturedProjects />
+            <StackOrbital />
         </>
     )
 }
