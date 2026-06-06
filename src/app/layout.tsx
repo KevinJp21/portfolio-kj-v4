@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Fraunces } from "next/font/google";
 import { SmoothScroll, ScrollProgress, PageTransition, Navbar, Footer } from "@/components";
+import { ThemeProvider } from "@/hooks";
+import { THEME_STORAGE_KEY } from "@/lib/theme";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -110,6 +112,8 @@ export const metadata: Metadata = {
   category: "technology",
 };
 
+const themeInitScript = `(function(){try{var k=${JSON.stringify(THEME_STORAGE_KEY)};var r=document.documentElement;var t=localStorage.getItem(k);r.classList.remove("light","dark");r.classList.add(t==="light"||t==="dark"?t:"dark")}catch(e){document.documentElement.classList.add("dark")}})();`;
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -119,19 +123,24 @@ export default function RootLayout({
     <html
       lang="es"
       suppressHydrationWarning
-      className={`${geistSans.variable} ${geistMono.variable} ${fraunces.variable} antialiased`}
+      className={`dark ${geistSans.variable} ${geistMono.variable} ${fraunces.variable} antialiased`}
     >
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+      </head>
       <body className="grain relative bg-ink-900 text-bone-100 selection:bg-signal selection:text-ink-900">
-        <SmoothScroll>
-          <div className="blueprint" aria-hidden />
-          <div className="scanline" aria-hidden />
-          <ScrollProgress />
-          <Navbar />
-          <PageTransition>
-            <main className="relative z-10 min-h-screen">{children}</main>
-          </PageTransition>
-          <Footer />
-        </SmoothScroll>
+        <ThemeProvider>
+          <SmoothScroll>
+            <div className="blueprint" aria-hidden />
+            <div className="scanline" aria-hidden />
+            <ScrollProgress />
+            <Navbar />
+            <PageTransition>
+              <main className="relative z-10 min-h-screen">{children}</main>
+            </PageTransition>
+            <Footer />
+          </SmoothScroll>
+        </ThemeProvider>
       </body>
     </html>
   );

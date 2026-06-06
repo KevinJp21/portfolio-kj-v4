@@ -46,6 +46,39 @@
   --ease-out-back: cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
+html.dark {
+  color-scheme: dark;
+}
+
+html.light {
+  color-scheme: light;
+
+  --color-ink-950: #e8e2d6;
+  --color-ink-900: #fbf7ef;
+  --color-ink-850: #f4efe6;
+  --color-ink-800: #e6dfd1;
+  --color-ink-700: #d8d0c0;
+  --color-ink-600: #c8c0af;
+
+  --color-bone-50: #04060a;
+  --color-bone-100: #07090c;
+  --color-bone-200: #232834;
+  --color-bone-300: #5a5446;
+  --color-bone-400: #6b6558;
+  --color-bone-500: #8b8472;
+
+  --color-signal: #00c8ff;
+  --color-signal-deep: #1a8fb0;
+
+  --color-bg: var(--color-ink-900);
+  --color-fg: var(--color-bone-100);
+  --color-muted: var(--color-bone-400);
+
+  --color-rule-soft: rgba(7, 9, 12, 0.06);
+  --color-rule: rgba(7, 9, 12, 0.1);
+  --color-rule-strong: rgba(7, 9, 12, 0.16);
+}
+
 @utility section {
   @apply py-[clamp(96px,14vw,192px)];
 }
@@ -93,6 +126,26 @@ html {
   background-attachment: fixed;
 }
 
+html.light {
+  background:
+    radial-gradient(
+      1200px 600px at 50% -10%,
+      rgba(43, 179, 216, 0.12),
+      transparent 60%
+    ),
+    radial-gradient(
+      900px 500px at 90% 20%,
+      rgba(90, 76, 214, 0.08),
+      transparent 60%
+    ),
+    radial-gradient(
+      700px 400px at 5% 70%,
+      rgba(217, 126, 21, 0.06),
+      transparent 60%
+    ),
+    var(--color-bg);
+}
+
 /* Global scrollbar defaults */
 ::-webkit-scrollbar {
   width: 6px;
@@ -108,10 +161,19 @@ html {
   border-radius: 12px;
 }
 
+html.light ::-webkit-scrollbar-thumb {
+  background: var(--color-bone-500);
+}
+
 /* Selection */
 ::selection {
   background: var(--color-signal);
   color: var(--color-ink-900);
+}
+
+html.light ::selection {
+  background: var(--color-signal-deep);
+  color: var(--color-bone-50);
 }
 
 /* Lenis smooth scroll */
@@ -141,6 +203,11 @@ html.lenis body {
   z-index: 1;
 }
 
+html.light .grain::before {
+  opacity: 0.3;
+  mix-blend-mode: multiply;
+}
+
 /* Blueprint grid — fixed background overlay */
 .blueprint {
   position: fixed;
@@ -152,6 +219,12 @@ html.lenis body {
     linear-gradient(to bottom, rgba(244, 239, 230, 0.025) 1px, transparent 1px);
   background-size: calc(100vw / 12) 80px;
   mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
+}
+
+html.light .blueprint {
+  background-image:
+    linear-gradient(to right, rgba(7, 9, 12, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(7, 9, 12, 0.04) 1px, transparent 1px);
 }
 
 /* Scanline — top-of-page subtle horizontal pulse */
@@ -182,6 +255,14 @@ html.lenis body {
   backdrop-filter: blur(18px) saturate(140%);
   -webkit-backdrop-filter: blur(18px) saturate(140%);
   border: 1px solid var(--color-rule);
+}
+
+html.light .glass {
+  background: linear-gradient(
+    180deg,
+    rgba(251, 247, 239, 0.82),
+    rgba(244, 239, 230, 0.92)
+  );
 }
 
 /* Utility — schematic chip */

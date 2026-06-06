@@ -6,6 +6,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { navLinks } from "@/lib/data";
 import { cn } from "@/lib/utils";
+import { ThemeToggle } from "@/components/theme";
 import { MoveRight } from "lucide-react";
 
 export function Navbar() {
@@ -191,6 +192,7 @@ export function Navbar() {
         </ul>
 
         <div className="hidden items-center gap-3 lg:flex">
+          <ThemeToggle />
           <span className="flex items-center gap-2 rounded-full border border-rule px-3 py-1.5 text-[10px] uppercase tracking-[0.18em] text-bone-400">
             <span className="pulse-dot inline-block h-1.5 w-1.5 rounded-full bg-signal" />
             disponible · 2026
@@ -206,12 +208,14 @@ export function Navbar() {
           </Link>
         </div>
 
-        <button
+        <div className="flex items-center gap-2 lg:hidden">
+          <ThemeToggle />
+          <button
           type="button"
           aria-label={open ? "Cerrar menú" : "Abrir menú"}
           aria-expanded={open}
           onClick={toggleMenu}
-          className="inline-flex h-10 w-10 flex-col items-center justify-center gap-1.5 rounded-full border border-rule lg:hidden"
+          className="inline-flex h-10 w-10 flex-col items-center justify-center gap-1.5 rounded-full border border-rule"
         >
           <span
             className={cn(
@@ -226,6 +230,7 @@ export function Navbar() {
             )}
           />
         </button>
+        </div>
       </nav>
 
       {open && (
