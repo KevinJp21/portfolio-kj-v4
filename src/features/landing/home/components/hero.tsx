@@ -5,7 +5,7 @@ import Image from "next/image";
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { TextReveal, Marquee } from "@/components";
-import { AVATAR_URL } from "@/lib/data";
+import { AVATAR_URL, keywords } from "@/lib/data";
 import { MoveRight } from "lucide-react";
 
 export function Hero() {
@@ -185,13 +185,7 @@ export function Hero() {
                 <Marquee
                     className="text-xs md:text-sm"
                     duration={42}
-                    items={[
-                        "Frontend Developer · Full-stack",
-                        "React · Next.js · TypeScript · TailwindCSS",
-                        "Ingeniero de sistemas",
-                        "Barranquilla, Colombia · Remote",
-                        "Disponible para nuevos proyectos · 2026",
-                    ]}
+                    items={keywords}
                 />
             </div>
         </section>

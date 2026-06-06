@@ -23,8 +23,19 @@ export type Project = {
 
 export type ProjectBlock =
   | { kind: "intro"; text: string }
-  | { kind: "image"; src: string; alt: string; caption?: string; size?: "wide" | "tall" | "full" }
-  | { kind: "split"; title: string; body: string; meta?: { label: string; value: string }[] }
+  | {
+      kind: "image";
+      src: string;
+      alt: string;
+      caption?: string;
+      size?: "wide" | "tall" | "full";
+    }
+  | {
+      kind: "split";
+      title: string;
+      body: string;
+      meta?: { label: string; value: string }[];
+    }
   | { kind: "quote"; text: string; author?: string }
   | { kind: "list"; title: string; items: string[] };
 
@@ -34,7 +45,8 @@ export const projects: Project[] = [
     slug: "ferreteria-rueda",
     index: "01",
     title: "Ferretería Rueda",
-    subtitle: "Primer canal de ventas online para una ferretería con 30+ años de historia.",
+    subtitle:
+      "Primer canal de ventas online para una ferretería con 30+ años de historia.",
     year: "2025",
     role: "Frontend Developer · Shopify Liquid",
     client: "Ferretería Rueda — Barranquilla, CO",
@@ -91,7 +103,8 @@ export const projects: Project[] = [
     slug: "verezza-e-commerce",
     index: "02",
     title: "Verezza E-commerce",
-    subtitle: "Tienda headless de moda femenina conectada a Shopify vía Storefront API.",
+    subtitle:
+      "Tienda headless de moda femenina conectada a Shopify vía Storefront API.",
     year: "2024",
     role: "Full-stack Developer · Headless commerce",
     client: "Verezza — proyecto independiente",
@@ -149,7 +162,8 @@ export const projects: Project[] = [
     slug: "chikos-gourmet",
     index: "03",
     title: "Chikos Gourmet",
-    subtitle: "Sitio oficial y panel administrativo para una marca gastronómica de Barranquilla.",
+    subtitle:
+      "Sitio oficial y panel administrativo para una marca gastronómica de Barranquilla.",
     year: "2024",
     role: "Full-stack Developer · Lead frontend",
     client: "Chikos Gourmet — Barranquilla, CO",
@@ -204,7 +218,8 @@ export const projects: Project[] = [
     slug: "docme-assistant-chatbot",
     index: "04",
     title: "DocMe Assistant",
-    subtitle: "Chatbot inteligente para mejorar el acceso a servicios médicos en Colombia.",
+    subtitle:
+      "Chatbot inteligente para mejorar el acceso a servicios médicos en Colombia.",
     year: "2024",
     role: "Backend Developer · Machine Learning",
     client: "Proyecto académico · DocMe",
@@ -319,7 +334,10 @@ export const experience: {
 /* Stack — categorías y herramientas reales del Portfolio v3 */
 export type StackLevel = "daily" | "project" | "learning";
 
-export const stack: { category: string; items: { name: string; level: StackLevel }[] }[] = [
+export const stack: {
+  category: string;
+  items: { name: string; level: StackLevel }[];
+}[] = [
   {
     category: "Lenguajes & Frameworks",
     items: [
@@ -379,32 +397,33 @@ export const stackLevelLabel: Record<StackLevel, string> = {
 };
 
 /* Servicios — basados en la experiencia real de los 4 proyectos del v3 */
-export const services: { code: string; title: string; description: string }[] = [
-  {
-    code: "S/01",
-    title: "Frontend Development",
-    description:
-      "Aplicaciones web modernas con React, Next.js y TailwindCSS. TypeScript, arquitectura escalable, patrones de diseño y foco en rendimiento, accesibilidad y experiencia de usuario.",
-  },
-  {
-    code: "S/02",
-    title: "Aplicaciones Full-stack",
-    description:
-      "APIs REST, bases de datos relacionales, autenticación y validaciones. Visión integral del flujo — desde el componente hasta la consulta SQL — con buenas prácticas y patrones de diseño aplicados.",
-  },
-  {
-    code: "S/03",
-    title: "E-commerce & Shopify",
-    description:
-      "Temas personalizados en Shopify con Liquid y arquitecturas headless con Storefront API + GraphQL. Tiendas desde cero, editables por el cliente, optimizadas para conversión.",
-  },
-  {
-    code: "S/04",
-    title: "Backend & Machine Learning",
-    description:
-      "Servicios backend en Flask y Express. Modelos de clasificación con TensorFlow/Keras y NLP con NLTK para resolver problemas concretos con datos reales.",
-  },
-];
+export const services: { code: string; title: string; description: string }[] =
+  [
+    {
+      code: "S/01",
+      title: "Frontend Development",
+      description:
+        "Aplicaciones web modernas con React, Next.js y TailwindCSS. TypeScript, arquitectura escalable, patrones de diseño y foco en rendimiento, accesibilidad y experiencia de usuario.",
+    },
+    {
+      code: "S/02",
+      title: "Aplicaciones Full-stack",
+      description:
+        "APIs REST, bases de datos relacionales, autenticación y validaciones. Visión integral del flujo — desde el componente hasta la consulta SQL — con buenas prácticas y patrones de diseño aplicados.",
+    },
+    {
+      code: "S/03",
+      title: "E-commerce & Shopify",
+      description:
+        "Temas personalizados en Shopify con Liquid y arquitecturas headless con Storefront API + GraphQL. Tiendas desde cero, editables por el cliente, optimizadas para conversión.",
+    },
+    {
+      code: "S/04",
+      title: "Backend & Machine Learning",
+      description:
+        "Servicios backend en Flask y Express. Modelos de clasificación con TensorFlow/Keras y NLP con NLTK para resolver problemas concretos con datos reales.",
+    },
+  ];
 
 /* Proceso — metodología basada en buenas prácticas ágiles */
 export const process: { step: string; title: string; body: string }[] = [
@@ -430,19 +449,13 @@ export const process: { step: string; title: string; body: string }[] = [
   },
 ];
 
-/* Palabras clave para marquees — reemplaza la lista inventada de clientes */
+/* Palabras clave para marquees */
 export const keywords: string[] = [
-  "Frontend Developer",
-  "Full-stack",
-  "React",
-  "Next.js",
-  "TypeScript",
-  "TailwindCSS",
-  "Shopify Headless",
-  "GraphQL",
-  "Python · Flask",
-  "Ingeniero de Sistemas",
-  "Barranquilla · Colombia",
+  "Frontend Developer · Full-stack",
+  "React · Next.js · TypeScript · TailwindCSS",
+  "Ingeniero de sistemas",
+  "Barranquilla, Colombia",
+  "Disponible para nuevos proyectos · 2026",
 ];
 
 export const navLinks = [
