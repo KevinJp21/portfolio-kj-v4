@@ -142,8 +142,7 @@ export function Hero() {
                         <p className="hero-meta md:col-span-5 max-w-md text-sm leading-relaxed text-bone-300 md:text-[15px]">
                             <span className="font-display italic text-bone-100">
                                 Kevin Julio Pineda.
-                            </span>{" "}
-                            Kevin Julio Pineda. Ingeniero de sistemas y desarrollador frontend con enfoque full-stack. Construyo aplicaciones web modernas con React, Next.js y Tailwind CSS.
+                            </span>{" "}ingeniero de sistemas y desarrollador frontend con enfoque full-stack. Construyo aplicaciones web modernas con React, Next.js y Tailwind CSS.
                         </p>
 
                         <div className="hero-meta md:col-span-4 space-y-2">

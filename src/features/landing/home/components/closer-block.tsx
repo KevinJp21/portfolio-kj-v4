@@ -45,7 +45,7 @@ export function CloserBlock() {
       <div className="mx-auto max-w-[1320px]">
         <div className="mt-24 grid items-end gap-12 md:grid-cols-12">
           <div className="md:col-span-8">
-            <SectionHeader code="C/07" eyebrow="Let's build" />
+            <SectionHeader code="C/05" eyebrow="Let's build" />
             <h2 className="mt-10 font-display text-[clamp(2.5rem,7vw,6.5rem)] leading-[0.9] text-bone-100">
               <span className="block overflow-hidden">
                 <span className="closer-line block">
