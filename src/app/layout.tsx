@@ -23,17 +23,91 @@ const fraunces = Fraunces({
   axes: ["SOFT", "opsz"],
 });
 
+const siteUrl = "https://kevinjp.dev";
+const siteName = "Kevin Julio Pineda";
+const siteDescription =
+  "Ingeniero de sistemas y desarrollador frontend con visión full-stack. Diseño y construyo productos web a medida, adaptados a las necesidades de cada cliente.";
+const ogImage = "/og-image.webp";
+const faviconPath = "/favicon";
+
 export const metadata: Metadata = {
-  title: "Kevin Julio Pineda — Frontend Developer · Full-stack",
-  description:
-    "Ingeniero de sistemas y desarrollador frontend con conocimientos full-stack. Construyo aplicaciones web modernas con React, Next.js y TailwindCSS.",
-  metadataBase: new URL("https://kevinjp.dev"),
-  openGraph: {
-    title: "Kevin Julio Pineda — Frontend Developer",
-    description:
-      "Portfolio de Kevin Julio Pineda — frontend developer con visión full-stack.",
-    type: "website",
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: `${siteName} | Frontend Developer • Full-stack`,
+    template: `%s | ${siteName}`,
   },
+  description: siteDescription,
+  keywords: [
+    "Kevin Julio Pineda",
+    "frontend developer",
+    "desarrollador frontend",
+    "full-stack",
+    "React",
+    "Next.js",
+    "TypeScript",
+    "TailwindCSS",
+    "Shopify",
+    "e-commerce",
+    "portfolio",
+    "desarrollador web",
+    "Barranquilla",
+    "Colombia",
+  ],
+  authors: [{ name: siteName, url: siteUrl }],
+  creator: siteName,
+  publisher: siteName,
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-snippet": -1,
+      "max-image-preview": "large",
+      "max-video-preview": -1,
+    },
+  },
+  openGraph: {
+    type: "website",
+    locale: "es_CO",
+    url: siteUrl,
+    siteName,
+    title: `${siteName} | Frontend Developer • Full-stack`,
+    description:
+      "Portfolio de Kevin Julio Pineda — desarrollador frontend con visión full-stack. Proyectos web, e-commerce y aplicaciones a medida.",
+    images: [
+      {
+        url: ogImage,
+        width: 512,
+        height: 512,
+        alt: `${siteName} — Frontend Developer`,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${siteName} — Frontend Developer · Full-stack`,
+    description: siteDescription,
+    images: [ogImage],
+  },
+  alternates: {
+    canonical: siteUrl,
+  },
+  manifest: `${faviconPath}/site.webmanifest`,
+  icons: {
+    icon: [
+      { url: `${faviconPath}/favicon.ico`, sizes: "any" },
+      { url: `${faviconPath}/favicon.svg`, type: "image/svg+xml" },
+      {
+        url: `${faviconPath}/favicon-96x96.png`,
+        sizes: "96x96",
+        type: "image/png",
+      },
+    ],
+    shortcut: `${faviconPath}/favicon.ico`,
+    apple: `${faviconPath}/apple-touch-icon.png`,
+  },
+  category: "technology",
 };
 
 export default function RootLayout({

@@ -1,5 +1,5 @@
 /* Avatar / retrato de Kevin — editorial dark con halo cyan/iris */
-export const AVATAR_URL = "/perfil_avatar.png";
+export const AVATAR_URL = "/perfil_avatar.webp";
 
 export type Project = {
   slug: string;

@@ -57,9 +57,9 @@ export function CloserBlock() {
                   mente?
                 </span>
               </span>
-              <span className="block overflow-hidden">
+              <span className="block">
                 <span className="closer-line block text-bone-400">
-                  Construyámoslo juntos.
+                  ¡Construyámoslo juntos!
                 </span>
               </span>
             </h2>
@@ -86,7 +86,7 @@ export function CloserBlock() {
               className="closer-meta group relative inline-flex items-center justify-between gap-3 overflow-hidden rounded-full bg-bone-100 px-6 py-4 text-base font-medium text-ink-900 transition-transform hover:scale-[1.02]"
             >
               <span className="z-10 transition-transform duration-300 group-hover:translate-x-0.5">Empieza una conversación</span>
-              <span aria-hidden className="text-base z-10 transition-transform duration-300 group-hover:translate-x-0.5"><MoveRight size={14} /></span>
+              <span aria-hidden className="z-10 transition-transform duration-300 group-hover:translate-x-0.5"><MoveRight size={14} /></span>
               <span className="absolute inset-y-0 left-0 z-0 w-0 bg-signal transition-[width] duration-500 group-hover:w-full" />
             </Link>
 
@@ -96,7 +96,7 @@ export function CloserBlock() {
               data-cursor-label="Email"
               className="closer-meta group flex items-center justify-between rounded-full border border-rule-strong px-6 py-4 text-sm text-bone-100 transition-colors hover:border-signal"
             >
-              <span>kevinjp821@gmail.com</span>
+              <span>Escribir por email</span>
               <span className="font-mono text-xs uppercase tracking-widest text-bone-400 group-hover:text-signal">
                 .email
               </span>
