@@ -1,18 +1,20 @@
 "use client";
 
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import Image from "next/image";
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { TextReveal, Marquee } from "@/components";
-import { AVATAR_URL, keywords } from "@/lib/data";
+import { AVATAR_URL } from "@/lib/data";
 import { MoveRight } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 export function Hero() {
     const heroRef = useRef<HTMLElement>(null);
     const orbRef = useRef<HTMLDivElement>(null);
     const chipRef = useRef<HTMLDivElement>(null);
-
+    const t = useTranslations("HomePage.hero");
+    const marqueeItems = t.raw("marquee.items") as string[];
     useEffect(() => {
         const ctx = gsap.context(() => {
             gsap.fromTo(
@@ -68,6 +70,10 @@ export function Hero() {
         return () => ctx.revert();
     }, []);
 
+    const getYear = () => {
+        return new Date().getFullYear();
+    }
+
     return (
         <section
             ref={heroRef}
@@ -78,9 +84,9 @@ export function Hero() {
                     ref={chipRef}
                     className="flex flex-wrap items-center gap-3 text-xs"
                 >
-                    <span className="flex items-center gap-2 rounded-full border border-rule px-3 py-1.5 chip-mono">
+                    <span className="flex items-center gap-2 rounded-full border border-rule px-3 py-1.5 text-[10px] uppercase tracking-[0.18em] text-bone-400 h-[29px]">
                         <span className="pulse-dot inline-block h-1.5 w-1.5 rounded-full bg-signal" />
-                        Barranquilla, CO
+                        {t("availability", { year: getYear() })}
                     </span>
                 </div>
 
@@ -90,12 +96,12 @@ export function Hero() {
                             <h1 className="hero-display font-display text-[clamp(2rem,6.4vw,6rem)] leading-[0.92] tracking-tight text-bone-100">
                                 <span className="block overflow-hidden">
                                     <TextReveal as="span" trigger="mount" delay={0.4} className="block">
-                                        Frontend developer
+                                        {t("headline.line1")}
                                     </TextReveal>
                                 </span>
                                 <span className="block italic overflow-hidden text-signal-deep">
                                     <TextReveal as="span" trigger="mount" delay={0.65} className="block">
-                                        ingeniero de sistemas,
+                                        {t("headline.line2")}
                                     </TextReveal>
                                 </span>
                                 <span className="block overflow-hidden">
@@ -105,7 +111,7 @@ export function Hero() {
                                         delay={0.9}
                                         className="block"
                                     >
-                                        con visión full-stack.
+                                        {t("headline.line3")}
                                     </TextReveal>
                                 </span>
                             </h1>
@@ -132,7 +138,7 @@ export function Hero() {
                                     />
                                 </div>
                                 <span className="chip-mono absolute -bottom-6 left-1/2 -translate-x-1/2 whitespace-nowrap">
-                                    KJP · Barranquilla
+                                    {t("avatar.caption")}
                                 </span>
                             </div>
                         </div>
@@ -142,23 +148,23 @@ export function Hero() {
                         <p className="hero-meta md:col-span-5 max-w-md text-sm leading-relaxed text-bone-300 md:text-[15px]">
                             <span className="font-display italic text-bone-100">
                                 Kevin Julio Pineda.
-                            </span>{" "}ingeniero de sistemas y desarrollador frontend con enfoque full-stack. Construyo aplicaciones web modernas con React, Next.js y Tailwind CSS.
+                            </span>{" "}{t("bio.body")}
                         </p>
 
                         <div className="hero-meta md:col-span-4 space-y-2">
-                            <Row label="Focus" value="React · Next.js · TS · Tailwind" />
-                            <Row label="Backend" value="Node · Laravel · MySQL · GraphQL" />
-                            <Row label="Status" value="Disponible · 2026" />
+                            <Row label={t("meta.focus.label")} value={t("meta.focus.value")} />
+                            <Row label={t("meta.backend.label")} value={t("meta.backend.value")} />
+                            <Row label={t("meta.status.label")} value={t("meta.status.value", { year: getYear() })} />
                         </div>
 
                         <div className="hero-meta md:col-span-3 flex flex-col gap-2.5">
                             <Link
                                 href="/contact"
                                 data-cursor="cta"
-                                data-cursor-label="Empezar"
+                                data-cursor-label={t("cursor.startProject")}
                                 className="group relative inline-flex items-center justify-between gap-3 overflow-hidden rounded-full bg-bone-100 px-5 py-3 text-sm font-medium text-ink-900 transition-transform hover:scale-[1.02]"
                             >
-                                <span className="z-10 transition-transform duration-300 group-hover:translate-x-0.5">Empezar proyecto</span>
+                                <span className="z-10 transition-transform duration-300 group-hover:translate-x-0.5">{t("actions.startProject")}</span>
                                 <span aria-hidden className="text-base z-10 transition-transform duration-300 group-hover:translate-x-0.5"><MoveRight size={14} /></span>
                                 <span className="absolute inset-y-0 left-0 z-0 w-0 bg-signal transition-[width] duration-500 group-hover:w-full" />
                             </Link>
@@ -166,10 +172,10 @@ export function Hero() {
                                 href="/assets/Docs/KevinJPCV.pdf"
                                 download
                                 data-cursor="link"
-                                data-cursor-label="CV"
+                                data-cursor-label={t("cursor.downloadCv")}
                                 className="group inline-flex items-center justify-between gap-3 rounded-full border border-rule-strong px-5 py-3 text-sm text-bone-100 transition-colors hover:border-signal"
                             >
-                                <span>Descargar CV</span>
+                                <span>{t("actions.downloadCv")}</span>
                                 <span className="font-mono text-xs uppercase tracking-widest text-bone-400 group-hover:text-signal">
                                     .pdf
                                 </span>
@@ -184,7 +190,7 @@ export function Hero() {
                 <Marquee
                     className="text-xs md:text-sm"
                     duration={42}
-                    items={keywords}
+                    items={marqueeItems}
                 />
             </div>
         </section>
@@ -201,6 +207,7 @@ function Row({ label, value }: { label: string; value: string }) {
 }
 
 function Avatar() {
+    const t = useTranslations("HomePage.hero.avatar");
     return (
         <div className="relative h-full w-full overflow-hidden bg-ink-900">
             <Image

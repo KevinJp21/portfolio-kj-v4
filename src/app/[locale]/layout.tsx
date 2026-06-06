@@ -1,9 +1,13 @@
 import type { Metadata } from "next";
+import { NextIntlClientProvider, hasLocale } from "next-intl";
+import { getMessages, setRequestLocale } from "next-intl/server";
+import { routing } from "@/i18n/routing";
+import { notFound } from 'next/navigation';
 import { Geist, Geist_Mono, Fraunces } from "next/font/google";
 import { SmoothScroll, ScrollProgress, PageTransition, Navbar, Footer } from "@/components";
 import { ThemeProvider } from "@/hooks";
 import { THEME_STORAGE_KEY } from "@/lib/theme";
-import "./globals.css";
+import "../globals.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -114,14 +118,25 @@ export const metadata: Metadata = {
 
 const themeInitScript = `(function(){try{var k=${JSON.stringify(THEME_STORAGE_KEY)};var r=document.documentElement;var t=localStorage.getItem(k);r.classList.remove("light","dark");r.classList.add(t==="light"||t==="dark"?t:"dark")}catch(e){document.documentElement.classList.add("dark")}})();`;
 
-export default function RootLayout({
-  children,
-}: Readonly<{
+type TProps = {
   children: React.ReactNode;
-}>) {
+  params: Promise<{ locale: string }>;
+};
+
+export function generateStaticParams() {
+  return routing.locales.map((locale) => ({ locale }));
+}
+
+export default async function RootLayout({ children, params }: TProps) {
+  const { locale } = await params;
+  if (!hasLocale(routing.locales, locale)) notFound();
+
+  setRequestLocale(locale);
+  const messages = await getMessages();
+
   return (
     <html
-      lang="es"
+      lang={locale}
       suppressHydrationWarning
       className={`dark ${geistSans.variable} ${geistMono.variable} ${fraunces.variable} antialiased`}
     >
@@ -134,11 +149,13 @@ export default function RootLayout({
             <div className="blueprint" aria-hidden />
             <div className="scanline" aria-hidden />
             <ScrollProgress />
-            <Navbar />
-            <PageTransition>
-              <main className="relative z-10 min-h-screen">{children}</main>
-            </PageTransition>
-            <Footer />
+            <NextIntlClientProvider messages={messages}>
+              <Navbar />
+              <PageTransition>
+                <main className="relative z-10 min-h-screen">{children}</main>
+              </PageTransition>
+              <Footer />
+            </NextIntlClientProvider>
           </SmoothScroll>
         </ThemeProvider>
       </body>

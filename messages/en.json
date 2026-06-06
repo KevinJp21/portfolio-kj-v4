@@ -1,0 +1,50 @@
+{
+  "HomePage": {
+    "hero": {
+      "availability": "available · {year}",
+      "headline": {
+        "line1": "Frontend developer",
+        "line2": "systems engineer,",
+        "line3": "with a full-stack mindset."
+      },
+      "avatar": {
+        "caption": "KJP · Barranquilla"
+      },
+      "bio": {
+        "name": "Kevin Julio Pineda.",
+        "body": "systems engineer and frontend developer with a full-stack focus. I build modern web applications with React, Next.js, and Tailwind CSS."
+      },
+      "meta": {
+        "focus": {
+          "label": "Focus",
+          "value": "React · Next.js · TS · Tailwind"
+        },
+        "backend": {
+          "label": "Backend",
+          "value": "Node · Laravel · MySQL · GraphQL"
+        },
+        "status": {
+          "label": "Status",
+          "value": "Available · {year}"
+        }
+      },
+      "actions": {
+        "startProject": "Start a project",
+        "downloadCv": "Download CV"
+      },
+      "cursor": {
+        "startProject": "Start",
+        "downloadCv": "CV"
+      },
+      "marquee": {
+        "items": [
+          "Frontend Developer · Full-stack",
+          "React · Next.js · TypeScript · TailwindCSS",
+          "Systems engineer",
+          "Barranquilla, Colombia",
+          "Available for new projects"
+        ]
+      }
+    }
+  }
+}

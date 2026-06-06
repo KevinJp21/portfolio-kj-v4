@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { MoveRight } from "lucide-react";
@@ -90,7 +90,7 @@ export function CloserBlock() {
               <span className="absolute inset-y-0 left-0 z-0 w-0 bg-signal transition-[width] duration-500 group-hover:w-full" />
             </Link>
 
-            <Link
+            <a
               href="mailto:kevinjp821@gmail.com"
               data-cursor="link"
               data-cursor-label="Email"
@@ -100,7 +100,7 @@ export function CloserBlock() {
               <span className="font-mono text-xs uppercase tracking-widest text-bone-400 group-hover:text-signal">
                 .email
               </span>
-            </Link>
+            </a>
           </div>
         </div>
       </div>

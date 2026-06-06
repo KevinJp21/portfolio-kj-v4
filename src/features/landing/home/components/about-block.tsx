@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { Link } from "@/i18n/navigation";
 import { SectionHeader } from "@/components";
 
 const stats: { value: string; suffix?: string; label: string }[] = [
@@ -124,7 +125,7 @@ export function AboutBlock() {
               ))}
             </ul>
 
-            <a
+            <Link
               href="/about"
               data-cursor="link"
               data-cursor-label="Saber más"
@@ -135,7 +136,7 @@ export function AboutBlock() {
               <span className="font-mono text-xs uppercase tracking-widest text-bone-400 group-hover:text-signal">
                 /about
               </span>
-            </a>
+            </Link>
           </div>
         </div>
       </div>

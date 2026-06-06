@@ -449,15 +449,6 @@ export const process: { step: string; title: string; body: string }[] = [
   },
 ];
 
-/* Palabras clave para marquees */
-export const keywords: string[] = [
-  "Frontend Developer · Full-stack",
-  "React · Next.js · TypeScript · TailwindCSS",
-  "Ingeniero de sistemas",
-  "Barranquilla, Colombia",
-  "Disponible para nuevos proyectos · 2026",
-];
-
 export const navLinks = [
   { href: "/", label: "Inicio", code: "00" },
   { href: "/blog", label: "Blog", code: "01" },

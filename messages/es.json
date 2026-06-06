@@ -1,0 +1,50 @@
+{
+  "HomePage": {
+    "hero": {
+      "availability": "disponible · {year}",
+      "headline": {
+        "line1": "Frontend developer",
+        "line2": "ingeniero de sistemas,",
+        "line3": "con visión full-stack."
+      },
+      "avatar": {
+        "caption": "KJP · Barranquilla"
+      },
+      "bio": {
+        "name": "Kevin Julio Pineda.",
+        "body": "ingeniero de sistemas y desarrollador frontend con enfoque full-stack. Construyo aplicaciones web modernas con React, Next.js y Tailwind CSS."
+      },
+      "meta": {
+        "focus": {
+          "label": "Focus",
+          "value": "React · Next.js · TS · Tailwind"
+        },
+        "backend": {
+          "label": "Backend",
+          "value": "Node · Laravel · MySQL · GraphQL"
+        },
+        "status": {
+          "label": "Status",
+          "value": "Disponible · {year}"
+        }
+      },
+      "actions": {
+        "startProject": "Empezar proyecto",
+        "downloadCv": "Descargar CV"
+      },
+      "cursor": {
+        "startProject": "Empezar",
+        "downloadCv": "CV"
+      },
+      "marquee": {
+        "items": [
+          "Frontend Developer · Full-stack",
+          "React · Next.js · TypeScript · TailwindCSS",
+          "Ingeniero de sistemas",
+          "Barranquilla, Colombia",
+          "Disponible para nuevos proyectos"
+        ]
+      }
+    }
+  }
+}
