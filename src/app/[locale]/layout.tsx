@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { cookies } from "next/headers";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
-import { getMessages, setRequestLocale } from "next-intl/server";
+import { getMessages, getTranslations, setRequestLocale } from "next-intl/server";
+import { getPathname } from "@/i18n/navigation";
 import { routing } from "@/i18n/routing";
 import { notFound } from 'next/navigation';
 import { Geist, Geist_Mono, Fraunces } from "next/font/google";
@@ -30,92 +31,105 @@ const fraunces = Fraunces({
   axes: ["SOFT", "opsz"],
 });
 
-const siteUrl = "https://kevinjp.dev";
+const siteUrl = "https://portfolio-kj-v4.vercel.app";
 const siteName = "Kevin Julio Pineda";
-const siteDescription =
-  "Ingeniero de sistemas y desarrollador frontend con visión full-stack. Diseño y construyo productos web a medida, adaptados a las necesidades de cada cliente.";
 const ogImage = "/og-image.webp";
 const faviconPath = "/favicon";
 
-export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
-  title: {
-    default: `${siteName} | Frontend Developer • Full-stack`,
-    template: `%s | ${siteName}`,
-  },
-  description: siteDescription,
-  keywords: [
-    "Kevin Julio Pineda",
-    "frontend developer",
-    "desarrollador frontend",
-    "full-stack",
-    "React",
-    "Next.js",
-    "TypeScript",
-    "TailwindCSS",
-    "Shopify",
-    "e-commerce",
-    "portfolio",
-    "desarrollador web",
-    "Barranquilla",
-    "Colombia",
-  ],
-  authors: [{ name: siteName, url: siteUrl }],
-  creator: siteName,
-  publisher: siteName,
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
+const ogLocales: Record<(typeof routing.locales)[number], string> = {
+  es: "es_CO",
+  en: "en_US",
+};
+
+type MetadataProps = {
+  params: Promise<{ locale: string }>;
+};
+
+export async function generateMetadata({
+  params,
+}: MetadataProps): Promise<Metadata> {
+  const { locale } = await params;
+  setRequestLocale(locale);
+  const t = await getTranslations({ locale, namespace: "Metadata" });
+
+  const canonical = getPathname({ locale, href: "/" });
+  const languages = Object.fromEntries(
+    routing.locales.map((l) => [l, getPathname({ locale: l, href: "/" })])
+  );
+  languages["x-default"] = getPathname({
+    locale: routing.defaultLocale,
+    href: "/",
+  });
+
+  const ogLocale = hasLocale(routing.locales, locale)
+    ? ogLocales[locale]
+    : ogLocales[routing.defaultLocale];
+
+  return {
+    metadataBase: new URL(siteUrl),
+    title: {
+      default: t("title"),
+      template: `%s | ${siteName}`,
+    },
+    description: t("description"),
+    keywords: t("keywords").split(", "),
+    authors: [{ name: siteName, url: siteUrl }],
+    creator: siteName,
+    publisher: siteName,
+    robots: {
       index: true,
       follow: true,
-      "max-snippet": -1,
-      "max-image-preview": "large",
-      "max-video-preview": -1,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-snippet": -1,
+        "max-image-preview": "large",
+        "max-video-preview": -1,
+      },
     },
-  },
-  openGraph: {
-    type: "website",
-    locale: "es_CO",
-    url: siteUrl,
-    siteName,
-    title: `${siteName} | Frontend Developer • Full-stack`,
-    description:
-      "Portfolio de Kevin Julio Pineda — desarrollador frontend con visión full-stack. Proyectos web, e-commerce y aplicaciones a medida.",
-    images: [
-      {
-        url: ogImage,
-        width: 512,
-        height: 512,
-        alt: `${siteName} — Frontend Developer`,
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: `${siteName} — Frontend Developer · Full-stack`,
-    description: siteDescription,
-    images: [ogImage],
-  },
-  alternates: {
-    canonical: siteUrl,
-  },
-  manifest: `${faviconPath}/site.webmanifest`,
-  icons: {
-    icon: [
-      { url: `${faviconPath}/favicon.ico`, sizes: "any" },
-      { url: `${faviconPath}/favicon.svg`, type: "image/svg+xml" },
-      {
-        url: `${faviconPath}/favicon-96x96.png`,
-        sizes: "96x96",
-        type: "image/png",
-      },
-    ],
-    shortcut: `${faviconPath}/favicon.ico`,
-    apple: `${faviconPath}/apple-touch-icon.png`,
-  },
-  category: "technology",
-};
+    openGraph: {
+      type: "website",
+      locale: ogLocale,
+      url: canonical,
+      siteName,
+      title: t("title"),
+      description: t("ogDescription"),
+      images: [
+        {
+          url: ogImage,
+          width: 512,
+          height: 512,
+          alt: t("ogImageAlt"),
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: t("title"),
+      description: t("ogDescription"),
+      images: [ogImage],
+    },
+    alternates: {
+      canonical,
+      languages,
+    },
+    manifest: `${faviconPath}/site.webmanifest`,
+    icons: {
+      icon: [
+        { url: `${faviconPath}/favicon.ico`, sizes: "any" },
+        { url: `${faviconPath}/favicon.svg`, type: "image/svg+xml" },
+        {
+          url: `${faviconPath}/favicon-96x96.png`,
+          sizes: "96x96",
+          type: "image/png",
+        },
+      ],
+      shortcut: `${faviconPath}/favicon.ico`,
+      apple: `${faviconPath}/apple-touch-icon.png`,
+    },
+    category: "technology",
+  };
+}
 
 type TProps = {
   children: React.ReactNode;

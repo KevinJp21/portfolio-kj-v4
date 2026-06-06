@@ -1,4 +1,11 @@
 {
+  "Metadata": {
+    "title": "Kevin Julio Pineda | Frontend Developer • Full-stack",
+    "description": "Systems engineer and frontend developer with a full-stack mindset. I design and build custom web products.",
+    "ogDescription": "Kevin Julio Pineda portfolio — frontend developer with a full-stack mindset.",
+    "ogImageAlt": "Kevin Julio Pineda — Frontend Developer",
+    "keywords": "Kevin Julio Pineda, frontend developer, full-stack, React, Next.js, portfolio"
+  },
   "HomePage": {
     "hero": {
       "availability": "available · {year}",

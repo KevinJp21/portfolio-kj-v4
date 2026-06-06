@@ -1,4 +1,11 @@
 {
+  "Metadata": {
+    "title": "Kevin Julio Pineda | Desarrollador Frontend • Full-stack",
+    "description": "Ingeniero de sistemas y desarrollador frontend con visión full-stack. Diseño y construyo productos web a medida.",
+    "ogDescription": "Portfolio de Kevin Julio Pineda — desarrollador frontend con visión full-stack.",
+    "ogImageAlt": "Kevin Julio Pineda — Desarrollador Frontend",
+    "keywords": "Kevin Julio Pineda, desarrollador frontend, full-stack, React, Next.js, portfolio"
+  },
   "HomePage": {
     "hero": {
       "availability": "disponible · {year}",
