@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { cookies } from "next/headers";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { getMessages, setRequestLocale } from "next-intl/server";
 import { routing } from "@/i18n/routing";
@@ -6,7 +7,7 @@ import { notFound } from 'next/navigation';
 import { Geist, Geist_Mono, Fraunces } from "next/font/google";
 import { SmoothScroll, ScrollProgress, PageTransition, Navbar, Footer } from "@/components";
 import { ThemeProvider } from "@/hooks";
-import { THEME_STORAGE_KEY } from "@/lib/theme";
+import { resolveTheme, THEME_STORAGE_KEY } from "@/lib/theme";
 import "../globals.css";
 
 const geistSans = Geist({
@@ -116,8 +117,6 @@ export const metadata: Metadata = {
   category: "technology",
 };
 
-const themeInitScript = `(function(){try{var k=${JSON.stringify(THEME_STORAGE_KEY)};var r=document.documentElement;var t=localStorage.getItem(k);r.classList.remove("light","dark");r.classList.add(t==="light"||t==="dark"?t:"dark")}catch(e){document.documentElement.classList.add("dark")}})();`;
-
 type TProps = {
   children: React.ReactNode;
   params: Promise<{ locale: string }>;
@@ -133,18 +132,17 @@ export default async function RootLayout({ children, params }: TProps) {
 
   setRequestLocale(locale);
   const messages = await getMessages();
+  const theme = resolveTheme((await cookies()).get(THEME_STORAGE_KEY)?.value);
 
   return (
     <html
       lang={locale}
       suppressHydrationWarning
-      className={`dark ${geistSans.variable} ${geistMono.variable} ${fraunces.variable} antialiased`}
+      style={{ colorScheme: theme }}
+      className={`${theme} ${geistSans.variable} ${geistMono.variable} ${fraunces.variable} antialiased`}
     >
-      <head>
-        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
-      </head>
       <body className="grain relative bg-ink-900 text-bone-100 selection:bg-signal selection:text-ink-900">
-        <ThemeProvider>
+        <ThemeProvider initialTheme={theme}>
           <SmoothScroll>
             <div className="blueprint" aria-hidden />
             <div className="scanline" aria-hidden />

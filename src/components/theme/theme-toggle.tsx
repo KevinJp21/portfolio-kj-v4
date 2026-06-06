@@ -9,7 +9,7 @@ type ThemeToggleProps = {
 };
 
 export function ThemeToggle({ className }: ThemeToggleProps) {
-  const { theme, toggleTheme, mounted } = useTheme();
+  const { theme, toggleTheme } = useTheme();
   const isDark = theme === "dark";
 
   return (
@@ -22,11 +22,7 @@ export function ThemeToggle({ className }: ThemeToggleProps) {
         className
       )}
     >
-      {mounted ? (
-        isDark ? <Sun size={16} aria-hidden /> : <Moon size={16} aria-hidden />
-      ) : (
-        <Sun size={16} aria-hidden className="opacity-0" />
-      )}
+      {isDark ? <Sun size={16} aria-hidden /> : <Moon size={16} aria-hidden />}
     </button>
   );
 }

@@ -6,6 +6,7 @@ import { gsap } from "gsap";
 import { navLinks } from "@/lib/data";
 import { cn } from "@/lib/utils";
 import { ThemeToggle } from "@/components/theme";
+import { LanguageSwitch } from "@/components/landing/layout/language-switch";
 import { MoveRight } from "lucide-react";
 
 export function Navbar() {
@@ -192,10 +193,7 @@ export function Navbar() {
 
         <div className="hidden items-center gap-3 lg:flex">
           <ThemeToggle />
-          <span className="flex items-center gap-2 rounded-full border border-rule px-3 py-1.5 text-[10px] uppercase tracking-[0.18em] text-bone-400">
-            <span className="pulse-dot inline-block h-1.5 w-1.5 rounded-full bg-signal" />
-            disponible · 2026
-          </span>
+          <LanguageSwitch />
           <Link
             href="/contact"
             data-cursor="cta"
@@ -209,6 +207,7 @@ export function Navbar() {
 
         <div className="flex items-center gap-2 lg:hidden">
           <ThemeToggle />
+          <LanguageSwitch />
           <button
           type="button"
           aria-label={open ? "Cerrar menú" : "Abrir menú"}
