@@ -91,20 +91,26 @@ export async function generateMetadata({
       locale: ogLocale,
       url: canonical,
       siteName,
-      title: t("title"),
+      title: {
+        default: t("title"),
+        template: `%s | ${siteName}`,
+      },
       description: t("ogDescription"),
       images: [
         {
           url: ogImage,
-          width: 512,
-          height: 512,
+          width: 1200,
+          height: 630,
           alt: t("ogImageAlt"),
         },
       ],
     },
     twitter: {
       card: "summary_large_image",
-      title: t("title"),
+      title: {
+        default: t("title"),
+        template: `%s | ${siteName}`,
+      },
       description: t("ogDescription"),
       images: [ogImage],
     },
@@ -127,6 +133,9 @@ export async function generateMetadata({
       apple: `${faviconPath}/apple-touch-icon.png`,
     },
     category: "technology",
+    other: {
+      "theme-color": "#07090c"
+    }
   };
 }
 

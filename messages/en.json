@@ -290,6 +290,7 @@
   "AboutPage": {
     "metaTitle": "About",
     "metaDescription": "Professional profile of Kevin Julio Pineda, Frontend Developer with a full-stack mindset, focused on web application development, software architecture, and scalable digital products.",
+    "ogImageAlt": "About | Kevin Julio Pineda — Frontend Developer",
     "returnLink": "Home",
     "code": "A/00",
     "eyebrow": "About",
