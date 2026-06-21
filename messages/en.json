@@ -6,6 +6,22 @@
     "ogImageAlt": "Kevin Julio Pineda — Frontend Developer",
     "keywords": "Kevin Julio Pineda, frontend developer, full-stack, React, Next.js, portfolio"
   },
+  "Navbar": {
+    "role": "frontend developer",
+    "startProject": "Start a project",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "cursor": {
+      "index": "Index",
+      "start": "Start"
+    },
+    "links": {
+      "home": "Home",
+      "blog": "Blog",
+      "about": "About",
+      "contact": "Contact"
+    }
+  },
   "HomePage": {
     "hero": {
       "availability": "available · {year}",
@@ -52,7 +68,138 @@
           "Available for new projects"
         ]
       }
+    },
+    "about": {
+      "code": "C/01",
+      "eyebrow": "Manifesto",
+      "headline": {
+        "line1": "I build",
+        "line1Accent": "web",
+        "line2": "applications with React, Next.js, and Tailwind,",
+        "line3": "from the interface down to",
+        "line4": "the backend that supports it."
+      },
+      "body": "I'm a systems engineer and frontend developer with a full-stack focus. I work on real applications integrating APIs, authentication, state management, validation, and experiences focused on performance, scalability, and usability.",
+      "stats": [
+        { "value": "04", "label": "Portfolio projects" },
+        { "value": "3", "suffix": "+", "label": "Years building" },
+        { "value": "16", "suffix": "+", "label": "Technologies" },
+        { "value": "100", "suffix": "%", "label": "Built from scratch" }
+      ],
+      "link": {
+        "cursor": "Learn more",
+        "text": "Read the full story"
+      }
+    },
+    "experience": {
+      "code": "C/02",
+      "eyebrow": "Experience — recent collaborations",
+      "title": "Recent experience",
+      "description": "Roles, stack, and context for each project. Ordered from most recent to oldest.",
+      "currentBadge": "Current",
+      "items": [
+        {
+          "period": "2026 — Jan · present",
+          "role": "Frontend Developer",
+          "company": "Silver Holdings S.A.S.",
+          "location": "Barranquilla, Colombia",
+          "description": "Development and maintenance of enterprise web applications with Next.js and TailwindCSS. Applying architecture best practices, design patterns, and maintainable code — integrating services, improving user experience, and optimizing internal processes in multidisciplinary agile teams.",
+          "stack": ["Next.js", "React", "TypeScript", "TailwindCSS"],
+          "current": true
+        },
+        {
+          "period": "2025 — May",
+          "role": "Frontend Developer · Shopify",
+          "company": "Ferretería Rueda",
+          "location": "Barranquilla, Colombia",
+          "description": "First online sales channel for a hardware store with over 30 years of history. Custom Shopify theme built from scratch with Liquid and JavaScript, fully editable from the admin.",
+          "stack": ["Shopify", "Liquid", "JavaScript"]
+        },
+        {
+          "period": "2024 — Nov",
+          "role": "Full-stack Developer · Headless",
+          "company": "Verezza E-commerce",
+          "location": "Independent project",
+          "description": "Headless fashion store with Remix + React + TypeScript, connected to Shopify via Storefront API in GraphQL. Authentication, filters, cart, and checkout with hybrid SSR + CSR rendering.",
+          "stack": ["Remix", "React", "TypeScript", "GraphQL", "Shopify"]
+        },
+        {
+          "period": "2024 — Oct",
+          "role": "Full-stack Developer · Lead frontend",
+          "company": "Chikos Gourmet",
+          "location": "Barranquilla, Colombia",
+          "description": "Official site and admin panel for a food brand. Remix + React + MySQL, with dynamic menu, branch management, and images served from Cloudflare Images.",
+          "stack": ["Remix", "React", "TypeScript", "MySQL", "Cloudflare"]
+        },
+        {
+          "period": "2024 — May",
+          "role": "Backend Developer · ML Engineer",
+          "company": "DocMe Assistant Chatbot",
+          "location": "Academic project",
+          "description": "Intelligent chatbot for managing medical appointments. Flask + SQLAlchemy + MySQL backend, with TensorFlow/Keras neural networks for intent classification and NLTK for natural language processing.",
+          "stack": ["Python", "Flask", "TensorFlow", "Keras", "MySQL"]
+        }
+      ]
+    },
+    "featured": {
+      "code": "C/03",
+      "eyebrow": "Blog · 2024 → 2026",
+      "titleLead": "What I built,",
+      "titleAccent": "and how it shipped.",
+      "description": "I write about apps and sites I built end to end: the challenge, the stack I used, and what shipped in the end.",
+      "indexNavLabel": "Featured posts index",
+      "viewAll": "View all articles",
+      "viewIndexCursor": "View index",
+      "readArticle": "Read article"
+    },
+    "stack": {
+      "code": "C/04",
+      "eyebrow": "Stack",
+      "titleLead": "The tools that",
+      "titleAccent": "shape",
+      "titleLine2": "every release.",
+      "description": "Technologies I use regularly, grouped by area. Daily drivers, project-specific tools, and what I'm learning.",
+      "toolsCount": "· {category} — {count} tools",
+      "levels": {
+        "daily": "Daily",
+        "project": "Per project",
+        "learning": "Learning"
+      },
+      "categories": {
+        "languages": "Languages & Frameworks",
+        "backend": "Backend & Data",
+        "ai": "Artificial Intelligence",
+        "tools": "Tools"
+      }
+    },
+    "closer": {
+      "code": "C/05",
+      "eyebrow": "Let's build",
+      "titleLine1": "Got a project",
+      "titleAccent": "in mind?",
+      "titleLine3": "Let's build it together!",
+      "availability": "Available for new projects",
+      "body": "Frontend, full-stack, or e-commerce. If you have a concrete idea or need an extra pair of hands, let's talk.",
+      "cta": "Start a conversation",
+      "ctaCursor": "Talk",
+      "email": "Write by email",
+      "emailCursor": "Email"
     }
+  },
+  "Footer": {
+    "copyright": "© 2026 Kevin Julio Pineda · Systems engineer · Frontend Developer"
+  },
+  "LanguageSwitch": {
+    "toggle": "Change language",
+    "list": "Language",
+    "locales": {
+      "es": "Español",
+      "en": "English"
+    }
+  },
+  "ThemeToggle": {
+    "light": "Switch to light mode",
+    "dark": "Switch to dark mode"
   },
   "BlogPage": {
     "index": {

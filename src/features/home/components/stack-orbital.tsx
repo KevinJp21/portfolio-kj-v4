@@ -3,7 +3,9 @@
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { stack, stackLevelLabel, type StackLevel } from "@/lib/data";
+import { useTranslations } from "next-intl";
+import { stackItems } from "@/const/stack";
+import type { StackCategoryKey, StackLevel } from "@/types";
 import { SectionHeader } from "@/components";
 import { cn } from "@/lib/utils";
 
@@ -20,12 +22,16 @@ const levelTextClass: Record<StackLevel, string> = {
 };
 
 export function StackOrbital() {
+  const t = useTranslations("HomePage.stack");
   const ref = useRef<HTMLElement>(null);
   const introRef = useRef<HTMLDivElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
   const skipRowAnimation = useRef(true);
   const [active, setActive] = useState(0);
   const [hover, setHover] = useState<string | null>(null);
+
+  const levelLabel = (level: StackLevel) => t(`levels.${level}`);
+  const categoryLabel = (key: StackCategoryKey) => t(`categories.${key}`);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -132,25 +138,26 @@ export function StackOrbital() {
     return () => ctx.revert();
   }, [active]);
 
-  const current = stack[active];
+  const current = stackItems[active];
+  const currentCategory = categoryLabel(current.categoryKey);
 
   return (
     <section ref={ref} className="section section-x">
       <div className="default-container">
-        <SectionHeader code="C/04" eyebrow="Stack" />
+        <SectionHeader code={t("code")} eyebrow={t("eyebrow")} />
 
         <div
           ref={introRef}
           className="stack-intro mt-12 grid items-end justify-between gap-6 md:grid-cols-2"
         >
           <h2 className="font-display text-[clamp(2.25rem,6vw,5rem)] leading-[0.95] text-bone-100">
-            Las herramientas que <em className="italic text-signal">moldean</em>
+            {t("titleLead")}{" "}
+            <em className="italic text-signal">{t("titleAccent")}</em>
             <br />
-            cada release.
+            {t("titleLine2")}
           </h2>
           <p className="text-sm leading-relaxed text-bone-400 md:max-w-sm md:justify-self-end">
-            Tecnologías que uso habitualmente, agrupadas por área. Lo de todos
-            los días, lo que usé en un proyecto y lo que estoy aprendiendo.
+            {t("description")}
           </p>
         </div>
 
@@ -159,12 +166,12 @@ export function StackOrbital() {
           className="stack-panel mt-14 grid gap-px overflow-hidden rounded-2xl border border-rule bg-rule md:grid-cols-[260px_1fr]"
         >
           <ul className="flex flex-col bg-ink-900 md:py-4">
-            {stack.map((s, i) => (
-              <li key={s.category}>
+            {stackItems.map((s, i) => (
+              <li key={s.categoryKey}>
                 <button
                   type="button"
                   data-cursor="link"
-                  data-cursor-label={s.category}
+                  data-cursor-label={categoryLabel(s.categoryKey)}
                   onClick={() => setActive(i)}
                   className={cn(
                     "stack-item group flex w-full items-center justify-between border-l-2 px-6 py-4 text-left transition-colors",
@@ -178,7 +185,7 @@ export function StackOrbital() {
                       {String(i).padStart(2, "0")}
                     </span>
                     <span className="font-display text-lg">
-                      {s.category}
+                      {categoryLabel(s.categoryKey)}
                     </span>
                   </span>
                   <span className="font-mono text-xs text-bone-500">
@@ -192,13 +199,16 @@ export function StackOrbital() {
           <div className="relative bg-ink-900 p-6 md:p-10">
             <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
               <p className="chip-mono text-bone-500">
-                · {current.category} — {current.items.length} herramientas
+                {t("toolsCount", {
+                  category: currentCategory,
+                  count: current.items.length,
+                })}
               </p>
               <ul className="flex items-center gap-4 text-[10px] uppercase tracking-[0.18em] text-bone-500">
-                {(Object.keys(stackLevelLabel) as StackLevel[]).map((lvl) => (
+                {(["daily", "project", "learning"] as StackLevel[]).map((lvl) => (
                   <li key={lvl} className="flex items-center gap-1.5">
                     <span className={cn("h-1.5 w-1.5 rounded-full", levelDotClass[lvl])} />
-                    <span>{stackLevelLabel[lvl]}</span>
+                    <span>{levelLabel(lvl)}</span>
                   </li>
                 ))}
               </ul>
@@ -211,7 +221,7 @@ export function StackOrbital() {
                   onMouseEnter={() => setHover(tool.name)}
                   onMouseLeave={() => setHover(null)}
                   data-cursor="link"
-                  data-cursor-label={stackLevelLabel[tool.level]}
+                  data-cursor-label={levelLabel(tool.level)}
                   className="stack-row group flex items-baseline justify-between gap-6 border-b border-rule-soft py-3"
                 >
                   <span
@@ -236,7 +246,7 @@ export function StackOrbital() {
                         levelTextClass[tool.level]
                       )}
                     >
-                      {stackLevelLabel[tool.level]}
+                      {levelLabel(tool.level)}
                     </span>
                   </span>
                 </li>

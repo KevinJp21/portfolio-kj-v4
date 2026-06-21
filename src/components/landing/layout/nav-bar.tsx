@@ -2,14 +2,16 @@
 
 import { Link, usePathname } from "@/i18n/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
+import { useTranslations } from "next-intl";
 import { gsap } from "gsap";
-import { navLinks } from "@/lib/data";
+import { navLinks } from "@/const/nav-links";
 import { cn } from "@/lib/utils";
 import { ThemeToggle } from "@/components/theme";
 import { LanguageSwitch } from "@/components/landing/layout/language-switch";
 import { MoveRight } from "lucide-react";
 
 export function Navbar() {
+  const t = useTranslations("Navbar");
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
@@ -146,19 +148,20 @@ export function Navbar() {
         <Link
           href="/"
           data-cursor="link"
-          data-cursor-label="Index"
+          data-cursor-label={t("cursor.index")}
           className="group flex items-center gap-3"
         >
           <span className="hidden flex-col leading-none lg:flex">
             <span className="text-xs font-medium tracking-tight text-bone-100">
               Kevin J. Pineda
             </span>
-            <span className="chip-mono mt-1">frontend developer</span>
+            <span className="chip-mono mt-1">{t("role")}</span>
           </span>
         </Link>
 
         <ul className="hidden items-center gap-1 lg:flex">
           {navLinks.map((link) => {
+            const label = t(`links.${link.labelKey}`);
             const active =
               link.href === "/"
                 ? pathname === "/"
@@ -168,7 +171,7 @@ export function Navbar() {
                 <Link
                   href={link.href}
                   data-cursor="link"
-                  data-cursor-label={link.label}
+                  data-cursor-label={label}
                   className={cn(
                     "group relative flex items-center gap-2 rounded-full px-4 py-2 text-sm transition-colors",
                     active
@@ -177,7 +180,7 @@ export function Navbar() {
                   )}
                 >
                   <span className="chip-mono text-[9px]">{link.code}</span>
-                  <span>{link.label}</span>
+                  <span>{label}</span>
                   {active && (
                     <span
                       className="pulse-dot ml-1 inline-block h-1.5 w-1.5 rounded-full bg-signal"
@@ -197,10 +200,10 @@ export function Navbar() {
           <Link
             href="/contact"
             data-cursor="cta"
-            data-cursor-label="Empezar"
+            data-cursor-label={t("cursor.start")}
             className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full bg-bone-100 px-4 py-2 text-sm font-medium text-ink-900 transition-transform duration-300 hover:scale-[1.02]"
           >
-            <span>Empezar proyecto</span>
+            <span>{t("startProject")}</span>
             <MoveRight size={14} className="transition-transform duration-300 group-hover:translate-x-0.5" />
           </Link>
         </div>
@@ -210,7 +213,7 @@ export function Navbar() {
           <LanguageSwitch />
           <button
           type="button"
-          aria-label={open ? "Cerrar menú" : "Abrir menú"}
+          aria-label={open ? t("closeMenu") : t("openMenu")}
           aria-expanded={open}
           onClick={toggleMenu}
           className="inline-flex h-10 w-10 flex-col items-center justify-center gap-1.5 rounded-full border border-rule"
@@ -238,6 +241,7 @@ export function Navbar() {
           >
             <ul className="space-y-2">
               {navLinks.map((link) => {
+                const label = t(`links.${link.labelKey}`);
                 const active =
                   link.href === "/"
                     ? pathname === "/"
@@ -253,7 +257,7 @@ export function Navbar() {
                     >
                       <span className="flex items-center gap-3">
                         <span className="chip-mono">{link.code}</span>
-                        {link.label}
+                        {label}
                       </span>
                       <MoveRight size={14} />
                     </Link>
@@ -265,7 +269,7 @@ export function Navbar() {
               href="/contact"
               className="mobile-nav-cta mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-bone-100 px-4 py-3 text-sm font-medium text-ink-900"
             >
-              Empezar proyecto
+              {t("startProject")}
               <MoveRight size={14} />
             </Link>
           </div>

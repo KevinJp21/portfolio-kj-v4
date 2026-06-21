@@ -5,7 +5,7 @@ import Image from "next/image";
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { TextReveal, Marquee } from "@/components";
-import { AVATAR_URL } from "@/lib/data";
+import { AVATAR_URL } from "@/const/avatar";
 import { MoveRight } from "lucide-react";
 import { useTranslations } from "next-intl";
 

@@ -2,18 +2,30 @@
 
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
-import { experience } from "@/lib/data";
+import { useTranslations } from "next-intl";
 import { SectionHeader } from "@/components";
 
+type ExperienceItem = {
+  period: string;
+  role: string;
+  company: string;
+  location: string;
+  description: string;
+  stack: string[];
+  current?: boolean;
+};
+
 export function ExperienceTimeline() {
+  const t = useTranslations("HomePage.experience");
+  const items = t.raw("items") as ExperienceItem[];
   const ref = useRef<HTMLElement>(null);
   const railRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      const items = gsap.utils.toArray<HTMLElement>(".exp-item");
+      const expItems = gsap.utils.toArray<HTMLElement>(".exp-item");
 
-      items.forEach((item) => {
+      expItems.forEach((item) => {
         const number = item.querySelector<HTMLElement>(".exp-number");
         const content = item.querySelector<HTMLElement>(".exp-content");
         const meta = item.querySelector<HTMLElement>(".exp-meta");
@@ -59,16 +71,15 @@ export function ExperienceTimeline() {
   return (
     <section ref={ref} className="section section-x">
       <div className="default-container">
-        <SectionHeader code="C/02" eyebrow="Experiencia — colaboraciones recientes" />
+        <SectionHeader code={t("code")} eyebrow={t("eyebrow")} />
 
         <div className="mt-12 grid items-start gap-12 md:grid-cols-12">
           <div className="md:col-span-4">
             <h2 className="font-display text-[clamp(2.25rem,5vw,4rem)] leading-[1.05] text-bone-100">
-              Experiencia reciente
+              {t("title")}
             </h2>
             <p className="mt-6 max-w-sm text-sm leading-relaxed text-bone-400">
-              Roles, stack y contexto de cada proyecto. Ordenados de lo más
-              reciente al anterior.
+              {t("description")}
             </p>
           </div>
 
@@ -83,7 +94,7 @@ export function ExperienceTimeline() {
               />
             </span>
 
-            {experience.map((item, i) => (
+            {items.map((item, i) => (
               <li
                 key={`${item.company}-${i}`}
                 className="exp-item relative mb-12 last:mb-0 pl-12 md:pl-16"
@@ -106,12 +117,12 @@ export function ExperienceTimeline() {
 
                 <div className="exp-meta mb-2 flex flex-wrap items-center gap-3">
                   <span className="chip-mono text-signal">{item.period}</span>
-                  {item.current && (
+                  {item.current ? (
                     <span className="chip-mono inline-flex items-center gap-1.5 rounded-full border border-signal/40 bg-signal/5 px-2 py-0.5 text-signal">
                       <span className="h-1 w-1 rounded-full bg-signal" />
-                      Actual
+                      {t("currentBadge")}
                     </span>
-                  )}
+                  ) : null}
                   <span className="chip-mono text-bone-500">·</span>
                   <span className="chip-mono text-bone-500">{item.location}</span>
                 </div>

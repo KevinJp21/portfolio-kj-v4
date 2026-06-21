@@ -11,7 +11,7 @@ import {
   getPost,
   getPostMeta,
 } from "@/lib/blog";
-import { BlogPostView } from "@/features/blog/template";
+import { BlogPostView } from "@/features/blog";
 
 type PageProps = {
   params: Promise<{ locale: string; slug: string }>;

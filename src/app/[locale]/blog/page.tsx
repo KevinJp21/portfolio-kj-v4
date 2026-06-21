@@ -3,7 +3,7 @@ import { setRequestLocale, getTranslations } from "next-intl/server";
 import { hasLocale } from "next-intl";
 import { routing } from "@/i18n/routing";
 import { buildBlogIndexMetadata, getAllPosts } from "@/lib/blog";
-import { BlogIndex } from "@/features/blog/template";
+import { BlogIndex } from "@/features/blog";
 
 type PageProps = {
   params: Promise<{ locale: string }>;

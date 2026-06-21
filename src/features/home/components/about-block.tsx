@@ -4,16 +4,18 @@ import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Link } from "@/i18n/navigation";
+import { useTranslations } from "next-intl";
 import { SectionHeader } from "@/components";
 
-const stats: { value: string; suffix?: string; label: string }[] = [
-  { value: "04", label: "Proyectos en portfolio" },
-  { value: "3", suffix: "+", label: "Años desarrollando" },
-  { value: "16", suffix: "+", label: "Tecnologías" },
-  { value: "100", suffix: "%", label: "Hecho desde cero" },
-];
+type AboutStat = {
+  value: string;
+  suffix?: string;
+  label: string;
+};
 
 export function AboutBlock() {
+  const t = useTranslations("HomePage.about");
+  const stats = t.raw("stats") as AboutStat[];
   const ref = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -70,35 +72,31 @@ export function AboutBlock() {
   return (
     <section ref={ref} className="section section-x">
       <div className="default-container">
-        <SectionHeader code="C/01" eyebrow="Manifesto" />
+        <SectionHeader code={t("code")} eyebrow={t("eyebrow")} />
 
         <div className="mt-12 grid items-start gap-12 md:grid-cols-12">
           <div className="md:col-span-7">
             <p className="font-display text-[clamp(2rem,4.6vw,4rem)] leading-[1.05] text-bone-100">
               <span className="block">
                 <span className="about-line block">
-                  Construyo aplicaciones{" "}
-                  <em className="italic text-signal">web</em>
+                  {t("headline.line1")}{" "}
+                  <em className="italic text-signal">{t("headline.line1Accent")}</em>
                 </span>
               </span>
               <span className="block">
-                <span className="about-line block">
-                  con React, Next.js y Tailwind,
-                </span>
+                <span className="about-line block">{t("headline.line2")}</span>
               </span>
               <span className="block">
-                <span className="about-line block">
-                  desde la interfaz hasta
-                </span>
+                <span className="about-line block">{t("headline.line3")}</span>
               </span>
               <span className="block">
                 <span className="about-line block italic text-bone-400">
-                  el backend que la sostiene.
+                  {t("headline.line4")}
                 </span>
               </span>
             </p>
             <p className="mt-10 max-w-xl text-base leading-relaxed text-bone-300">
-            Soy ingeniero de sistemas y desarrollador frontend con enfoque full-stack. Trabajo en aplicaciones reales integrando APIs, autenticación, manejo de estado, validaciones y experiencias enfocadas en rendimiento, escalabilidad y usabilidad.
+              {t("body")}
             </p>
           </div>
 
@@ -128,11 +126,11 @@ export function AboutBlock() {
             <Link
               href="/about"
               data-cursor="link"
-              data-cursor-label="Saber más"
+              data-cursor-label={t("link.cursor")}
               className="group mt-8 inline-flex items-center gap-3 text-sm text-bone-100"
             >
               <span className="inline-block h-px w-8 bg-bone-400 transition-all group-hover:w-16 group-hover:bg-signal" />
-              Lee la historia completa
+              {t("link.text")}
               <span className="font-mono text-xs uppercase tracking-widest text-bone-400 group-hover:text-signal">
                 /about
               </span>

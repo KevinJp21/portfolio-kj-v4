@@ -8,6 +8,7 @@ import { notFound } from 'next/navigation';
 import { Geist, Geist_Mono, Fraunces } from "next/font/google";
 import { SmoothScroll, ScrollProgress, PageTransition, Navbar, Footer } from "@/components";
 import { ThemeProvider } from "@/hooks";
+import { siteName, siteUrl } from "@/const";
 import { resolveTheme, THEME_STORAGE_KEY } from "@/lib/theme";
 import "../globals.css";
 
@@ -31,8 +32,6 @@ const fraunces = Fraunces({
   axes: ["SOFT", "opsz"],
 });
 
-const siteUrl = "https://portfolio-kj-v4.vercel.app";
-const siteName = "Kevin Julio Pineda";
 const ogImage = "/og-image.webp";
 const faviconPath = "/favicon";
 

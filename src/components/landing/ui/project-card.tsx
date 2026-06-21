@@ -2,16 +2,16 @@ import { Link } from "@/i18n/navigation";
 import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import type { ComponentProps } from "react";
-import type { Project } from "@/lib/data";
+import type { BlogPostMeta } from "@/lib/blog";
 import { cn } from "@/lib/utils";
 
 type BlogHref = ComponentProps<typeof Link>["href"];
 
 type ProjectCardProps = {
-  project: Project;
+  project: BlogPostMeta;
   index?: number;
   href?: BlogHref;
-  ctaLabel?: string;
+  ctaLabel: string;
   idPrefix?: string;
   className?: string;
 };
@@ -20,7 +20,7 @@ export function ProjectCard({
   project,
   index = 0,
   href = { pathname: "/blog/[slug]", params: { slug: project.slug } },
-  ctaLabel = "Ver artículo",
+  ctaLabel,
   idPrefix = "project",
   className,
 }: ProjectCardProps) {
