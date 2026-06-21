@@ -5,7 +5,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 import { gsap } from "gsap";
 import { Link } from "@/i18n/navigation";
-import { SectionHeader } from "@/components";
+import { SectionHeader, TextReveal } from "@/components";
 import { cn } from "@/lib/utils";
 import type { BlogPostMeta } from "@/lib/blog/types";
 import {
@@ -87,13 +87,24 @@ export function BlogIndexView({ posts, labels }: BlogIndexViewProps) {
 
         <div className="mt-10 grid items-end gap-10 md:grid-cols-12">
           <div className="md:col-span-8">
-            <h1 className="font-display text-[clamp(3rem,9vw,9rem)] leading-[0.85] text-bone-100">
-              {labels.titleLead}{" "}
-              <em className="italic text-signal">{labels.titleAccent}</em>
+            <h1 className="font-display text-[clamp(3rem,9vw,9rem)] leading-[0.85] text-bone-100 italic">
+              <TextReveal as="span" trigger="mount">
+                {labels.titleLead}
+              </TextReveal>
+
+              {" "}
+
+              <TextReveal
+                as="span"
+                trigger="mount"
+                className="text-signal"
+              >
+                {labels.titleAccent}
+              </TextReveal>
             </h1>
-            <p className="mt-6 max-w-xl text-base text-bone-300">
+            <TextReveal as="p" trigger="mount" className="mt-6 max-w-xl text-base text-bone-300">
               {labels.description}
-            </p>
+            </TextReveal>
           </div>
           <div className="md:col-span-4">
             <ViewSwitch
@@ -193,26 +204,37 @@ function GridView({ items }: { items: BlogPostMeta[] }) {
   return (
     <ul className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
       {items.map((post, index) => (
-        <li key={post.slug} className="bi-card group">
+        <li key={post.slug} className="bi-card h-full">
           <Link
             href={{ pathname: "/blog/[slug]", params: { slug: post.slug } }}
             data-cursor="cta"
             data-cursor-label={post.title}
-            className="block overflow-hidden rounded-2xl border border-rule bg-ink-850 transition-all hover:border-rule-strong"
+            className="
+              group flex h-full flex-col
+              overflow-hidden rounded-2xl
+              border border-rule bg-ink-850
+              transition-all hover:border-rule-strong
+            "
           >
             <PostArtwork post={post} priority={index === 0} />
-            <div className="space-y-3 p-5">
+
+            <div className="flex flex-1 flex-col p-5">
               <div className="flex items-center justify-between text-[10px] uppercase tracking-widest text-bone-500">
                 <span>
                   {post.index} · {post.category}
                 </span>
                 <span>{post.year}</span>
               </div>
-              <h3 className="font-display text-2xl leading-tight text-bone-100">
+
+              <h3 className="mt-3 line-clamp-2 font-display text-2xl leading-tight text-bone-100">
                 {post.title}
               </h3>
-              <p className="text-sm text-bone-400">{post.subtitle}</p>
-              <ul className="flex flex-wrap gap-2 pt-2">
+
+              <p className="mt-3 line-clamp-3 text-sm text-bone-400">
+                {post.subtitle}
+              </p>
+
+              <ul className="mt-auto flex flex-wrap gap-2 pt-6">
                 {post.stack.slice(0, 3).map((item) => (
                   <li
                     key={item}
