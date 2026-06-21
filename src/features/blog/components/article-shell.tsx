@@ -1,6 +1,8 @@
 import { Link } from "@/i18n/navigation";
 import type { BlogPostMeta } from "@/lib/blog/types";
 import { ArticleTitle } from "./article-title";
+import { TextReveal } from "@/components";
+import { Dot, MoveLeft } from "lucide-react";
 
 export { ArticleCover } from "./article-cover";
 
@@ -24,28 +26,32 @@ export function ArticleHeader({
   githubLabel,
 }: ArticleHeaderProps) {
   return (
-    <header className="section-x mx-auto max-w-[1320px]">
-      <div className="flex flex-wrap items-center gap-3 border-y border-rule-soft py-4">
+    <header className="default-container section-x">
+      <div className="chip-mono flex flex-wrap items-center gap-3 border-y border-rule-soft py-4">
         <Link
           href="/blog"
           data-cursor="link"
           data-cursor-label={backLabel}
-          className="chip-mono text-bone-400 transition-colors hover:text-signal"
+          className="text-bone-400 transition-colors hover:text-signal"
         >
-          ← /blog
+          <span className="flex flex-nowrap gap-2.5 items-center">
+            <MoveLeft className="size-3.5 stroke-2" /> /blog
+          </span>
         </Link>
-        <span className="chip-mono text-bone-500">·</span>
-        <span className="chip-mono text-signal">{post.index}</span>
-        <span className="chip-mono text-bone-500">·</span>
-        <span className="chip-mono text-bone-500">{post.category}</span>
-        <span className="ml-auto chip-mono text-bone-500">{post.year}</span>
+        <span><Dot className="size-2.5" /></span>
+        <span>{post.index}</span>
+        <span><Dot className="size-2.5" /></span>
+        <span>{post.category}</span>
+        <span className="ml-auto">{post.year}</span>
       </div>
 
       <div className="mt-12 grid items-end gap-10 md:grid-cols-12">
         <div className="md:col-span-9">
           <ArticleTitle title={post.title} />
           <p className="mt-6 max-w-2xl font-display text-[clamp(1.125rem,2.2vw,1.75rem)] leading-snug text-bone-400">
-            <em className="italic">{post.subtitle}</em>
+            <TextReveal as="span" trigger="mount">
+              {post.subtitle.split(".")[0]}
+            </TextReveal>
           </p>
         </div>
 
@@ -113,9 +119,7 @@ export function ArticleAside({
               className="flex items-center justify-between border-b border-rule-soft py-2 last:border-b-0"
             >
               <span className="font-display text-lg text-bone-100">{item}</span>
-              <span aria-hidden className="text-bone-500">
-                ·
-              </span>
+              <span><Dot className="size-2.5 text-bone-500" /></span>
             </li>
           ))}
         </ul>
@@ -168,7 +172,7 @@ export function NextPostLink({ post, label }: NextPostLinkProps) {
               {post.subtitle.split(".")[0]}.
             </span>
           </h2>
-          <div className="flex items-baseline justify-between gap-4 md:justify-end">
+          <div className="flex items-center justify-between gap-4 md:justify-end">
             <span className="font-mono text-sm text-bone-400">
               {post.index} · {post.year} · {post.category}
             </span>
@@ -176,7 +180,7 @@ export function NextPostLink({ post, label }: NextPostLinkProps) {
               aria-hidden
               className="inline-block transform text-3xl text-signal transition-transform group-hover:translate-x-2"
             >
-              ↗
+              <MoveLeft className="size-6 stroke-2 transform rotate-130" /> 
             </span>
           </div>
         </div>
