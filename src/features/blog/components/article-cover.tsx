@@ -31,9 +31,9 @@ export function ArticleCover({ post, children }: ArticleCoverProps) {
     const ctx = gsap.context(() => {
       gsap.fromTo(
         cover,
-        { scale: 1.15 },
+        { scale: 1 },
         {
-          scale: 1,
+          scale: 1.3,
           ease: "none",
           scrollTrigger: {
             trigger: coverWrap,

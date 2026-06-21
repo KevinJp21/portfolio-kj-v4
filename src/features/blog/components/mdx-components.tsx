@@ -1,7 +1,24 @@
 import Image from "next/image";
+import dynamic from "next/dynamic";
 import type { MDXComponents } from "mdx/types";
 import { ScopeFrame } from "@/components";
 import { cn } from "@/lib/utils";
+import { GalleryImage } from "./gallery-image";
+import { resolveGalleryImages, type GalleryProps } from "../lib/gallery";
+
+const ArticleGallery = dynamic(() =>
+  import("./article-gallery").then((mod) => mod.ArticleGallery),
+);
+
+function Gallery({ children, images, ...props }: GalleryProps) {
+  const resolvedImages = resolveGalleryImages(images, children);
+
+  if (resolvedImages.length === 0) return null;
+
+  return <ArticleGallery images={resolvedImages} {...props} />;
+}
+
+Gallery.Image = GalleryImage;
 
 type CoverImageProps = {
   src: string;
@@ -78,6 +95,9 @@ export function Callout({ children }: CalloutProps) {
 
 export const mdxComponents: MDXComponents = {
   CoverImage,
+  Gallery,
+  GalleryImage,
+  "Gallery.Image": GalleryImage,
   MetaGrid,
   MetaItem,
   Callout,

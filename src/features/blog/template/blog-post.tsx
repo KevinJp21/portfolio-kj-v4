@@ -55,7 +55,7 @@ export async function BlogPostView({
             src={post.cover}
             alt={post.title}
             fill
-            priority
+            loading="eager"
             sizes="(max-width: 1320px) 100vw, 1320px"
             className="object-cover"
           />
