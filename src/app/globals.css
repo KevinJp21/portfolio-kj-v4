@@ -266,6 +266,7 @@ html.light .glass {
 }
 
 /* Utility — schematic chip */
+
 .chip-mono {
   font-family: var(--font-mono);
   font-size: 10px;
@@ -300,7 +301,6 @@ em.font-display,
 /* Reveal mask for text — the word container clips its child; visible if JS is off */
 [data-reveal-word] {
   display: inline-block;
-  overflow: hidden;
   vertical-align: bottom;
   line-height: 1.05;
 }

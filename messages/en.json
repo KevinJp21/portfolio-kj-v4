@@ -81,10 +81,25 @@
       },
       "body": "I'm a systems engineer and frontend developer with a full-stack focus. I work on real applications integrating APIs, authentication, state management, validation, and experiences focused on performance, scalability, and usability.",
       "stats": [
-        { "value": "04", "label": "Portfolio projects" },
-        { "value": "3", "suffix": "+", "label": "Years building" },
-        { "value": "16", "suffix": "+", "label": "Technologies" },
-        { "value": "100", "suffix": "%", "label": "Built from scratch" }
+        {
+          "value": "04",
+          "label": "Portfolio projects"
+        },
+        {
+          "value": "3",
+          "suffix": "+",
+          "label": "Years building"
+        },
+        {
+          "value": "16",
+          "suffix": "+",
+          "label": "Technologies"
+        },
+        {
+          "value": "100",
+          "suffix": "%",
+          "label": "Built from scratch"
+        }
       ],
       "link": {
         "cursor": "Learn more",
@@ -104,7 +119,12 @@
           "company": "Silver Holdings S.A.S.",
           "location": "Barranquilla, Colombia",
           "description": "Development and maintenance of enterprise web applications with Next.js and TailwindCSS. Applying architecture best practices, design patterns, and maintainable code — integrating services, improving user experience, and optimizing internal processes in multidisciplinary agile teams.",
-          "stack": ["Next.js", "React", "TypeScript", "TailwindCSS"],
+          "stack": [
+            "Next.js",
+            "React",
+            "TypeScript",
+            "TailwindCSS"
+          ],
           "current": true
         },
         {
@@ -113,7 +133,11 @@
           "company": "Ferretería Rueda",
           "location": "Barranquilla, Colombia",
           "description": "First online sales channel for a hardware store with over 30 years of history. Custom Shopify theme built from scratch with Liquid and JavaScript, fully editable from the admin.",
-          "stack": ["Shopify", "Liquid", "JavaScript"]
+          "stack": [
+            "Shopify",
+            "Liquid",
+            "JavaScript"
+          ]
         },
         {
           "period": "2024 — Nov",
@@ -121,7 +145,13 @@
           "company": "Verezza E-commerce",
           "location": "Independent project",
           "description": "Headless fashion store with Remix + React + TypeScript, connected to Shopify via Storefront API in GraphQL. Authentication, filters, cart, and checkout with hybrid SSR + CSR rendering.",
-          "stack": ["Remix", "React", "TypeScript", "GraphQL", "Shopify"]
+          "stack": [
+            "Remix",
+            "React",
+            "TypeScript",
+            "GraphQL",
+            "Shopify"
+          ]
         },
         {
           "period": "2024 — Oct",
@@ -129,7 +159,13 @@
           "company": "Chikos Gourmet",
           "location": "Barranquilla, Colombia",
           "description": "Official site and admin panel for a food brand. Remix + React + MySQL, with dynamic menu, branch management, and images served from Cloudflare Images.",
-          "stack": ["Remix", "React", "TypeScript", "MySQL", "Cloudflare"]
+          "stack": [
+            "Remix",
+            "React",
+            "TypeScript",
+            "MySQL",
+            "Cloudflare"
+          ]
         },
         {
           "period": "2024 — May",
@@ -137,7 +173,13 @@
           "company": "DocMe Assistant Chatbot",
           "location": "Academic project",
           "description": "Intelligent chatbot for managing medical appointments. Flask + SQLAlchemy + MySQL backend, with TensorFlow/Keras neural networks for intent classification and NLTK for natural language processing.",
-          "stack": ["Python", "Flask", "TensorFlow", "Keras", "MySQL"]
+          "stack": [
+            "Python",
+            "Flask",
+            "TensorFlow",
+            "Keras",
+            "MySQL"
+          ]
         }
       ]
     },
@@ -243,6 +285,51 @@
       "readingTime": "{minutes} min read",
       "summary": "Summary —",
       "next": "Next article →"
+    }
+  },
+  "AboutPage": {
+    "metaTitle": "About",
+    "metaDescription": "Professional profile of Kevin Julio Pineda, Frontend Developer with a full-stack mindset, focused on web application development, software architecture, and scalable digital products.",
+    "returnLink": "Home",
+    "code": "A/00",
+    "eyebrow": "About",
+    "breadcrumbLabel": "About",
+    "header": {
+      "kicker": "A short story",
+      "title": "Kevin Julio",
+      "subtitle": "Frontend developer with a full-stack mindset."
+    },
+    "chapters": {
+      "formacion": {
+        "code": "CH/01",
+        "title": "Education",
+        "year": "Systems Engineering",
+        "body": "During my studies I worked on programming fundamentals, data structures, networks, and relational databases. This gave me the foundation to understand how a complete application is connected, from the user interface to server-side logic."
+      },
+      "frontend": {
+        "code": "CH/02",
+        "title": "Frontend",
+        "year": "React · Next.js · Tailwind",
+        "body": "My main focus is frontend development. I build web applications using React, Next.js, and TailwindCSS, applying TypeScript to ensure consistency and scalability. I focus on clear interfaces, performance, and well-structured user experiences."
+      },
+      "fullstack": {
+        "code": "CH/03",
+        "title": "Full-stack",
+        "year": "Full-stack · APIs · Deploy · Docker",
+        "body": "I work on full-stack application development, with the ability to integrate APIs, design services, manage databases, and deploy applications. I also have experience using containers like Docker for development and deployment environments, understanding the full lifecycle of an application from build to production."
+      },
+      "experiencia": {
+        "code": "CH/04",
+        "title": "Experience",
+        "year": "Real projects · Silver Holdings",
+        "body": "I have worked on real-world applications in both professional and personal environments, including enterprise systems, Shopify e-commerce projects, and full-stack solutions built from scratch. I currently work as a Frontend Developer at Silver Holdings S.A.S., building web applications focused on performance, scalability, and backend integration."
+      },
+      "actualidad": {
+        "code": "CH/05",
+        "title": "Current focus",
+        "year": "2024 — Present",
+        "body": "I am currently focused on growing as a Frontend Developer with a full-stack mindset, strengthening frontend architecture, performance optimization, and building scalable digital products with real impact on users and business."
+      }
     }
   }
 }

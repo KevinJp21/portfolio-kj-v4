@@ -81,10 +81,25 @@
       },
       "body": "Soy ingeniero de sistemas y desarrollador frontend con enfoque full-stack. Trabajo en aplicaciones reales integrando APIs, autenticación, manejo de estado, validaciones y experiencias enfocadas en rendimiento, escalabilidad y usabilidad.",
       "stats": [
-        { "value": "04", "label": "Proyectos en portfolio" },
-        { "value": "3", "suffix": "+", "label": "Años desarrollando" },
-        { "value": "16", "suffix": "+", "label": "Tecnologías" },
-        { "value": "100", "suffix": "%", "label": "Hecho desde cero" }
+        {
+          "value": "04",
+          "label": "Proyectos en portfolio"
+        },
+        {
+          "value": "3",
+          "suffix": "+",
+          "label": "Años desarrollando"
+        },
+        {
+          "value": "16",
+          "suffix": "+",
+          "label": "Tecnologías"
+        },
+        {
+          "value": "100",
+          "suffix": "%",
+          "label": "Hecho desde cero"
+        }
       ],
       "link": {
         "cursor": "Saber más",
@@ -103,8 +118,13 @@
           "role": "Frontend Developer",
           "company": "Silver Holdings S.A.S.",
           "location": "Barranquilla, Colombia",
-          "description": "Desarrollo y mantenimiento de aplicaciones web empresariales con Next.js y TailwindCSS. Aplicación de buenas prácticas de arquitectura, patrones de diseño y código mantenible — integrando servicios, mejorando la experiencia de usuario y optimizando procesos internos en equipos multidisciplinarios con metodologías ágiles.",
-          "stack": ["Next.js", "React", "TypeScript", "TailwindCSS"],
+          "description": "Desarrollo y mantenimiento de aplicaciones web empresariales con Next.js y TailwindCSS. Aplicación de buenas prácticas de arquitectura, patrones de diseño y código mantenible, integrando servicios, mejorando la experiencia de usuario y optimizando procesos internos en equipos multidisciplinarios con metodologías ágiles.",
+          "stack": [
+            "Next.js",
+            "React",
+            "TypeScript",
+            "TailwindCSS"
+          ],
           "current": true
         },
         {
@@ -113,7 +133,11 @@
           "company": "Ferretería Rueda",
           "location": "Barranquilla, Colombia",
           "description": "Primer canal de ventas online para una ferretería con más de 30 años de historia. Tema Shopify personalizado desde cero con Liquid y JavaScript, completamente editable desde el administrador.",
-          "stack": ["Shopify", "Liquid", "JavaScript"]
+          "stack": [
+            "Shopify",
+            "Liquid",
+            "JavaScript"
+          ]
         },
         {
           "period": "2024 — Nov",
@@ -121,7 +145,13 @@
           "company": "Verezza E-commerce",
           "location": "Proyecto independiente",
           "description": "Tienda headless de moda femenina con Remix + React + TypeScript, conectada a Shopify vía Storefront API en GraphQL. Autenticación, filtros, carrito y flujo de pago con rendering híbrido SSR + CSR.",
-          "stack": ["Remix", "React", "TypeScript", "GraphQL", "Shopify"]
+          "stack": [
+            "Remix",
+            "React",
+            "TypeScript",
+            "GraphQL",
+            "Shopify"
+          ]
         },
         {
           "period": "2024 — Oct",
@@ -129,7 +159,13 @@
           "company": "Chikos Gourmet",
           "location": "Barranquilla, Colombia",
           "description": "Sitio oficial y panel administrativo para una marca gastronómica. Remix + React + MySQL, con menú dinámico, gestión por sucursal e imágenes servidas desde Cloudflare Images.",
-          "stack": ["Remix", "React", "TypeScript", "MySQL", "Cloudflare"]
+          "stack": [
+            "Remix",
+            "React",
+            "TypeScript",
+            "MySQL",
+            "Cloudflare"
+          ]
         },
         {
           "period": "2024 — May",
@@ -137,7 +173,13 @@
           "company": "DocMe Assistant Chatbot",
           "location": "Proyecto académico",
           "description": "Chatbot inteligente para gestionar citas médicas. Backend en Flask + SQLAlchemy + MySQL, con redes neuronales en TensorFlow/Keras para clasificación de intenciones y NLTK para procesamiento de lenguaje natural.",
-          "stack": ["Python", "Flask", "TensorFlow", "Keras", "MySQL"]
+          "stack": [
+            "Python",
+            "Flask",
+            "TensorFlow",
+            "Keras",
+            "MySQL"
+          ]
         }
       ]
     },
@@ -243,6 +285,51 @@
       "readingTime": "{minutes} min de lectura",
       "summary": "Resumen —",
       "next": "Siguiente artículo →"
+    }
+  },
+  "AboutPage": {
+    "metaTitle": "Sobre mí",
+    "metaDescription": "Perfil profesional de Kevin Julio Pineda, Frontend Developer con visión full-stack, enfocado en desarrollo de aplicaciones web, arquitectura de software y productos digitales escalables.",
+    "returnLink": "Inicio",
+    "code": "A/00",
+    "eyebrow": "Sobre mí",
+    "breadcrumbLabel": "About",
+    "header": {
+      "kicker": "Una historia corta",
+      "title": "Kevin Julio",
+      "subtitle": "Frontend developer con visión full-stack."
+    },
+    "chapters": {
+      "formacion": {
+        "code": "CH/01",
+        "title": "Formación",
+        "year": "Ingeniería de Sistemas",
+        "body": "Durante mi formación trabajé fundamentos de programación, estructuras de datos, redes y bases de datos relacionales. Esto me dio la base para entender cómo se conecta una aplicación completa, desde la interfaz hasta la lógica del servidor."
+      },
+      "frontend": {
+        "code": "CH/02",
+        "title": "Frontend",
+        "year": "React · Next.js · Tailwind",
+        "body": "Mi principal enfoque es el desarrollo frontend. Construyo aplicaciones web con React, Next.js y TailwindCSS, utilizando TypeScript para mantener consistencia y escalabilidad. Me enfoco en interfaces claras, rendimiento y experiencias de usuario bien estructuradas."
+      },
+      "fullstack": {
+        "code": "CH/03",
+        "title": "Full-stack",
+        "year": "Full-stack · APIs · Deploy · Docker",
+        "body": "Me desenvuelvo en el desarrollo de aplicaciones full-stack, con capacidad para trabajar en la integración de APIs, diseño de servicios, manejo de bases de datos y despliegue de aplicaciones. También tengo experiencia en el uso de contenedores como Docker para entornos de desarrollo y despliegue, entendiendo el ciclo completo de una aplicación desde su construcción hasta su puesta en producción."
+      },
+      "experiencia": {
+        "code": "CH/04",
+        "title": "Experiencia",
+        "year": "Proyectos reales · Silver Holdings",
+        "body": "He participado en el desarrollo de aplicaciones reales en entornos profesionales y personales, incluyendo sistemas empresariales, e-commerce con Shopify y soluciones full-stack desde cero. Actualmente trabajo como Frontend Developer en Silver Holdings S.A.S., desarrollando aplicaciones web enfocadas en rendimiento, escalabilidad e integración con servicios backend."
+      },
+      "actualidad": {
+        "code": "CH/05",
+        "title": "Actualidad",
+        "year": "2024 — Presente",
+        "body": "Actualmente me enfoco en crecer como Frontend Developer con visión full-stack, fortaleciendo arquitectura frontend, rendimiento y desarrollo de productos digitales escalables con impacto real en usuarios y negocio."
+      }
     }
   }
 }
