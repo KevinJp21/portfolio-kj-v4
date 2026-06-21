@@ -5,6 +5,7 @@ import type { BlogPostMeta } from "./types";
 
 const siteUrl = "https://portfolio-kj-v4.vercel.app";
 const siteName = "Kevin Julio Pineda";
+const blogOgImage = "/blog-og-image.webp";
 
 const ogLocales: Record<(typeof routing.locales)[number], string> = {
   es: "es_CO",
@@ -51,11 +52,18 @@ export function buildBlogIndexMetadata(
       siteName,
       title,
       description,
+      images: [
+        {
+          url: blogOgImage,
+          alt: title,
+        },
+      ],
     },
     twitter: {
       card: "summary_large_image",
       title,
       description,
+      images: [blogOgImage],
     },
   };
 }
