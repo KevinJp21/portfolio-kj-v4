@@ -1,9 +1,11 @@
 import createMiddleware from "next-intl/middleware";
-import { routing } from "./i18n/routing";
+import { routing } from "@/i18n/routing";
 
-export default createMiddleware(routing);
+const handleI18nRouting = createMiddleware(routing);
+
+export default handleI18nRouting;
+export const proxy = handleI18nRouting;
 
 export const config = {
-  // "/" must be listed explicitly — the catch-all regex does not match the root path.
   matcher: ["/", "/((?!api|trpc|_next|_vercel|.*\\..*).*)"],
 };

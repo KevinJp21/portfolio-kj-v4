@@ -53,5 +53,49 @@
         ]
       }
     }
+  },
+  "BlogPage": {
+    "index": {
+      "metaTitle": "Blog",
+      "metaDescription": "Articles and case studies on web development, e-commerce, digital products, and real projects by Kevin Julio Pineda.",
+      "code": "B/00",
+      "eyebrow": "Blog / Index · {filtered} of {total}",
+      "titleLead": "Behind the",
+      "titleAccent": "Code",
+      "breadcrumbLabel": "Blog",
+      "description": "I write about apps and sites I built: the challenge, the stack I used, and what shipped in the end.",
+      "filterLabel": "Filter ·",
+      "filters": {
+        "All": "All",
+        "E-commerce": "E-commerce",
+        "Restaurant": "Restaurant",
+        "AI": "AI"
+      },
+      "views": {
+        "grid": "Grid",
+        "list": "List",
+        "matrix": "Matrix"
+      },
+      "matrix": {
+        "index": "⌗",
+        "project": "Project",
+        "client": "Client",
+        "stack": "Stack",
+        "year": "Year",
+        "open": "Open"
+      }
+    },
+    "post": {
+      "back": "Back to index",
+      "client": "Client",
+      "role": "Role",
+      "year": "Year",
+      "viewSite": "View site",
+      "github": "GitHub",
+      "stack": "Stack",
+      "readingTime": "{minutes} min read",
+      "summary": "Summary —",
+      "next": "Next article →"
+    }
   }
 }

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useParams } from "next/navigation";
 import { Globe } from "lucide-react";
 import { useLocale } from "next-intl";
 import { usePathname, useRouter } from "@/i18n/navigation";
@@ -12,6 +13,31 @@ const localeLabels: Record<(typeof routing.locales)[number], string> = {
   en: "English",
 };
 
+type AppHref =
+  | "/"
+  | "/blog"
+  | "/about"
+  | "/contact"
+  | { pathname: "/blog/[slug]"; params: { slug: string } };
+
+function resolveHref(
+  pathname: ReturnType<typeof usePathname>,
+  slugParam: string | string[] | undefined
+): AppHref {
+  if (pathname === "/blog/[slug]") {
+    const slug = Array.isArray(slugParam) ? slugParam[0] : slugParam;
+    if (slug) {
+      return { pathname: "/blog/[slug]", params: { slug } };
+    }
+    return "/blog";
+  }
+
+  if (pathname === "/blog") return "/blog";
+  if (pathname === "/about") return "/about";
+  if (pathname === "/contact") return "/contact";
+  return "/";
+}
+
 type LanguageSwitchProps = {
   className?: string;
 };
@@ -20,6 +46,7 @@ export function LanguageSwitch({ className }: LanguageSwitchProps) {
   const locale = useLocale();
   const router = useRouter();
   const pathname = usePathname();
+  const params = useParams();
   const [open, setOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -42,7 +69,7 @@ export function LanguageSwitch({ className }: LanguageSwitchProps) {
       return;
     }
 
-    router.replace(pathname, { locale: newLocale });
+    router.replace(resolveHref(pathname, params.slug), { locale: newLocale });
     setOpen(false);
   };
 
