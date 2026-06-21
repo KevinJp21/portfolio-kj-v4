@@ -13,7 +13,7 @@ export function CoverImage({ src, alt, priority }: CoverImageProps) {
   return (
     <figure data-fade className="not-prose my-10">
       <ScopeFrame className="overflow-hidden rounded-2xl border border-rule">
-        <div className="relative aspect-[16/10] w-full overflow-hidden bg-ink-850">
+        <div className="relative aspect-16/10 w-full overflow-hidden bg-ink-850">
           <Image
             src={src}
             alt={alt}
