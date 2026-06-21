@@ -67,9 +67,9 @@
       "filterLabel": "Filter ·",
       "filters": {
         "All": "Todos",
-        "E-commerce": "E-commerce",
-        "Restaurant": "Restaurantes",
-        "AI": "AI"
+        "ecommerce": "E-commerce",
+        "restaurant": "Restaurante",
+        "ai": "IA"
       },
       "views": {
         "grid": "Grid",

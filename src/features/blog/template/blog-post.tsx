@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import type { BlogPost, BlogPostMeta } from "@/lib/blog";
 import { mdxComponents } from "../components/mdx-components";
@@ -49,7 +50,16 @@ export async function BlogPostView({
           githubLabel={labels.github}
         />
 
-        <ArticleCover post={post} />
+        <ArticleCover post={post}>
+          <Image
+            src={post.cover}
+            alt={post.title}
+            fill
+            priority
+            sizes="(max-width: 1320px) 100vw, 1320px"
+            className="object-cover"
+          />
+        </ArticleCover>
 
         <section className="section-x mx-auto mt-24 grid max-w-[1320px] gap-12 md:grid-cols-12">
           <ArticleAside

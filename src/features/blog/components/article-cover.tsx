@@ -1,19 +1,19 @@
 "use client";
 
-import Image from "next/image";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, type ReactNode } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ScopeFrame } from "@/components";
-import type { BlogPostMeta } from "@/lib/blog";
+import type { BlogPostMeta } from "@/lib/blog/types";
 
 gsap.registerPlugin(ScrollTrigger);
 
 type ArticleCoverProps = {
   post: BlogPostMeta;
+  children: ReactNode;
 };
 
-export function ArticleCover({ post }: ArticleCoverProps) {
+export function ArticleCover({ post, children }: ArticleCoverProps) {
   const coverRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -61,14 +61,7 @@ export function ArticleCover({ post }: ArticleCoverProps) {
             background: `radial-gradient(circle at 25% 25%, ${post.accent}40, transparent 55%), radial-gradient(circle at 75% 75%, ${post.accent}25, transparent 60%), #10131a`,
           }}
         >
-          <Image
-            src={post.cover}
-            alt={post.title}
-            fill
-            priority
-            sizes="(max-width: 1320px) 100vw, 1320px"
-            className="object-cover"
-          />
+          {children}
           <span
             aria-hidden
             className="pointer-events-none absolute inset-0 bg-linear-to-t from-ink-900/55 via-transparent to-ink-900/15"

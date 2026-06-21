@@ -7,11 +7,13 @@ import { gsap } from "gsap";
 import { Link } from "@/i18n/navigation";
 import { SectionHeader } from "@/components";
 import { cn } from "@/lib/utils";
-import type { BlogPostMeta } from "@/lib/blog";
+import type { BlogPostMeta } from "@/lib/blog/types";
+import {
+  BLOG_CATEGORY_FILTERS,
+  type BlogCategoryFilterId,
+} from "@/lib/blog/categories";
 
 type View = "grid" | "list" | "matrix";
-
-type FilterId = "All" | "E-commerce" | "Restaurant" | "AI";
 
 type BlogIndexLabels = {
   code: string;
@@ -19,7 +21,7 @@ type BlogIndexLabels = {
   titleAccent: string;
   description: string;
   filterLabel: string;
-  filters: Record<FilterId, string>;
+  filters: Record<BlogCategoryFilterId, string>;
   views: Record<View, string>;
   matrix: {
     index: string;
@@ -36,16 +38,9 @@ type BlogIndexViewProps = {
   labels: BlogIndexLabels;
 };
 
-const FILTER_IDS: FilterId[] = [
-  "All",
-  "E-commerce",
-  "Restaurant",
-  "AI",
-];
-
 export function BlogIndexView({ posts, labels }: BlogIndexViewProps) {
   const t = useTranslations("BlogPage.index");
-  const [filter, setFilter] = useState<FilterId>("All");
+  const [filter, setFilter] = useState<BlogCategoryFilterId>("All");
   const [view, setView] = useState<View>("grid");
   const ref = useRef<HTMLElement>(null);
 
@@ -53,7 +48,7 @@ export function BlogIndexView({ posts, labels }: BlogIndexViewProps) {
     () =>
       filter === "All"
         ? posts
-        : posts.filter((post) => post.category === filter),
+        : posts.filter((post) => post.categoryKey === filter),
     [filter, posts]
   );
 
@@ -113,12 +108,12 @@ export function BlogIndexView({ posts, labels }: BlogIndexViewProps) {
           <span className="chip-mono mr-2 text-bone-500">
             {labels.filterLabel}
           </span>
-          {FILTER_IDS.map((id) => {
+          {BLOG_CATEGORY_FILTERS.map((id) => {
             const active = id === filter;
             const count =
               id === "All"
                 ? posts.length
-                : posts.filter((post) => post.category === id).length;
+                : posts.filter((post) => post.categoryKey === id).length;
 
             return (
               <button
@@ -197,7 +192,7 @@ function ViewSwitch({
 function GridView({ items }: { items: BlogPostMeta[] }) {
   return (
     <ul className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-      {items.map((post) => (
+      {items.map((post, index) => (
         <li key={post.slug} className="bi-card group">
           <Link
             href={{ pathname: "/blog/[slug]", params: { slug: post.slug } }}
@@ -205,7 +200,7 @@ function GridView({ items }: { items: BlogPostMeta[] }) {
             data-cursor-label={post.title}
             className="block overflow-hidden rounded-2xl border border-rule bg-ink-850 transition-all hover:border-rule-strong"
           >
-            <PostArtwork post={post} />
+            <PostArtwork post={post} priority={index === 0} />
             <div className="space-y-3 p-5">
               <div className="flex items-center justify-between text-[10px] uppercase tracking-widest text-bone-500">
                 <span>
@@ -338,7 +333,13 @@ function MatrixView({
   );
 }
 
-function PostArtwork({ post }: { post: BlogPostMeta }) {
+function PostArtwork({
+  post,
+  priority = false,
+}: {
+  post: BlogPostMeta;
+  priority?: boolean;
+}) {
   return (
     <div
       className="relative aspect-4/3 w-full overflow-hidden border-b border-rule-soft bg-ink-900"
@@ -350,6 +351,7 @@ function PostArtwork({ post }: { post: BlogPostMeta }) {
         src={post.cover}
         alt={`${post.title} — ${post.subtitle}`}
         fill
+        priority={priority}
         sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
         className="object-cover transition-transform duration-700 will-change-transform group-hover:scale-[1.04]"
       />

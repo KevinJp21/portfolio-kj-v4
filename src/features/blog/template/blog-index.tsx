@@ -1,4 +1,5 @@
-import type { BlogPostMeta } from "@/lib/blog";
+import type { BlogPostMeta } from "@/lib/blog/types";
+import type { BlogCategoryFilterId } from "@/lib/blog/categories";
 import { BlogIndexView } from "../components/blog-index-view";
 
 type BlogIndexProps = {
@@ -9,12 +10,7 @@ type BlogIndexProps = {
     titleAccent: string;
     description: string;
     filterLabel: string;
-    filters: {
-      All: string;
-      "E-commerce": string;
-      Restaurant: string;
-      AI: string;
-    };
+    filters: Record<BlogCategoryFilterId, string>;
     views: {
       grid: string;
       list: string;

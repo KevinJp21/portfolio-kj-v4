@@ -1,3 +1,5 @@
+import type { BlogCategoryKey } from "./categories";
+
 export type BlogHighlight = {
   label: string;
   value: string;
@@ -16,6 +18,7 @@ export type BlogFrontmatter = {
   year: string;
   role: string;
   client: string;
+  categoryKey: BlogCategoryKey;
   category: string;
   stack: string[];
   cover: string;

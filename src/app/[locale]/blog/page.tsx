@@ -37,9 +37,9 @@ export default async function BlogPage({ params }: PageProps) {
         filterLabel: t("filterLabel"),
         filters: {
           All: t("filters.All"),
-          "E-commerce": t("filters.E-commerce"),
-          Restaurant: t("filters.Restaurant"),
-          AI: t("filters.AI"),
+          ecommerce: t("filters.ecommerce"),
+          restaurant: t("filters.restaurant"),
+          ai: t("filters.ai"),
         },
         views: {
           grid: t("views.grid"),

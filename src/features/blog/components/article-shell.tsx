@@ -1,5 +1,5 @@
 import { Link } from "@/i18n/navigation";
-import type { BlogPostMeta } from "@/lib/blog";
+import type { BlogPostMeta } from "@/lib/blog/types";
 import { ArticleTitle } from "./article-title";
 
 export { ArticleCover } from "./article-cover";
