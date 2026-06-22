@@ -52,6 +52,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     });
 
     entries.push({
+      url: localizedUrl(locale, "/about"),
+      lastModified: new Date(),
+      changeFrequency: "yearly",
+      priority: 0.7,
+      alternates: languageAlternates("/about"),
+    });
+
+    entries.push({
       url: localizedUrl(locale, "/blog"),
       lastModified: new Date(),
       changeFrequency: "weekly",

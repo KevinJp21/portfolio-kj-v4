@@ -169,8 +169,8 @@ export function Hero() {
                                 <span className="absolute inset-y-0 left-0 z-0 w-0 bg-signal transition-[width] duration-500 group-hover:w-full" />
                             </Link>
                             <a
-                                href="/assets/Docs/KevinJPCV.pdf"
-                                download
+                                href="/assets/docs/kevin-julio-cv.pdf"
+                                target="_blank"
                                 data-cursor="link"
                                 data-cursor-label={t("cursor.downloadCv")}
                                 className="group inline-flex items-center justify-between gap-3 rounded-full border border-rule-strong px-5 py-3 text-sm text-bone-100 transition-colors hover:border-signal"
