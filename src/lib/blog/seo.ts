@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { siteName, siteUrl } from "@/const";
 import { getPathname } from "@/i18n/navigation";
 import { routing } from "@/i18n/routing";
-import type { BlogPostMeta } from "./types";
+import type { BlogPostMeta } from "@/types";
 const blogOgImage = "/blog-og-image.webp";
 
 const ogLocales: Record<(typeof routing.locales)[number], string> = {

@@ -4,12 +4,11 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 import { gsap } from "gsap";
 import { SectionHeader, TextReveal } from "@/components";
-import { TBlogViewProps } from "../types";
-import { BlogCategoryFilterId, cn } from "@/lib";
-import { TBlogView } from "../types";
+import { BlogCategoryFilterId } from "@/types";
+import { BLOG_CATEGORY_FILTERS } from "@/const";
+import { cn } from "@/lib";
+import { TBlogViewProps, TBlogView } from "../types";
 import { BlogViewSwitch, BlogGridView, BlogListView, BlogMatrixView } from "../components";
-import { BLOG_CATEGORY_FILTERS } from "@/lib";
-
 
 export const BlogTemplate = ({ posts, labels }: TBlogViewProps) => {
     const t = useTranslations("BlogPage.index");

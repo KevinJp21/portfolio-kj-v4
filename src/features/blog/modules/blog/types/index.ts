@@ -1,4 +1,4 @@
-import { type BlogCategoryFilterId } from "@/lib/blog/categories";
+import { BlogCategoryFilterId } from "@/types";
 import type { BlogPostMeta } from "@/lib/blog/types";
 
 export type TBlogView = "grid" | "list" | "matrix";

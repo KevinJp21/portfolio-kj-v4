@@ -2,7 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import matter from "gray-matter";
 import { routing } from "@/i18n/routing";
-import type { BlogFrontmatter, BlogPost, BlogPostMeta } from "./types";
+import type { BlogFrontmatter, BlogPost, BlogPostMeta } from "@/types";
 
 const BLOG_DIR = path.join(process.cwd(), "content/blog");
 

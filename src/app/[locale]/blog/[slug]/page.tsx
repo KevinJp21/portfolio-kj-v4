@@ -6,7 +6,7 @@ import {
   buildArticleJsonLd,
   buildBreadcrumbJsonLd,
   buildPostMetadata,
-} from "@/lib/blog";
+} from "@/lib/blog/seo";
 import {
   getAdjacentPosts,
   getAllStaticParams,
