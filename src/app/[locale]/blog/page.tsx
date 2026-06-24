@@ -2,8 +2,9 @@ import { notFound } from "next/navigation";
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import { hasLocale } from "next-intl";
 import { routing } from "@/i18n/routing";
-import { buildBlogIndexMetadata, getAllPosts } from "@/lib/blog";
-import { BlogIndex } from "@/features/blog";
+import { buildBlogIndexMetadata } from "@/lib/blog";
+import { getAllPosts } from "@/lib/blog/posts";
+import { BlogTemplate } from "@/features";
 
 type PageProps = {
   params: Promise<{ locale: string }>;
@@ -27,7 +28,7 @@ export default async function BlogPage({ params }: PageProps) {
   const posts = getAllPosts(locale);
 
   return (
-    <BlogIndex
+    <BlogTemplate
       posts={posts}
       labels={{
         code: t("code"),

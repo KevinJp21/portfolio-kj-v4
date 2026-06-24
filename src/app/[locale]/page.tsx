@@ -1,6 +1,6 @@
 import { setRequestLocale } from "next-intl/server";
 import { HomeTemplate } from "@/features/home";
-import { getAllPosts } from "@/lib/blog";
+import { getAllPosts } from "@/lib/blog/posts";
 
 type Props = {
   params: Promise<{ locale: string }>;

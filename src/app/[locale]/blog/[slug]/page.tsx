@@ -6,11 +6,13 @@ import {
   buildArticleJsonLd,
   buildBreadcrumbJsonLd,
   buildPostMetadata,
+} from "@/lib/blog";
+import {
   getAdjacentPosts,
   getAllStaticParams,
   getPost,
   getPostMeta,
-} from "@/lib/blog";
+} from "@/lib/blog/posts";
 import { BlogPostView } from "@/features/blog";
 
 type PageProps = {

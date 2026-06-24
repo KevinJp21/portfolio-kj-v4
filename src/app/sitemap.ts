@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 import { siteUrl } from "@/const";
 import { getPathname } from "@/i18n/navigation";
 import { routing } from "@/i18n/routing";
-import { getAllPosts } from "@/lib/blog";
+import { getAllPosts } from "@/lib/blog/posts";
 
 type LocalizedHref = Parameters<typeof getPathname>[0]["href"];
 

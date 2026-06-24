@@ -1,3 +1,3 @@
 export * from './components'
 export * from './template'
-export * from './modules'
+export * from './types'
