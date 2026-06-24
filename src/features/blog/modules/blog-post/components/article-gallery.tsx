@@ -19,7 +19,7 @@ import "yet-another-react-lightbox/styles.css";
 
 import { ScopeFrame } from "@/components";
 import { cn } from "@/lib/utils";
-import type { GalleryImageProps, GalleryProps } from "../lib/gallery";
+import type { GalleryImageProps, GalleryProps } from "../lib";
 
 const albumSizes = {
   size: "1168px",

@@ -4,7 +4,7 @@ import type { MDXComponents } from "mdx/types";
 import { ScopeFrame } from "@/components";
 import { cn } from "@/lib/utils";
 import { GalleryImage } from "./gallery-image";
-import { resolveGalleryImages, type GalleryProps } from "../lib/gallery";
+import { resolveGalleryImages, type GalleryProps } from "../lib";
 
 const ArticleGallery = dynamic(() =>
   import("./article-gallery").then((mod) => mod.ArticleGallery),

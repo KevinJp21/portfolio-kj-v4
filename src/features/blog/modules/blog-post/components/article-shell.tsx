@@ -1,10 +1,8 @@
 import { Link } from "@/i18n/navigation";
-import type { BlogPostMeta } from "@/lib/blog/types";
+import type { BlogPostMeta } from "@/types";
 import { ArticleTitle } from "./article-title";
 import { TextReveal } from "@/components";
 import { Dot, MoveLeft } from "lucide-react";
-
-export { ArticleCover } from "./article-cover";
 
 type ArticleHeaderProps = {
   post: BlogPostMeta;

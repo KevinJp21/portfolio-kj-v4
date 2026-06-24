@@ -1,8 +1,5 @@
 import dynamic from "next/dynamic";
-import {
-  resolveGalleryImages,
-  type GalleryProps,
-} from "../lib/gallery";
+import { resolveGalleryImages, GalleryProps } from "../lib";
 
 const ArticleGallery = dynamic(() =>
   import("./article-gallery").then((mod) => mod.ArticleGallery),

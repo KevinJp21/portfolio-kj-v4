@@ -13,7 +13,7 @@ import {
   getPost,
   getPostMeta,
 } from "@/lib/blog/posts";
-import { BlogPostView } from "@/features/blog";
+import { BlogPostTemplate } from "@/features";
 
 type PageProps = {
   params: Promise<{ locale: string; slug: string }>;
@@ -58,7 +58,7 @@ export default async function BlogPostPage({ params }: PageProps) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
-      <BlogPostView
+      <BlogPostTemplate
         post={post}
         nextPost={next}
         labels={{

@@ -4,7 +4,7 @@ import { useEffect, useRef, type ReactNode } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ScopeFrame } from "@/components";
-import type { BlogPostMeta } from "@/lib/blog/types";
+import { BlogPostMeta } from "@/types";
 
 gsap.registerPlugin(ScrollTrigger);
 

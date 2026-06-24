@@ -1,16 +1,16 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { ReactNode, useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
 type BlogPostMotionProps = {
-  children: React.ReactNode;
+  children: ReactNode;
 };
 
-export function BlogPostMotion({ children }: BlogPostMotionProps) {
+export const BlogPostMotion = ({ children }: BlogPostMotionProps) => {
   const rootRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -50,3 +50,5 @@ export function BlogPostMotion({ children }: BlogPostMotionProps) {
     </div>
   );
 }
+
+export default BlogPostMotion;
