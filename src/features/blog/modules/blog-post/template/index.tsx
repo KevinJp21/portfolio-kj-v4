@@ -1,5 +1,5 @@
 import { TBlogPostTemplateProps } from "../type";
-import { BlogPostMotion, mdxComponents, ArticleHeader, ArticleCover, ArticleAside, NextPostLink } from "../components";
+import { BlogPostMotion, mdxComponents, ArticleHeader, ArticleCover, ArticleAside, ArticleNextPostLink } from "../components";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import Image from "next/image";
 
@@ -54,7 +54,7 @@ export const BlogPostTemplate = async ({ post, nextPost, labels, }: TBlogPostTem
             </section>
     
             {nextPost ? (
-              <NextPostLink post={nextPost} label={labels.next} />
+              <ArticleNextPostLink post={nextPost} label={labels.next} />
             ) : null}
           </article>
         </BlogPostMotion>

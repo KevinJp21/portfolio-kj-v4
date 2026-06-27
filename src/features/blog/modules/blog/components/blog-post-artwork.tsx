@@ -1,4 +1,4 @@
-import { BlogPostMeta } from "@/lib";
+import { BlogPostMeta } from "@/types";
 import Image from "next/image";
 
 export const BlogPostArtwork = ({ post, priority = false, }: { post: BlogPostMeta; priority?: boolean; }) => {

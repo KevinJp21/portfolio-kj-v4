@@ -1,4 +1,4 @@
-import { BlogPostMeta } from "@/lib";
+import { BlogPostMeta } from "@/types";
 import { TBlogLabels } from "../types";
 import { Link } from "@/i18n/navigation";
 

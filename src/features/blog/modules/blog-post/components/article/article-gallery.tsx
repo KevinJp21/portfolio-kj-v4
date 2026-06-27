@@ -19,17 +19,14 @@ import "yet-another-react-lightbox/styles.css";
 
 import { ScopeFrame } from "@/components";
 import { cn } from "@/lib/utils";
-import type { GalleryImageProps, GalleryProps } from "../lib";
+import type { GalleryImageProps, GalleryProps } from "../../lib";
 
 const albumSizes = {
   size: "1168px",
   sizes: [{ viewport: "(max-width: 1200px)", size: "calc(100vw - 32px)" }],
 } as const;
 
-function renderNextImage(
-  { alt = "", title, sizes }: RenderImageProps,
-  { photo, width, height }: RenderImageContext,
-) {
+const renderNextImage = ({ alt = "", title, sizes }: RenderImageProps, { photo, width, height }: RenderImageContext,) => {
   return (
     <div
       className="relative w-full overflow-hidden rounded-lg"
@@ -47,13 +44,13 @@ function renderNextImage(
   );
 }
 
-export function ArticleGallery({
+export const ArticleGallery = ({
   images,
   layout = "rows",
   targetRowHeight = 280,
   columns = 3,
   className,
-}: Omit<GalleryProps, "children"> & { images: GalleryImageProps[] }) {
+}: Omit<GalleryProps, "children"> & { images: GalleryImageProps[] }) => {
   const [index, setIndex] = useState(-1);
 
   const photos = useMemo<Photo[]>(
@@ -122,3 +119,5 @@ export function ArticleGallery({
     </figure>
   );
 }
+
+export default ArticleGallery;

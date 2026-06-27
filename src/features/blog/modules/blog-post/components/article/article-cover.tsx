@@ -13,7 +13,7 @@ type ArticleCoverProps = {
   children: ReactNode;
 };
 
-export function ArticleCover({ post, children }: ArticleCoverProps) {
+export const ArticleCover = ({ post, children }: ArticleCoverProps) => {
   const coverRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -99,3 +99,5 @@ export function ArticleCover({ post, children }: ArticleCoverProps) {
     </div>
   );
 }
+
+export default ArticleCover;

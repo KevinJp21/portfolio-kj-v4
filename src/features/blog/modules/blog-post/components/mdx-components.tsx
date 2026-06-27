@@ -7,7 +7,7 @@ import { GalleryImage } from "./gallery-image";
 import { resolveGalleryImages, type GalleryProps } from "../lib";
 
 const ArticleGallery = dynamic(() =>
-  import("./article-gallery").then((mod) => mod.ArticleGallery),
+  import("./article/article-gallery").then((mod) => mod.ArticleGallery),
 );
 
 function Gallery({ children, images, ...props }: GalleryProps) {

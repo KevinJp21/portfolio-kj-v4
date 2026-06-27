@@ -2,7 +2,7 @@ import dynamic from "next/dynamic";
 import { resolveGalleryImages, GalleryProps } from "../lib";
 
 const ArticleGallery = dynamic(() =>
-  import("./article-gallery").then((mod) => mod.ArticleGallery),
+  import("./article/article-gallery").then((mod) => mod.ArticleGallery),
 );
 
 export function Gallery({ children, images, ...props }: GalleryProps) {
