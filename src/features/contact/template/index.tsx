@@ -2,21 +2,21 @@
 
 import { useRef, useState, useEffect } from "react";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 import gsap from "gsap";
-import { ScopeFrame, TextReveal, SectionHeader } from "@/components";
-import { cn } from "@/lib";
-import { ContactField, ContactSummary } from "..";
-import { budgets, timelines, channels, interests } from "..";
+import { TextReveal } from "@/components";
+import { ContactForm } from "..";
+import { channels } from "..";
+import { Dot, MoveLeft } from "lucide-react";
 
 export function ContactTemplate() {
+  const t = useTranslations("ContactPage");
   const ref = useRef<HTMLElement>(null);
   const successRef = useRef<HTMLDivElement>(null);
   const [submitted, setSubmitted] = useState(false);
   const [interest, setInterest] = useState<string | null>(null);
-  const [budget, setBudget] = useState<(typeof budgets)[number] | null>(null);
-  const [timeline, setTimeline] = useState<(typeof timelines)[number] | null>(
-    null
-  );
+  const [budget, setBudget] = useState<string | null>(null);
+  const [timeline, setTimeline] = useState<string | null>(null);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [brief, setBrief] = useState("");
@@ -48,42 +48,38 @@ export function ContactTemplate() {
     );
   }, [submitted]);
 
-  const onSubmit = (e: React.SubmitEvent) => {
-    e.preventDefault();
+  const onSubmit = () => {
     setSubmitted(true);
   };
 
   return (
     <section ref={ref} className="section-x default-container pt-36 pb-20">
-      <div className="flex items-center gap-3 border-y border-rule-soft py-4">
-        <Link
-          href="/"
-          data-cursor="link"
-          data-cursor-label="Home"
-          className="chip-mono text-bone-400 hover:text-signal"
-        >
-          ← /home
+      <div className="chip-mono flex items-center gap-3 border-y border-rule-soft py-4">
+        <Link href="/" className="hover:text-signal">
+          <span className="flex flex-nowrap gap-2.5 items-center">
+            <MoveLeft className="size-3.5 stroke-2" /> /{t("returnLink")}
+          </span>
         </Link>
-        <span className="chip-mono text-bone-500">·</span>
-        <span className="chip-mono text-signal">K/00</span>
-        <span className="chip-mono text-bone-500">contact · let&apos;s build</span>
+        <span><Dot className="size-2.5" /></span>
+        <span>{t("code")}</span>
+        <span>{t("breadcrumb")}</span>
       </div>
 
       <div className="mt-14 grid items-end gap-10 md:grid-cols-12">
         <div className="md:col-span-9">
-          <p className="contact-line chip-mono mb-6 text-bone-500">Empieza aquí</p>
+          <p className="contact-line chip-mono mb-6">{t("kicker")}</p>
           <h1 className="contact-line font-display text-[clamp(3rem,11vw,11rem)] leading-[0.85] text-bone-100">
             <TextReveal as="span" trigger="mount" delay={0.2}>
-              Construyamos
+              {t("titleLine1")}
             </TextReveal>
             <span className="block italic text-signal">
               <TextReveal as="span" trigger="mount" delay={0.45}>
-                algo real.
+                {t("titleAccent")}
               </TextReveal>
             </span>
           </h1>
           <p className="contact-line mt-6 max-w-xl text-base leading-relaxed text-bone-300">
-            Cuéntame qué tienes en mente, frontend, full-stack, e-commerce o backend. Respondo en menos de 48 horas para coordinar tiempos, alcance y siguiente paso.
+            {t("description")}
           </p>
         </div>
         <ul className="md:col-span-3 space-y-3">
@@ -114,15 +110,18 @@ export function ContactTemplate() {
         >
           <span className="pulse-dot mx-auto inline-block h-2 w-2 rounded-full bg-signal" />
           <h2 className="mt-6 font-display text-[clamp(2rem,5vw,3.5rem)] italic leading-none text-bone-100">
-            Mensaje enviado.
+            {t("success.title")}
           </h2>
           <p className="mt-4 text-base text-bone-300">
-            Gracias{name ? `, ${name.split(" ")[0]}` : ""}. Te escribo a{" "}
-            <span className="text-signal">{email || "tu correo"}</span> antes de 48h. Mientras tanto, mira{" "}
-            <Link href="/projects" className="underline decoration-rule-strong underline-offset-4 hover:text-signal">
-              algunos trabajos recientes
-            </Link>
-            .
+            {t.rich("success.body", {
+              name: name ? `, ${name.split(" ")[0]}` : "",
+              email: email || t("success.fallbackEmail"),
+              link: (ch) => (
+                <Link href="/projects" className="underline decoration-rule-strong underline-offset-4 hover:text-signal">
+                  {ch}
+                </Link>
+              )
+            })}
           </p>
           <button
             type="button"
@@ -137,179 +136,20 @@ export function ContactTemplate() {
             }}
             className="mt-8 inline-flex items-center gap-2 rounded-full border border-rule-strong px-4 py-2 text-sm text-bone-100 transition-colors hover:border-signal"
           >
-            Enviar otro mensaje
+            {t("success.resetButton")}
             <span aria-hidden>↻</span>
           </button>
         </div>
       ) : (
-        <form
-          onSubmit={onSubmit}
-          className="mt-20 grid gap-12 md:grid-cols-12"
-        >
-          <div className="md:col-span-7">
-            <SectionHeader code="K/01" eyebrow="Brief · sobre tu proyecto" />
-
-            <div className="mt-8 space-y-8">
-              <ContactField
-                id="name"
-                label="¿Cómo te llamas?"
-                value={name}
-                onChange={setName}
-                placeholder="Tu nombre"
-                required
-              />
-              <ContactField
-                id="email"
-                label="¿Dónde te respondo?"
-                type="email"
-                value={email}
-                onChange={setEmail}
-                placeholder="email@dominio.com"
-                required
-              />
-
-              <div>
-                <span className="chip-mono mb-3 block text-bone-500">
-                  ¿Qué necesitas construir?
-                </span>
-                <ul className="flex flex-wrap gap-2">
-                  {interests.map((i) => {
-                    const active = interest === i;
-                    return (
-                      <li key={i}>
-                        <button
-                          type="button"
-                          data-cursor="link"
-                          data-cursor-label={i}
-                          onClick={() => setInterest(i)}
-                          className={cn(
-                            "rounded-full border px-3 py-2 text-sm transition-colors",
-                            active
-                              ? "border-signal bg-signal/10 text-bone-100"
-                              : "border-rule text-bone-400 hover:border-rule-strong hover:text-bone-100"
-                          )}
-                        >
-                          {i}
-                        </button>
-                      </li>
-                    );
-                  })}
-                </ul>
-              </div>
-
-              <ContactField
-                id="brief"
-                label="Cuéntame en 2 — 3 líneas"
-                value={brief}
-                onChange={setBrief}
-                placeholder="Estamos construyendo X. Necesitamos ayuda con Y. Soñamos con Z."
-                multiline
-              />
-            </div>
-          </div>
-
-          <div className="md:col-span-5">
-            <SectionHeader code="K/02" eyebrow="Scope · presupuesto y tiempos" />
-
-            <div className="mt-8 space-y-8">
-              <div>
-                <span className="chip-mono mb-3 block text-bone-500">
-                  Presupuesto aproximado
-                </span>
-                <ul className="grid grid-cols-2 gap-2">
-                  {budgets.map((b) => {
-                    const active = budget === b;
-                    return (
-                      <li key={b}>
-                        <button
-                          type="button"
-                          data-cursor="link"
-                          data-cursor-label={b}
-                          onClick={() => setBudget(b)}
-                          className={cn(
-                            "w-full rounded-xl border px-3 py-3 text-sm transition-colors",
-                            active
-                              ? "border-signal bg-signal/10 text-bone-100"
-                              : "border-rule text-bone-400 hover:border-rule-strong hover:text-bone-100"
-                          )}
-                        >
-                          {b}
-                        </button>
-                      </li>
-                    );
-                  })}
-                </ul>
-              </div>
-
-              <div>
-                <span className="chip-mono mb-3 block text-bone-500">
-                  ¿Cuándo te gustaría empezar?
-                </span>
-                <ul className="space-y-2">
-                  {timelines.map((t) => {
-                    const active = timeline === t;
-                    return (
-                      <li key={t}>
-                        <button
-                          type="button"
-                          data-cursor="link"
-                          data-cursor-label={t}
-                          onClick={() => setTimeline(t)}
-                          className={cn(
-                            "flex w-full items-center justify-between rounded-xl border px-4 py-3 text-sm transition-colors",
-                            active
-                              ? "border-signal bg-signal/10 text-bone-100"
-                              : "border-rule text-bone-400 hover:border-rule-strong hover:text-bone-100"
-                          )}
-                        >
-                          <span>{t}</span>
-                          <span
-                            aria-hidden
-                            className={cn(
-                              "h-1.5 w-1.5 rounded-full transition-colors",
-                              active ? "bg-signal" : "bg-rule-strong"
-                            )}
-                          />
-                        </button>
-                      </li>
-                    );
-                  })}
-                </ul>
-              </div>
-
-              <ScopeFrame className="rounded-2xl border border-rule bg-ink-850 p-6">
-                <p className="chip-mono mb-3 text-bone-500">Resumen</p>
-                <dl className="space-y-2 text-sm">
-                  <ContactSummary label="Nombre" value={name || "—"} />
-                  <ContactSummary label="Email" value={email || "—"} />
-                  <ContactSummary label="Proyecto" value={interest ?? "—"} />
-                  <ContactSummary label="Presupuesto" value={budget ?? "—"} />
-                  <ContactSummary label="Cuándo" value={timeline ?? "—"} />
-                </dl>
-              </ScopeFrame>
-
-              <button
-                type="submit"
-                data-cursor="cta"
-                data-cursor-label="Enviar"
-                className="group relative inline-flex w-full items-center justify-between gap-3 overflow-hidden rounded-full bg-bone-100 px-5 py-4 text-sm font-medium text-ink-900 transition-transform hover:scale-[1.01]"
-              >
-                <span className="relative z-10">Enviar el brief</span>
-                <span className="relative z-10 flex items-center gap-2">
-                  <span className="font-mono text-xs uppercase tracking-widest text-ink-700">
-                    /send
-                  </span>
-                  <span aria-hidden>→</span>
-                </span>
-                <span className="absolute inset-y-0 left-0 z-0 w-0 bg-signal transition-[width] duration-500 group-hover:w-full" />
-              </button>
-
-              <p className="text-center text-xs text-bone-500">
-                Mockup visual. Esta versión no envía datos reales — solo simula la respuesta del servidor.
-              </p>
-            </div>
-          </div>
-        </form>
+        <ContactForm
+          onSubmit={() => onSubmit}
+          name={name} setName={setName}
+          email={email} setEmail={setEmail}
+          interest={interest} setInterest={setInterest}
+          budget={budget} setBudget={setBudget}
+          timeline={timeline} setTimeline={setTimeline}
+          brief={brief} setBrief={setBrief}
+        />
       )}
     </section>
   );

@@ -287,6 +287,65 @@
       "next": "Siguiente artículo →"
     }
   },
+  "ContactPage": {
+    "metaTitle": "Contacto",
+    "metaDescription": "Contacta a Kevin Julio Pineda para desarrollar aplicaciones web, soluciones frontend, proyectos full-stack, e-commerce e integraciones backend.",
+    "returnLink": "Inicio",
+    "code": "C/00",
+    "breadcrumb": "contact · construyamos",
+    "kicker": "Empieza aquí",
+    "titleLine1": "Construyamos",
+    "titleAccent": "algo real.",
+    "description": "Cuéntame qué estás construyendo. Desarrollo soluciones frontend, aplicaciones full-stack, e-commerce e integraciones backend, enfocadas en rendimiento, escalabilidad y una excelente experiencia de usuario.",
+    "success": {
+      "title": "Mensaje enviado.",
+      "body": "Gracias{name}. Te escribo a <email>{email}</email> antes de 48h. Mientras tanto, mira <link>algunos trabajos recientes</link>.",
+      "fallbackEmail": "tu correo",
+      "resetButton": "Enviar otro mensaje"
+    },
+    "brief": {
+      "code": "C/01",
+      "eyebrow": "Brief · sobre tu proyecto",
+      "nameLabel": "¿Cómo te llamas?",
+      "namePlaceholder": "Tu nombre",
+      "emailLabel": "¿Dónde te respondo?",
+      "emailPlaceholder": "email@dominio.com",
+      "interestLabel": "¿Qué necesitas construir?",
+      "briefLabel": "Cuéntame en 2 — 3 líneas",
+      "briefPlaceholder": "Estamos construyendo X. Necesitamos ayuda con Y. Soñamos con Z."
+    },
+    "scope": {
+      "code": "C/02",
+      "eyebrow": "Scope · presupuesto y tiempos",
+      "budgetLabel": "Presupuesto aproximado",
+      "timelineLabel": "¿Cuándo te gustaría empezar?",
+      "summaryLabel": "Resumen",
+      "summaryName": "Nombre",
+      "summaryEmail": "Email",
+      "summaryProject": "Proyecto",
+      "summaryBudget": "Presupuesto",
+      "summaryWhen": "Cuándo"
+    },
+    "form": {
+      "submit": "Enviar el brief",
+      "disclaimer": "Mockup visual. Esta versión no envía datos reales — solo simula la respuesta del servidor."
+    },
+    "interests": [
+      "Frontend / Web App",
+      "Aplicación full-stack",
+      "E-commerce / Shopify",
+      "Backend / IA",
+      "Mantenimiento",
+      "Otro"
+    ],
+    "budgets": [
+      "< COP $1M",
+      "COP $1M — $2M",
+      "COP $2M — $3.5M",
+      "No estoy seguro"
+    ],
+    "timelines": ["Inmediato", "1 — 2 meses", "Próximo trimestre", "Aún explorando"]
+  },
   "AboutPage": {
     "metaTitle": "Sobre mí",
     "metaDescription": "Perfil profesional de Kevin Julio Pineda, Frontend Developer con visión full-stack, enfocado en desarrollo de aplicaciones web, arquitectura de software y productos digitales escalables.",
