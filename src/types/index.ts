@@ -1,19 +1,24 @@
 import { BLOG_CATEGORY_KEYS } from "@/const";
 
-export type StackLevel = "daily" | "project" | "learning";
+export type TPageProps = {
+  params: Promise<{ locale: string, slug?: string }>;
+};
 
-export type StackCategoryKey = "languages" | "backend" | "ai" | "tools";
 
-export type BlogCategoryKey = (typeof BLOG_CATEGORY_KEYS)[number];
+export type TStackLevel = "daily" | "project" | "learning";
 
-export type BlogCategoryFilterId = "All" | BlogCategoryKey;
+export type TStackCategoryKey = "languages" | "backend" | "ai" | "tools";
 
-export type BlogHighlight = {
+export type TBlogCategoryKey = (typeof BLOG_CATEGORY_KEYS)[number];
+
+export type TBlogCategoryFilterId = "All" | TBlogCategoryKey;
+
+export type TBlogHighlight = {
     label: string;
     value: string;
   };
   
-  export type BlogFrontmatter = {
+  export type TBlogFrontmatter = {
     title: string;
     subtitle: string;
     description: string;
@@ -26,7 +31,7 @@ export type BlogHighlight = {
     year: string;
     role: string;
     client: string;
-    categoryKey: BlogCategoryKey;
+    categoryKey: TBlogCategoryKey;
     category: string;
     stack: string[];
     cover: string;
@@ -34,14 +39,14 @@ export type BlogHighlight = {
     url?: string;
     github?: string;
     tags: string[];
-    highlights: BlogHighlight[];
+    highlights: TBlogHighlight[];
   };
   
-  export type BlogPostMeta = BlogFrontmatter & {
+  export type TTBlogPostMeta = TBlogFrontmatter & {
     readingTime: number;
   };
   
-  export type BlogPost = BlogPostMeta & {
+  export type TBlogPost = TTBlogPostMeta & {
     content: string;
   };
   

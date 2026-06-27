@@ -1,8 +1,8 @@
-import { BlogPostMeta } from "@/types";
+import { TTBlogPostMeta } from "@/types";
 import { Link } from "@/i18n/navigation";
-import { BlogPostArtwork } from "./blog-post-artwork";
+import { TBlogPostArtwork } from "./blog-post-artwork";
 
-export const BlogGridView = ({ items }: { items: BlogPostMeta[] }) => {
+export function BlogGridView({ items }: { items: TTBlogPostMeta[] }) {
     return (
         <ul className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {items.map((post, index) => (
@@ -18,7 +18,7 @@ export const BlogGridView = ({ items }: { items: BlogPostMeta[] }) => {
                 transition-all hover:border-rule-strong
               "
                     >
-                        <BlogPostArtwork post={post} priority={index === 0} />
+                        <TBlogPostArtwork post={post} priority={index === 0} />
 
                         <div className="flex flex-1 flex-col p-5">
                             <div className="flex items-center justify-between text-[10px] uppercase tracking-widest text-bone-500">

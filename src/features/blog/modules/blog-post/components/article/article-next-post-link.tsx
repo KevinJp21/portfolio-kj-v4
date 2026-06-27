@@ -1,13 +1,13 @@
 import { Link } from "@/i18n/navigation";
-import type { BlogPostMeta } from "@/types";
+import type { TTBlogPostMeta } from "@/types";
 import { MoveLeft } from "lucide-react";
 
 type NextPostLinkProps = {
-  post: BlogPostMeta;
+  post: TTBlogPostMeta;
   label: string;
 };
 
-export const ArticleNextPostLink = ({ post, label }: NextPostLinkProps) => {
+export function ArticleNextPostLink({ post, label }: NextPostLinkProps) {
   return (
     <div className="section-x mx-auto mt-32 max-w-[1320px]">
       <Link

@@ -1,8 +1,8 @@
-import type { StackCategoryKey, StackLevel } from "@/types";
+import type { TStackCategoryKey, TStackLevel } from "@/types";
 
 export const stackItems: {
-  categoryKey: StackCategoryKey;
-  items: { name: string; level: StackLevel }[];
+  categoryKey: TStackCategoryKey;
+  items: { name: string; level: TStackLevel }[];
 }[] = [
   {
     categoryKey: "languages",

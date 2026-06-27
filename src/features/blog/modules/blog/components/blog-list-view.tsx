@@ -1,7 +1,7 @@
-import { BlogPostMeta } from "@/types";
+import { TTBlogPostMeta } from "@/types";
 import { Link } from "@/i18n/navigation";
 
-export const BlogListView = ({ items }: { items: BlogPostMeta[] }) => {
+export function BlogListView({ items }: { items: TTBlogPostMeta[] }) {
     return (
       <ul className="divide-y divide-rule-soft border-y border-rule-soft">
         {items.map((post) => (

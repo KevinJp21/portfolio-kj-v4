@@ -4,16 +4,16 @@ import { useEffect, useRef, type ReactNode } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ScopeFrame } from "@/components";
-import { BlogPostMeta } from "@/types";
+import { TTBlogPostMeta } from "@/types";
 
 gsap.registerPlugin(ScrollTrigger);
 
 type ArticleCoverProps = {
-  post: BlogPostMeta;
+  post: TTBlogPostMeta;
   children: ReactNode;
 };
 
-export const ArticleCover = ({ post, children }: ArticleCoverProps) => {
+export function ArticleCover({ post, children }: ArticleCoverProps) {
   const coverRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {

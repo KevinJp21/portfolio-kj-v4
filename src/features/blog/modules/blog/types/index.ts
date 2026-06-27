@@ -1,5 +1,5 @@
-import { BlogCategoryFilterId } from "@/types";
-import type { BlogPostMeta } from "@/lib/blog/types";
+import { TBlogCategoryFilterId } from "@/types";
+import type { TTBlogPostMeta } from "@/lib/blog/types";
 
 export type TBlogView = "grid" | "list" | "matrix";
 
@@ -9,7 +9,7 @@ export type TBlogLabels = {
   titleAccent: string;
   description: string;
   filterLabel: string;
-  filters: Record<BlogCategoryFilterId, string>;
+  filters: Record<TBlogCategoryFilterId, string>;
   views: Record<TBlogView, string>;
   matrix: {
     index: string;
@@ -22,19 +22,19 @@ export type TBlogLabels = {
 };
 
 export type TBlogViewProps = {
-  posts: BlogPostMeta[];
+  posts: TTBlogPostMeta[];
   labels: TBlogLabels;
 };
 
 export type TBlogTemplaterops = {
-    posts: BlogPostMeta[];
+    posts: TTBlogPostMeta[];
     labels: {
       code: string;
       titleLead: string;
       titleAccent: string;
       description: string;
       filterLabel: string;
-      filters: Record<BlogCategoryFilterId, string>;
+      filters: Record<TBlogCategoryFilterId, string>;
       views: {
         grid: string;
         list: string;

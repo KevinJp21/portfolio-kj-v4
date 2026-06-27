@@ -1,8 +1,8 @@
-import { BlogPostMeta } from "@/types";
+import { TTBlogPostMeta } from "@/types";
 import { TBlogLabels } from "../types";
 import { Link } from "@/i18n/navigation";
 
-export const BlogMatrixView = ({ items, labels, }: { items: BlogPostMeta[]; labels: TBlogLabels["matrix"]; }) => {
+export function BlogMatrixView({ items, labels, }: { items: TTBlogPostMeta[]; labels: TBlogLabels["matrix"]; }) {
     return (
         <div className="overflow-hidden rounded-2xl border border-rule">
             <table className="w-full text-left">

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { siteName, siteUrl } from "@/const";
 import { getPathname } from "@/i18n/navigation";
 import { routing } from "@/i18n/routing";
-import type { BlogPostMeta } from "@/types";
+import type { TTBlogPostMeta } from "@/types";
 const blogOgImage = "/blog-og-image.webp";
 
 const ogLocales: Record<(typeof routing.locales)[number], string> = {
@@ -66,7 +66,7 @@ export function buildBlogIndexMetadata(
   };
 }
 
-export function buildPostMetadata(post: BlogPostMeta): Metadata {
+export function buildPostMetadata(post: TTBlogPostMeta): Metadata {
   const canonical = blogPath(post.locale, post.slug);
   const ogLocale =
     ogLocales[post.locale as keyof typeof ogLocales] ?? ogLocales.es;
@@ -106,7 +106,7 @@ export function buildPostMetadata(post: BlogPostMeta): Metadata {
   };
 }
 
-export function buildArticleJsonLd(post: BlogPostMeta) {
+export function buildArticleJsonLd(post: TTBlogPostMeta) {
   const url = new URL(blogPath(post.locale, post.slug), siteUrl).href;
 
   return {
@@ -137,7 +137,7 @@ export function buildArticleJsonLd(post: BlogPostMeta) {
   };
 }
 
-export function buildBreadcrumbJsonLd(post: BlogPostMeta, blogLabel: string) {
+export function buildBreadcrumbJsonLd(post: TTBlogPostMeta, blogLabel: string) {
   const base = new URL(siteUrl).href;
   const blogUrl = new URL(blogPath(post.locale), siteUrl).href;
   const postUrl = new URL(blogPath(post.locale, post.slug), siteUrl).href;

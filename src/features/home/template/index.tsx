@@ -1,4 +1,4 @@
-import type { BlogPostMeta } from "@/lib/blog/types";
+import type { TTBlogPostMeta } from "@/lib/blog/types";
 import {
   Hero,
   AboutBlock,
@@ -9,7 +9,7 @@ import {
 } from "..";
 
 type HomeTemplateProps = {
-  featuredPosts: BlogPostMeta[];
+  featuredPosts: TTBlogPostMeta[];
   totalPosts: number;
 };
 

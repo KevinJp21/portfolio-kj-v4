@@ -1,8 +1,8 @@
-import { BlogPost, BlogPostMeta } from "@/types";
+import { TBlogPost, TTBlogPostMeta } from "@/types";
 
-export type TBlogPostTemplateProps = {
-    post: BlogPost;
-    nextPost: BlogPostMeta | null;
+export type TTBlogPostTemplateProps = {
+    post: TBlogPost;
+    nextPost: TTBlogPostMeta | null;
     labels: {
       back: string;
       client: string;

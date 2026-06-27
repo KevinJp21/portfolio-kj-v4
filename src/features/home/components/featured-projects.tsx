@@ -6,10 +6,10 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useTranslations } from "next-intl";
 import { SectionHeader, ProjectCard } from "@/components";
-import type { BlogPostMeta } from "@/lib/blog/types";
+import type { TTBlogPostMeta } from "@/lib/blog/types";
 
 type FeaturedProjectsProps = {
-  posts: BlogPostMeta[];
+  posts: TTBlogPostMeta[];
   totalPosts: number;
 };
 

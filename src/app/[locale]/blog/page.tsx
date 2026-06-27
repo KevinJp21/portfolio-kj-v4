@@ -5,12 +5,9 @@ import { routing } from "@/i18n/routing";
 import { buildBlogIndexMetadata } from "@/lib/blog/seo";
 import { getAllPosts } from "@/lib/blog/posts";
 import { BlogTemplate } from "@/features";
+import { TPageProps } from "@/types";
 
-type PageProps = {
-  params: Promise<{ locale: string }>;
-};
-
-export async function generateMetadata({ params }: PageProps) {
+export async function generateMetadata({ params }: TPageProps) {
   const { locale } = await params;
   if (!hasLocale(routing.locales, locale)) return {};
 
@@ -19,7 +16,7 @@ export async function generateMetadata({ params }: PageProps) {
   return buildBlogIndexMetadata(locale, t("metaTitle"), t("metaDescription"));
 }
 
-export default async function BlogPage({ params }: PageProps) {
+export default async function BlogPage({ params }: TPageProps) {
   const { locale } = await params;
   if (!hasLocale(routing.locales, locale)) notFound();
 

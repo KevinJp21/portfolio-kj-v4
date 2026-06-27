@@ -1,16 +1,16 @@
-import { TBlogPostTemplateProps } from "../type";
-import { BlogPostMotion, mdxComponents, ArticleHeader, ArticleCover, ArticleAside, ArticleNextPostLink } from "../components";
+import { TTBlogPostTemplateProps } from "../type";
+import { TBlogPostMotion, mdxComponents, ArticleHeader, ArticleCover, ArticleAside, ArticleNextPostLink } from "../components";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import Image from "next/image";
 
-export const BlogPostTemplate = async ({ post, nextPost, labels, }: TBlogPostTemplateProps) => {
+export async function TBlogPostTemplate({ post, nextPost, labels, }: TTBlogPostTemplateProps) {
     const content = await MDXRemote({
         source: post.content,
         components: mdxComponents,
       });
     
       return (
-        <BlogPostMotion>
+        <TBlogPostMotion>
           <article className="relative pb-32 pt-36">
             <ArticleHeader
               post={post}
@@ -57,8 +57,8 @@ export const BlogPostTemplate = async ({ post, nextPost, labels, }: TBlogPostTem
               <ArticleNextPostLink post={nextPost} label={labels.next} />
             ) : null}
           </article>
-        </BlogPostMotion>
+        </TBlogPostMotion>
       );
 }
 
-export default BlogPostTemplate;
+export default TBlogPostTemplate;

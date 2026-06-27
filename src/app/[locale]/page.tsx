@@ -1,12 +1,9 @@
 import { setRequestLocale } from "next-intl/server";
 import { HomeTemplate } from "@/features/home";
 import { getAllPosts } from "@/lib/blog/posts";
+import { TPageProps } from "@/types";
 
-type Props = {
-  params: Promise<{ locale: string }>;
-};
-
-export default async function Home({ params }: Props) {
+export default async function Home({ params }: TPageProps) {
   const { locale } = await params;
   setRequestLocale(locale);
 

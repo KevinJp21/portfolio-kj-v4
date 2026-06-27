@@ -5,7 +5,7 @@ import { TBlogView } from "../types";
 import { LayoutGrid, TextAlignJustify, TableProperties } from "lucide-react";
 
 
-export const BlogViewSwitch = ({ view, onChange, labels, }: { view: TBlogView; onChange: (v: TBlogView) => void; labels: Record<TBlogView, string>; }) => {
+export function BlogViewSwitch({ view, onChange, labels, }: { view: TBlogView; onChange: (v: TBlogView) => void; labels: Record<TBlogView, string>; }) {
   const views: { id: TBlogView; label: string; icon: React.ReactNode }[] = [
     { id: "grid", label: labels.grid, icon: <LayoutGrid className="size-4" /> },
     { id: "list", label: labels.list, icon: <TextAlignJustify className="size-4" /> },

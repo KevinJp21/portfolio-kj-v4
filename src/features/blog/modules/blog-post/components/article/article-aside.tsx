@@ -1,8 +1,8 @@
-import { BlogPostMeta } from "@/types";
+import { TTBlogPostMeta } from "@/types";
 import { Dot } from "lucide-react";
 
 type ArticleAsideProps = {
-    post: BlogPostMeta;
+    post: TTBlogPostMeta;
     stackLabel: string;
     readingTimeLabel: string;
 };

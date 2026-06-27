@@ -35,14 +35,14 @@ export function ScrollProgress() {
 
   return (
     <>
-      <div className="pointer-events-none fixed top-0 left-0 right-0 z-[60] h-[2px] bg-bone-100/[0.04]">
+      <div className="pointer-events-none fixed top-0 left-0 right-0 z-60 h-[2px] bg-bone-100/4">
         <div
           ref={barRef}
-          className="h-full origin-left bg-gradient-to-r from-signal via-iris to-filament"
+          className="h-full origin-left bg-linear-to-r from-signal via-iris to-filament"
           style={{ transform: "scaleX(0)" }}
         />
       </div>
-      <div className="pointer-events-none fixed bottom-6 right-6 z-[60] hidden font-mono text-[10px] uppercase tracking-[0.2em] text-bone-400 md:flex">
+      <div className="pointer-events-none fixed bottom-6 right-6 z-z-60 hidden font-mono text-[10px] uppercase tracking-[0.2em] text-bone-400 md:flex">
         <span className="rounded-full border border-rule px-2 py-1 backdrop-blur-md">
           {String(percent).padStart(3, "0")} / 100
         </span>

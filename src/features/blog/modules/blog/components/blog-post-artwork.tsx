@@ -1,7 +1,7 @@
-import { BlogPostMeta } from "@/types";
+import { TTBlogPostMeta } from "@/types";
 import Image from "next/image";
 
-export const BlogPostArtwork = ({ post, priority = false, }: { post: BlogPostMeta; priority?: boolean; }) => {
+export function TBlogPostArtwork({ post, priority = false, }: { post: TTBlogPostMeta; priority?: boolean; }) {
     return (
         <div
             className="relative aspect-4/3 w-full overflow-hidden border-b border-rule-soft bg-ink-900"
@@ -39,4 +39,4 @@ export const BlogPostArtwork = ({ post, priority = false, }: { post: BlogPostMet
     );
 }
 
-export default BlogPostArtwork;
+export default TBlogPostArtwork;

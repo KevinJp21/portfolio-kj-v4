@@ -5,17 +5,17 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useTranslations } from "next-intl";
 import { stackItems } from "@/const/stack";
-import type { StackCategoryKey, StackLevel } from "@/types";
+import type { TStackCategoryKey, TStackLevel } from "@/types";
 import { SectionHeader } from "@/components";
 import { cn } from "@/lib/utils";
 
-const levelDotClass: Record<StackLevel, string> = {
+const levelDotClass: Record<TStackLevel, string> = {
   daily: "bg-signal shadow-[0_0_12px_color-mix(in_srgb,var(--signal)_70%,transparent)]",
   project: "border border-bone-500 bg-transparent",
   learning: "bg-bone-300",
 };
 
-const levelTextClass: Record<StackLevel, string> = {
+const levelTextClass: Record<TStackLevel, string> = {
   daily: "text-signal",
   project: "text-bone-500",
   learning: "text-bone-300",
@@ -30,8 +30,8 @@ export function StackOrbital() {
   const [active, setActive] = useState(0);
   const [hover, setHover] = useState<string | null>(null);
 
-  const levelLabel = (level: StackLevel) => t(`levels.${level}`);
-  const categoryLabel = (key: StackCategoryKey) => t(`categories.${key}`);
+  const levelLabel = (level: TStackLevel) => t(`levels.${level}`);
+  const categoryLabel = (key: TStackCategoryKey) => t(`categories.${key}`);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -205,7 +205,7 @@ export function StackOrbital() {
                 })}
               </p>
               <ul className="flex items-center gap-4 text-[10px] uppercase tracking-[0.18em] text-bone-500">
-                {(["daily", "project", "learning"] as StackLevel[]).map((lvl) => (
+                {(["daily", "project", "learning"] as TStackLevel[]).map((lvl) => (
                   <li key={lvl} className="flex items-center gap-1.5">
                     <span className={cn("h-1.5 w-1.5 rounded-full", levelDotClass[lvl])} />
                     <span>{levelLabel(lvl)}</span>

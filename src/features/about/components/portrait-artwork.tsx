@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { AVATAR_URL } from "@/const";
 
-export const PortraitArtwork = () => {
+export function PortraitArtwork() {
   return (
     <div className="relative h-full w-full overflow-hidden bg-ink-900">
       <Image

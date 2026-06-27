@@ -6,7 +6,7 @@ type ArticleTitleProps = {
   title: string;
 };
 
-export const ArticleTitle = ({ title }: ArticleTitleProps) => {
+export function ArticleTitle({ title }: ArticleTitleProps) {
   return (
     <h1 className="font-display text-[clamp(2.75rem,10vw,7rem)] leading-[0.9] text-bone-100">
       <TextReveal as="span" trigger="mount">

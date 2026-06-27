@@ -2,7 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import matter from "gray-matter";
 import { routing } from "@/i18n/routing";
-import type { BlogFrontmatter, BlogPost, BlogPostMeta } from "@/types";
+import type { TBlogFrontmatter, TBlogPost, TTBlogPostMeta } from "@/types";
 
 const BLOG_DIR = path.join(process.cwd(), "content/blog");
 
@@ -19,9 +19,9 @@ function parseMeta(
   locale: string,
   slug: string,
   raw: string
-): BlogPostMeta | null {
+): TTBlogPostMeta | null {
   const { data, content } = matter(raw);
-  const frontmatter = data as BlogFrontmatter;
+  const frontmatter = data as TBlogFrontmatter;
 
   if (!frontmatter.title || !frontmatter.description) {
     return null;
@@ -48,7 +48,7 @@ export function getAllPostSlugs(locale: string): string[] {
 export function getPostMeta(
   locale: string,
   slug: string
-): BlogPostMeta | null {
+): TTBlogPostMeta | null {
   const filePath = path.join(postsDir(locale), `${slug}.mdx`);
   if (!fs.existsSync(filePath)) return null;
 
@@ -56,22 +56,22 @@ export function getPostMeta(
   return parseMeta(locale, slug, raw);
 }
 
-export function getAllPosts(locale: string): BlogPostMeta[] {
+export function getAllPosts(locale: string): TTBlogPostMeta[] {
   return getAllPostSlugs(locale)
     .map((slug) => getPostMeta(locale, slug))
-    .filter((post): post is BlogPostMeta => post !== null)
+    .filter((post): post is TTBlogPostMeta => post !== null)
     .sort(
       (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
     );
 }
 
-export function getPost(locale: string, slug: string): BlogPost | null {
+export function getPost(locale: string, slug: string): TBlogPost | null {
   const filePath = path.join(postsDir(locale), `${slug}.mdx`);
   if (!fs.existsSync(filePath)) return null;
 
   const raw = fs.readFileSync(filePath, "utf-8");
   const { data, content } = matter(raw);
-  const frontmatter = data as BlogFrontmatter;
+  const frontmatter = data as TBlogFrontmatter;
 
   if (!frontmatter.title) return null;
 

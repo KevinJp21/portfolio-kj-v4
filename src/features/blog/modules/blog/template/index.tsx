@@ -4,15 +4,15 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 import { gsap } from "gsap";
 import { SectionHeader, TextReveal } from "@/components";
-import { BlogCategoryFilterId } from "@/types";
+import { TBlogCategoryFilterId } from "@/types";
 import { BLOG_CATEGORY_FILTERS } from "@/const";
 import { cn } from "@/lib";
 import { TBlogViewProps, TBlogView } from "../types";
 import { BlogViewSwitch, BlogGridView, BlogListView, BlogMatrixView } from "../components";
 
-export const BlogTemplate = ({ posts, labels }: TBlogViewProps) => {
+export function BlogTemplate({ posts, labels }: TBlogViewProps) {
     const t = useTranslations("BlogPage.index");
-    const [filter, setFilter] = useState<BlogCategoryFilterId>("All");
+    const [filter, setFilter] = useState<TBlogCategoryFilterId>("All");
     const [view, setView] = useState<TBlogView>("grid");
     const ref = useRef<HTMLElement>(null);
   

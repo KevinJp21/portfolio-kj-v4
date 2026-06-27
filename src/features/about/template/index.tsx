@@ -8,7 +8,7 @@ import { TextReveal, ScopeFrame, SectionHeader } from "@/components";
 import { PortraitArtwork } from "../components";
 import { useTranslations } from "next-intl";
 
-export const AboutTemplate = () => {
+export function AboutTemplate() {
     const t = useTranslations("AboutPage");
     const ref = useRef<HTMLElement>(null);
 

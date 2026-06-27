@@ -1,11 +1,11 @@
-import { BlogPostMeta } from "@/types";
+import { TTBlogPostMeta } from "@/types";
 import { ArticleTitle } from "./article-title";
 import { TextReveal } from "@/components";
 import { Dot, MoveLeft } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 
 type ArticleHeaderProps = {
-    post: BlogPostMeta;
+    post: TTBlogPostMeta;
     backLabel: string;
     clientLabel: string;
     roleLabel: string;

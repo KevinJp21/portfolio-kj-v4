@@ -13,7 +13,8 @@ import {
   getPost,
   getPostMeta,
 } from "@/lib/blog/posts";
-import { BlogPostTemplate } from "@/features";
+import { TBlogPostTemplate } from "@/features";
+import { TPageProps } from "@/types";
 
 type PageProps = {
   params: Promise<{ locale: string; slug: string }>;
@@ -23,17 +24,20 @@ export function generateStaticParams() {
   return getAllStaticParams();
 }
 
-export async function generateMetadata({ params }: PageProps) {
+export async function generateMetadata({ params }: TPageProps) {
   const { locale, slug } = await params;
   if (!hasLocale(routing.locales, locale)) return {};
 
+  if (!slug) return { title: "Not found" };
+
   const post = getPostMeta(locale, slug);
+
   if (!post) return { title: "Not found" };
 
   return buildPostMetadata(post);
 }
 
-export default async function BlogPostPage({ params }: PageProps) {
+export default async function TBlogPostPage({ params }: PageProps) {
   const { locale, slug } = await params;
   if (!hasLocale(routing.locales, locale)) notFound();
 
@@ -58,7 +62,7 @@ export default async function BlogPostPage({ params }: PageProps) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
-      <BlogPostTemplate
+      <TBlogPostTemplate
         post={post}
         nextPost={next}
         labels={{

@@ -2,13 +2,13 @@ import { Link } from "@/i18n/navigation";
 import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import type { ComponentProps } from "react";
-import type { BlogPostMeta } from "@/lib/blog";
+import type { TTBlogPostMeta } from "@/types";
 import { cn } from "@/lib/utils";
 
 type BlogHref = ComponentProps<typeof Link>["href"];
 
 type ProjectCardProps = {
-  project: BlogPostMeta;
+  project: TTBlogPostMeta;
   index?: number;
   href?: BlogHref;
   ctaLabel: string;

@@ -6,11 +6,11 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-type BlogPostMotionProps = {
+type TBlogPostMotionProps = {
   children: ReactNode;
 };
 
-export const BlogPostMotion = ({ children }: BlogPostMotionProps) => {
+export function TBlogPostMotion({ children }: TBlogPostMotionProps) {
   const rootRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -51,4 +51,4 @@ export const BlogPostMotion = ({ children }: BlogPostMotionProps) => {
   );
 }
 
-export default BlogPostMotion;
+export default TBlogPostMotion;
