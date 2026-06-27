@@ -296,7 +296,7 @@
     "kicker": "Start here",
     "titleLine1": "Let's build",
     "titleAccent": "something real.",
-    "description": "Tell me what you're building. I develop frontend solutions, full-stack applications, e-commerce, and backend integrations — focused on performance, scalability, and a great user experience.",
+    "description": "Tell me what you're building. I develop frontend solutions, full-stack applications, e-commerce, and backend integrations, focused on performance, scalability, and a great user experience.",
     "success": {
       "title": "Message sent.",
       "body": "Thanks{name}. I'll write to <email>{email}</email> within 48h. Meanwhile, check out <link>some recent work</link>.",

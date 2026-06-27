@@ -67,6 +67,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
       alternates: languageAlternates("/blog"),
     });
 
+    entries.push({
+      url: localizedUrl(locale, "/contact"),
+      lastModified: new Date(),
+      changeFrequency: "yearly",
+      priority: 0.9,
+      alternates: languageAlternates("/contact"),
+    });
+
     for (const post of getAllPosts(locale)) {
       entries.push({
         url: localizedUrl(locale, {
