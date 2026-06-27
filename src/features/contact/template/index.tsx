@@ -69,18 +69,19 @@ export function ContactTemplate() {
         <div className="md:col-span-9">
           <p className="contact-line chip-mono mb-6">{t("kicker")}</p>
           <h1 className="contact-line font-display text-[clamp(3rem,11vw,11rem)] leading-[0.85] text-bone-100">
-            <TextReveal as="span" trigger="mount" delay={0.2}>
+            <TextReveal as="span" trigger="mount">
               {t("titleLine1")}
             </TextReveal>
             <span className="block italic text-signal">
-              <TextReveal as="span" trigger="mount" delay={0.45}>
+              <TextReveal as="span" trigger="mount">
                 {t("titleAccent")}
               </TextReveal>
             </span>
           </h1>
-          <p className="contact-line mt-6 max-w-xl text-base leading-relaxed text-bone-300">
-            {t("description")}
-          </p>
+
+            <TextReveal as="p" trigger="mount" className="contact-line mt-6 max-w-xl text-base leading-relaxed text-bone-300">
+              {t("description")}
+            </TextReveal>
         </div>
         <ul className="md:col-span-3 space-y-3">
           {channels.map((c) => (
