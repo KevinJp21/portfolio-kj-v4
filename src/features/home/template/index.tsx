@@ -1,4 +1,4 @@
-import type { TTBlogPostMeta } from "@/lib/blog/types";
+import type { TTBlogPostMeta } from "@/types";
 import {
   Hero,
   AboutBlock,
@@ -8,12 +8,12 @@ import {
   CloserBlock,
 } from "..";
 
-type HomeTemplateProps = {
+type THomeTemplateProps = {
   featuredPosts: TTBlogPostMeta[];
   totalPosts: number;
 };
 
-export function HomeTemplate({ featuredPosts, totalPosts }: HomeTemplateProps) {
+export function HomeTemplate({ featuredPosts, totalPosts }: THomeTemplateProps) {
   return (
     <>
       <Hero />

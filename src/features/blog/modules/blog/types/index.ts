@@ -1,5 +1,5 @@
 import { TBlogCategoryFilterId } from "@/types";
-import type { TTBlogPostMeta } from "@/lib/blog/types";
+import type { TTBlogPostMeta } from "@/types";
 
 export type TBlogView = "grid" | "list" | "matrix";
 
