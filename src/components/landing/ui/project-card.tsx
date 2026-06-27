@@ -35,6 +35,7 @@ export function ProjectCard({
         href={href}
         data-cursor="cta"
         data-cursor-label={project.title}
+        aria-label={project.title}
         className="group block overflow-hidden rounded-2xl border border-rule-soft bg-ink-850/30 transition-colors hover:border-rule-strong hover:bg-ink-850/50"
       >
         <span

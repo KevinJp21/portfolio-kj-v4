@@ -7,7 +7,7 @@ export function BlogMatrixView({ items, labels, }: { items: TTBlogPostMeta[]; la
         <div className="overflow-hidden rounded-2xl border border-rule">
             <table className="w-full text-left">
                 <thead>
-                    <tr className="border-b border-rule-soft bg-ink-850 text-[10px] uppercase tracking-widest text-bone-500">
+                    <tr className="border-b border-rule-soft bg-ink-850 text-[10px] uppercase tracking-widest text-bone-400">
                         <th className="px-4 py-3 font-normal">{labels.index}</th>
                         <th className="px-4 py-3 font-normal">{labels.project}</th>
                         <th className="hidden px-4 py-3 font-normal md:table-cell">

@@ -21,7 +21,7 @@ export function BlogListView({ items }: { items: TTBlogPostMeta[] }) {
               <span className="hidden text-sm text-bone-400 md:col-span-3 md:block">
                 {post.subtitle}
               </span>
-              <span className="hidden font-mono text-xs uppercase tracking-widest text-bone-500 md:col-span-2 md:block">
+              <span className="hidden font-mono text-xs uppercase tracking-widest text-bone-400 md:col-span-2 md:block">
                 {post.category}
               </span>
               <span className="hidden text-right text-bone-400 transition-colors group-hover:text-signal md:col-span-1 md:block">

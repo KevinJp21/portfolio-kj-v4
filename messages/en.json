@@ -327,8 +327,7 @@
       "summaryWhen": "Timeline"
     },
     "form": {
-      "submit": "Send the brief",
-      "disclaimer": "Visual mockup. This version doesn't send real data — it only simulates the server response."
+      "submit": "Send the brief"
     },
     "interests": [
       "Frontend / Web App",

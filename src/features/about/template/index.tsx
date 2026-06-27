@@ -127,7 +127,7 @@ export function AboutTemplate() {
                         <div key={c.code} className="chapter">
                             <div className="chapter-line flex items-baseline justify-between border-b border-rule-soft pb-4">
                                 <span className="chip-mono text-signal">{c.code}</span>
-                                <span className="font-mono text-xs text-bone-500">{c.year}</span>
+                                <span className="font-mono text-xs text-bone-400">{c.year}</span>
                             </div>
 
                             <h2 className="chapter-line mt-6 font-display text-[clamp(2.25rem,5.5vw,4.5rem)] leading-[0.95] text-bone-100">

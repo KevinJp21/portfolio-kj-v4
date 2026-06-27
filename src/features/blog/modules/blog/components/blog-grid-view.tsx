@@ -21,16 +21,16 @@ export function BlogGridView({ items }: { items: TTBlogPostMeta[] }) {
                         <TBlogPostArtwork post={post} priority={index === 0} />
 
                         <div className="flex flex-1 flex-col p-5">
-                            <div className="flex items-center justify-between text-[10px] uppercase tracking-widest text-bone-500">
+                            <div className="flex items-center justify-between text-[10px] uppercase tracking-widest text-bone-400">
                                 <span>
                                     {post.index} · {post.category}
                                 </span>
                                 <span>{post.year}</span>
                             </div>
 
-                            <h3 className="mt-3 line-clamp-2 font-display text-2xl leading-tight text-bone-100">
+                            <h2 className="mt-3 line-clamp-2 font-display text-2xl leading-tight text-bone-100">
                                 {post.title}
-                            </h3>
+                            </h2>
 
                             <p className="mt-3 line-clamp-3 text-sm text-bone-400">
                                 {post.subtitle}

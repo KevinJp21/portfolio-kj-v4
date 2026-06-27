@@ -327,8 +327,7 @@
       "summaryWhen": "Cuándo"
     },
     "form": {
-      "submit": "Enviar el brief",
-      "disclaimer": "Mockup visual. Esta versión no envía datos reales — solo simula la respuesta del servidor."
+      "submit": "Enviar el brief"
     },
     "interests": [
       "Frontend / Web App",

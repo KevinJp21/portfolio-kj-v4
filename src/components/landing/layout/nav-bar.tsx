@@ -149,6 +149,7 @@ export function Navbar() {
           href="/"
           data-cursor="link"
           data-cursor-label={t("cursor.index")}
+          aria-label={t("cursor.index")}
           className="group flex items-center gap-3"
         >
           <span className="hidden flex-col leading-none lg:flex">

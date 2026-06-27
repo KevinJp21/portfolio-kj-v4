@@ -192,10 +192,6 @@ export function ContactForm({
             </span>
             <span className="absolute inset-y-0 left-0 z-0 w-0 bg-signal transition-[width] duration-500 group-hover:w-full" />
           </button>
-
-          <p className="text-center text-xs text-bone-500">
-            {t("form.disclaimer")}
-          </p>
         </div>
       </div>
     </form>
