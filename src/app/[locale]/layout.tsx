@@ -164,6 +164,7 @@ export default async function RootLayout({ children, params }: TProps) {
       className={`${theme} ${geistSans.variable} ${geistMono.variable} ${fraunces.variable} antialiased`}
     >
       <body className="grain relative bg-ink-900 text-bone-100 selection:bg-signal selection:text-ink-900">
+        <link rel="preload" as="image" href="/perfil_avatar.webp" fetchPriority="high" />
         <ThemeProvider initialTheme={theme}>
           <SmoothScroll>
             <div className="blueprint" aria-hidden />

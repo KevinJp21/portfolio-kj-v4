@@ -17,29 +17,21 @@ export function Hero() {
     const marqueeItems = t.raw("marquee.items") as string[];
     useEffect(() => {
         const ctx = gsap.context(() => {
-            gsap.fromTo(
+            gsap.to(
                 chipRef.current,
-                { y: 24, autoAlpha: 0 },
-                { y: 0, autoAlpha: 1, duration: 1, ease: "power3.out", delay: 0.3 }
+                { y: 0, opacity: 1, duration: 1, ease: "power3.out", delay: 0.3 }
             );
 
-            gsap.fromTo(
+            gsap.to(
                 ".hero-meta",
-                { y: 18, autoAlpha: 0 },
                 {
                     y: 0,
-                    autoAlpha: 1,
+                    opacity: 1,
                     duration: 0.9,
                     ease: "power3.out",
                     stagger: 0.08,
                     delay: 0.7,
                 }
-            );
-
-            gsap.fromTo(
-                orbRef.current,
-                { scale: 0.85, autoAlpha: 0 },
-                { scale: 1, autoAlpha: 1, duration: 1.4, ease: "power3.out", delay: 0.5 }
             );
 
             gsap.to(orbRef.current, {
@@ -82,7 +74,7 @@ export function Hero() {
             <div className="section-x relative default-container flex w-full flex-1 flex-col gap-6 md:gap-8">
                 <div
                     ref={chipRef}
-                    className="flex flex-wrap items-center gap-3 text-xs"
+                    className="flex flex-wrap items-center gap-3 text-xs opacity-0 translate-y-6"
                 >
                     <span className="flex items-center gap-2 rounded-full border border-rule px-3 py-1.5 text-[10px] uppercase tracking-[0.18em] text-bone-400 h-[29px]">
                         <span className="pulse-dot inline-block h-1.5 w-1.5 rounded-full bg-signal" />
@@ -145,19 +137,19 @@ export function Hero() {
                     </div>
 
                     <div className="grid items-end gap-6 mt-4 md:grid-cols-12 md:gap-10">
-                        <p className="hero-meta md:col-span-5 max-w-md text-sm leading-relaxed text-bone-300 md:text-[15px]">
+                        <p className="hero-meta md:col-span-5 max-w-md text-sm leading-relaxed text-bone-300 md:text-[15px] opacity-0 translate-y-[18px]">
                             <span className="font-display italic text-bone-100">
                                 Kevin Julio Pineda.
                             </span>{" "}{t("bio.body")}
                         </p>
 
-                        <div className="hero-meta md:col-span-4 space-y-2">
+                        <div className="hero-meta md:col-span-4 space-y-2 opacity-0 translate-y-[18px]">
                             <Row label={t("meta.focus.label")} value={t("meta.focus.value")} />
                             <Row label={t("meta.backend.label")} value={t("meta.backend.value")} />
                             <Row label={t("meta.status.label")} value={t("meta.status.value", { year: getYear() })} />
                         </div>
 
-                        <div className="hero-meta md:col-span-3 flex flex-col gap-2.5">
+                        <div className="hero-meta md:col-span-3 flex flex-col gap-2.5 opacity-0 translate-y-[18px]">
                             <Link
                                 href="/contact"
                                 data-cursor="cta"
@@ -216,6 +208,7 @@ function Avatar() {
                 fill
                 sizes="(max-width: 768px) 60vw, 440px"
                 priority
+                unoptimized
                 className="object-cover object-[50%_28%] scale-110"
             />
         </div>
