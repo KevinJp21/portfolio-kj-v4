@@ -114,7 +114,7 @@
       "currentBadge": "Current",
       "items": [
         {
-          "period": "2026 — Jan · present",
+          "period": "2026 — Jan · 2026 - June",
           "role": "Frontend Developer",
           "company": "Silver Holdings S.A.S.",
           "location": "Barranquilla, Colombia",
@@ -125,10 +125,10 @@
             "TypeScript",
             "TailwindCSS"
           ],
-          "current": true
+          "current": false
         },
         {
-          "period": "2025 — May",
+          "period": "2025 - Nov · 2025 — May",
           "role": "Frontend Developer · Shopify",
           "company": "Ferretería Rueda",
           "location": "Barranquilla, Colombia",
@@ -140,7 +140,7 @@
           ]
         },
         {
-          "period": "2024 — Nov",
+          "period": "2024 - Oct · 2024 — Nov",
           "role": "Full-stack Developer · Headless",
           "company": "Verezza E-commerce",
           "location": "Independent project",
@@ -154,7 +154,7 @@
           ]
         },
         {
-          "period": "2024 — Oct",
+          "period": "2024 - Jul · 2024 — Oct",
           "role": "Full-stack Developer · Lead frontend",
           "company": "Chikos Gourmet",
           "location": "Barranquilla, Colombia",
