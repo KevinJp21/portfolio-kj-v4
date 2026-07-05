@@ -299,7 +299,7 @@
     "description": "Tell me what you're building. I develop frontend solutions, full-stack applications, e-commerce, and backend integrations, focused on performance, scalability, and a great user experience.",
     "success": {
       "title": "Message sent.",
-      "body": "Thanks{name}. I'll write to <email>{email}</email> within 48h. Meanwhile, check out <link>some recent work</link>.",
+      "body": "Thanks{name}. I'll write to {email} within 48h. Meanwhile, check out <link>some recent work</link>.",
       "fallbackEmail": "your email",
       "resetButton": "Send another message"
     },
@@ -310,10 +310,12 @@
       "namePlaceholder": "Your name",
       "emailLabel": "Where can I reach you?",
       "emailPlaceholder": "email@domain.com",
-      "interestLabel": "What do you need to build?",
-      "briefLabel": "Tell me in 2 — 3 lines",
-      "briefPlaceholder": "We're building X. We need help with Y. We dream of Z."
+      "interestLabel": "How can I help you?",
+      "briefLabel": "Tell me more",
+      "briefPlaceholder": "Describe your initiative, project, or proposal. Include any relevant details so I can understand how I can help.",
+      "inquiryTypeLabel": "You are...?"
     },
+    "inquiryTypes": ["A company hiring talent", "A client with a project"],
     "scope": {
       "code": "C/02",
       "eyebrow": "Scope · budget & timeline",
@@ -325,6 +327,15 @@
       "summaryProject": "Project",
       "summaryBudget": "Budget",
       "summaryWhen": "Timeline"
+    },
+    "errors": {
+      "nameRequired": "What's your name?",
+      "emailRequired": "Where can I reach you?",
+      "inquiryTypeRequired": "Choose whether you're a company or a client",
+      "interestRequired": "Select an option",
+      "budgetRequired": "Select your approximate budget",
+      "timelineRequired": "Select when you'd like to start",
+      "briefRequired": "Tell me more"
     },
     "form": {
       "submit": "Send the brief"

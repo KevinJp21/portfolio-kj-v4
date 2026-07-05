@@ -19,6 +19,7 @@
     "next-mdx-remote": "^6.0.0",
     "react": "19.2.4",
     "react-dom": "19.2.4",
+    "react-hook-form": "^7.80.0",
     "react-photo-album": "^3.6.0",
     "remark-gfm": "^4.0.1",
     "yet-another-react-lightbox": "^3.32.0"

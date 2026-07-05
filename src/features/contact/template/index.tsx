@@ -1,11 +1,12 @@
 'use client'
 
 import { useRef, useState, useEffect } from "react";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { useTranslations } from "next-intl";
 import gsap from "gsap";
 import { TextReveal } from "@/components";
 import { ContactForm } from "..";
+import type { ContactFormValues } from "..";
 import { channels } from "..";
 import { Dot, MoveLeft } from "lucide-react";
 
@@ -14,12 +15,7 @@ export function ContactTemplate() {
   const ref = useRef<HTMLElement>(null);
   const successRef = useRef<HTMLDivElement>(null);
   const [submitted, setSubmitted] = useState(false);
-  const [interest, setInterest] = useState<string | null>(null);
-  const [budget, setBudget] = useState<string | null>(null);
-  const [timeline, setTimeline] = useState<string | null>(null);
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [brief, setBrief] = useState("");
+  const [formData, setFormData] = useState<ContactFormValues | null>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -48,9 +44,13 @@ export function ContactTemplate() {
     );
   }, [submitted]);
 
-  const onSubmit = () => {
+  const onSubmit = (data: ContactFormValues) => {
+    setFormData(data);
     setSubmitted(true);
   };
+
+  const name = formData?.name ?? "";
+  const email = formData?.email ?? "";
 
   return (
     <section ref={ref} className="section-x default-container pt-36 pb-20">
@@ -118,7 +118,7 @@ export function ContactTemplate() {
               name: name ? `, ${name.split(" ")[0]}` : "",
               email: email || t("success.fallbackEmail"),
               link: (ch) => (
-                <Link href="/projects" className="underline decoration-rule-strong underline-offset-4 hover:text-signal">
+                <Link href="/blog" className="underline decoration-rule-strong underline-offset-4 hover:text-signal">
                   {ch}
                 </Link>
               )
@@ -128,12 +128,7 @@ export function ContactTemplate() {
             type="button"
             onClick={() => {
               setSubmitted(false);
-              setName("");
-              setEmail("");
-              setBrief("");
-              setInterest(null);
-              setBudget(null);
-              setTimeline(null);
+              setFormData(null);
             }}
             className="mt-8 inline-flex items-center gap-2 rounded-full border border-rule-strong px-4 py-2 text-sm text-bone-100 transition-colors hover:border-signal"
           >
@@ -143,13 +138,7 @@ export function ContactTemplate() {
         </div>
       ) : (
         <ContactForm
-          onSubmit={() => onSubmit}
-          name={name} setName={setName}
-          email={email} setEmail={setEmail}
-          interest={interest} setInterest={setInterest}
-          budget={budget} setBudget={setBudget}
-          timeline={timeline} setTimeline={setTimeline}
-          brief={brief} setBrief={setBrief}
+          onSubmit={onSubmit}
         />
       )}
     </section>

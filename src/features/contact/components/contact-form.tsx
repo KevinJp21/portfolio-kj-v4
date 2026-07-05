@@ -1,40 +1,58 @@
 "use client";
 
+import { useForm } from "react-hook-form";
+import { useEffect } from "react";
 import { useTranslations } from "next-intl";
 import { ScopeFrame, SectionHeader } from "@/components";
-import { cn } from "@/lib";
 import { ContactField, ContactSummary } from "..";
 import { MoveRight } from "lucide-react";
 
-type ContactFormProps = {
-  onSubmit: () => void;
+type ContactFormValues = {
   name: string;
-  setName: (v: string) => void;
   email: string;
-  setEmail: (v: string) => void;
-  interest: string | null;
-  setInterest: (v: string | null) => void;
-  budget: string | null;
-  setBudget: (v: string | null) => void;
-  timeline: string | null;
-  setTimeline: (v: string | null) => void;
   brief: string;
-  setBrief: (v: string) => void;
+  inquiryType: string;
+  interest: string;
+  budget: string;
+  timeline: string;
 };
 
-export function ContactForm({
-  onSubmit,
-  name, setName,
-  email, setEmail,
-  interest, setInterest,
-  budget, setBudget,
-  timeline, setTimeline,
-  brief, setBrief,
-}: ContactFormProps) {
+type ContactFormProps = {
+  onSubmit: (data: ContactFormValues) => void;
+};
+
+export function ContactForm({ onSubmit }: ContactFormProps) {
   const t = useTranslations("ContactPage");
+  const { register, handleSubmit, control, watch, setValue, formState: { errors } } =
+    useForm<ContactFormValues>({
+      defaultValues: {
+        name: "",
+        email: "",
+        brief: "",
+        inquiryType: "",
+        interest: "",
+        budget: "",
+        timeline: "",
+      },
+    });
+
+  const watched = watch();
+  const inquiryTypes = t.raw("inquiryTypes") as string[];
+  const isCompany = watched.inquiryType === inquiryTypes[0];
+
+  useEffect(() => {
+    if (isCompany) {
+      setValue("budget", "");
+      setValue("timeline", "");
+    }
+  }, [isCompany, setValue]);
 
   return (
-    <form onSubmit={onSubmit} className="mt-20 grid gap-12 md:grid-cols-12">
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      noValidate
+      className="mt-20 grid gap-12 md:grid-cols-12"
+    >
       <div className="md:col-span-7">
         <SectionHeader code={t("brief.code")} eyebrow={t("brief.eyebrow")} />
 
@@ -42,57 +60,48 @@ export function ContactForm({
           <ContactField
             id="name"
             label={t("brief.nameLabel")}
-            value={name}
-            onChange={setName}
             placeholder={t("brief.namePlaceholder")}
             required
+            registration={register("name", { required: true })}
+            error={errors.name ? t("errors.nameRequired") : undefined}
           />
           <ContactField
             id="email"
             label={t("brief.emailLabel")}
             type="email"
-            value={email}
-            onChange={setEmail}
             placeholder={t("brief.emailPlaceholder")}
             required
+            registration={register("email", { required: true })}
+            error={errors.email ? t("errors.emailRequired") : undefined}
           />
 
-          <div>
-            <span className="chip-mono mb-3 block text-bone-500">
-              {t("brief.interestLabel")}
-            </span>
-            <ul className="flex flex-wrap gap-2">
-              {(t.raw("interests") as string[]).map((i) => {
-                const active = interest === i;
-                return (
-                  <li key={i}>
-                    <button
-                      type="button"
-                      data-cursor="link"
-                      data-cursor-label={i}
-                      onClick={() => setInterest(i)}
-                      className={cn(
-                        "rounded-full border px-3 py-2 text-sm transition-colors",
-                        active
-                          ? "border-signal bg-signal/10 text-bone-100"
-                          : "border-rule text-bone-400 hover:border-rule-strong hover:text-bone-100"
-                      )}
-                    >
-                      {i}
-                    </button>
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
+          <ContactField
+            id="inquiryType"
+            label={t("brief.inquiryTypeLabel")}
+            type="radio"
+            registration={register("inquiryType", { required: true })}
+            error={errors.inquiryType ? t("errors.inquiryTypeRequired") : undefined}
+            options={t.raw("inquiryTypes") as string[]}
+            selectedValue={watched.inquiryType}
+          />
+
+          <ContactField
+            id="interest"
+            label={t("brief.interestLabel")}
+            type="radio"
+            registration={register("interest", { required: true })}
+            error={errors.interest ? t("errors.interestRequired") : undefined}
+            options={t.raw("interests") as string[]}
+            selectedValue={watched.interest}
+          />
 
           <ContactField
             id="brief"
             label={t("brief.briefLabel")}
-            value={brief}
-            onChange={setBrief}
             placeholder={t("brief.briefPlaceholder")}
-            multiline
+            type="textarea"
+            registration={register("brief", { required: true })}
+            error={errors.brief ? t("errors.briefRequired") : undefined}
           />
         </div>
       </div>
@@ -101,84 +110,66 @@ export function ContactForm({
         <SectionHeader code={t("scope.code")} eyebrow={t("scope.eyebrow")} />
 
         <div className="mt-8 space-y-8">
-          <div>
-            <span className="chip-mono mb-3 block text-bone-500">
-              {t("scope.budgetLabel")}
-            </span>
-            <ul className="grid grid-cols-2 gap-2">
-              {(t.raw("budgets") as string[]).map((b) => {
-                const active = budget === b;
-                return (
-                  <li key={b}>
-                    <button
-                      type="button"
-                      data-cursor="link"
-                      data-cursor-label={b}
-                      onClick={() => setBudget(b)}
-                      className={cn(
-                        "w-full rounded-xl border px-3 py-3 text-sm transition-colors",
-                        active
-                          ? "border-signal bg-signal/10 text-bone-100"
-                          : "border-rule text-bone-400 hover:border-rule-strong hover:text-bone-100"
-                      )}
-                    >
-                      {b}
-                    </button>
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
+          {!isCompany && (
+            <>
+              <ContactField
+                id="budget"
+                label={t("scope.budgetLabel")}
+                type="radio"
+                radioLayout="grid"
+                registration={register("budget", { required: true })}
+                error={errors.budget ? t("errors.budgetRequired") : undefined}
+                options={t.raw("budgets") as string[]}
+                selectedValue={watched.budget}
+              />
 
-          <div>
-            <span className="chip-mono mb-3 block text-bone-500">
-              {t("scope.timelineLabel")}
-            </span>
-            <ul className="space-y-2">
-              {(t.raw("timelines") as string[]).map((tl) => {
-                const active = timeline === tl;
-                return (
-                  <li key={tl}>
-                    <button
-                      type="button"
-                      data-cursor="link"
-                      data-cursor-label={tl}
-                      onClick={() => setTimeline(tl)}
-                      className={cn(
-                        "flex w-full items-center justify-between rounded-xl border px-4 py-3 text-sm transition-colors",
-                        active
-                          ? "border-signal bg-signal/10 text-bone-100"
-                          : "border-rule text-bone-400 hover:border-rule-strong hover:text-bone-100"
-                      )}
-                    >
-                      <span>{tl}</span>
-                      <span
-                        aria-hidden
-                        className={cn(
-                          "h-1.5 w-1.5 rounded-full transition-colors",
-                          active ? "bg-signal" : "bg-rule-strong"
-                        )}
-                      />
-                    </button>
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
+              <ContactField
+                id="timeline"
+                label={t("scope.timelineLabel")}
+                type="radio"
+                radioLayout="list"
+                registration={register("timeline", { required: true })}
+                error={errors.timeline ? t("errors.timelineRequired") : undefined}
+                options={t.raw("timelines") as string[]}
+                selectedValue={watched.timeline}
+              />
+            </>
+          )}
 
           <ScopeFrame className="rounded-2xl border border-rule bg-ink-850 p-6">
-            <p className="chip-mono mb-3 text-bone-500">{t("scope.summaryLabel")}</p>
+            <p className="chip-mono mb-3 text-bone-500">
+              {t("scope.summaryLabel")}
+            </p>
             <dl className="space-y-2 text-sm">
-              <ContactSummary label={t("scope.summaryName")} value={name || "—"} />
-              <ContactSummary label={t("scope.summaryEmail")} value={email || "—"} />
-              <ContactSummary label={t("scope.summaryProject")} value={interest ?? "—"} />
-              <ContactSummary label={t("scope.summaryBudget")} value={budget ?? "—"} />
-              <ContactSummary label={t("scope.summaryWhen")} value={timeline ?? "—"} />
+              <ContactSummary
+                label={t("scope.summaryName")}
+                value={watched.name || "—"}
+              />
+              <ContactSummary
+                label={t("scope.summaryEmail")}
+                value={watched.email || "—"}
+              />
+              <ContactSummary
+                label={t("scope.summaryProject")}
+                value={watched.interest || "—"}
+              />
+              {!isCompany && (
+                <ContactSummary
+                  label={t("scope.summaryBudget")}
+                  value={watched.budget || "—"}
+                />
+              )}
+              {!isCompany && (
+                <ContactSummary
+                  label={t("scope.summaryWhen")}
+                  value={watched.timeline || "—"}
+                />
+              )}
             </dl>
           </ScopeFrame>
 
           <button
-            type="button"
+            type="submit"
             data-cursor="cta"
             data-cursor-label={t("form.submit")}
             className="group relative inline-flex w-full items-center justify-between gap-3 overflow-hidden rounded-full bg-bone-100 px-5 py-4 text-sm font-medium text-ink-900 transition-transform hover:scale-[1.01]"
@@ -188,7 +179,9 @@ export function ContactForm({
               <span className="font-mono text-xs uppercase tracking-widest text-ink-700">
                 /send
               </span>
-              <span aria-hidden><MoveRight className="size-3.5 stroke-2" /></span>
+              <span aria-hidden>
+                <MoveRight className="size-3.5 stroke-2" />
+              </span>
             </span>
             <span className="absolute inset-y-0 left-0 z-0 w-0 bg-signal transition-[width] duration-500 group-hover:w-full" />
           </button>
@@ -197,3 +190,5 @@ export function ContactForm({
     </form>
   );
 }
+
+export type { ContactFormValues };

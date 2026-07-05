@@ -299,7 +299,7 @@
     "description": "Cuéntame qué estás construyendo. Desarrollo soluciones frontend, aplicaciones full-stack, e-commerce e integraciones backend, enfocadas en rendimiento, escalabilidad y una excelente experiencia de usuario.",
     "success": {
       "title": "Mensaje enviado.",
-      "body": "Gracias{name}. Te escribo a <email>{email}</email> antes de 48h. Mientras tanto, mira <link>algunos trabajos recientes</link>.",
+      "body": "Gracias{name}. Te escribo a {email} antes de 48h. Mientras tanto, mira <link>algunas publicaciones recientes</link>.",
       "fallbackEmail": "tu correo",
       "resetButton": "Enviar otro mensaje"
     },
@@ -310,10 +310,12 @@
       "namePlaceholder": "Tu nombre",
       "emailLabel": "¿Dónde te respondo?",
       "emailPlaceholder": "email@dominio.com",
-      "interestLabel": "¿Qué necesitas construir?",
-      "briefLabel": "Cuéntame en 2 — 3 líneas",
-      "briefPlaceholder": "Estamos construyendo X. Necesitamos ayuda con Y. Soñamos con Z."
+      "interestLabel": "¿En qué puedo ayudarte?",
+      "briefLabel": "Cuéntame más",
+      "briefPlaceholder": "Describe tu iniciativa, proyecto o propuesta. Incluye cualquier detalle relevante para entender cómo puedo sumarme.",
+      "inquiryTypeLabel": "¿Eres...?"
     },
+    "inquiryTypes": ["Una empresa contratando talento", "Un cliente con un proyecto"],
     "scope": {
       "code": "C/02",
       "eyebrow": "Scope · presupuesto y tiempos",
@@ -325,6 +327,15 @@
       "summaryProject": "Proyecto",
       "summaryBudget": "Presupuesto",
       "summaryWhen": "Cuándo"
+    },
+    "errors": {
+      "nameRequired": "¿Cómo te llamas?",
+      "emailRequired": "¿Dónde te respondo?",
+      "inquiryTypeRequired": "Elige si eres empresa o cliente",
+      "interestRequired": "Selecciona una opción",
+      "budgetRequired": "Indica tu presupuesto aproximado",
+      "timelineRequired": "Indica cuándo te gustaría empezar",
+      "briefRequired": "Cuéntame más"
     },
     "form": {
       "submit": "Enviar el brief"
