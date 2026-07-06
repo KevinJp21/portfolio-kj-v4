@@ -4,15 +4,22 @@ import { Resend } from 'resend';
 import EmailTemplate from '../../../../emails/email-template';
 import ConfirmationEmailTemplate from '../../../../emails/confirmation-email-template';
 import { TContactFormValues } from '../types';
+import type { TLocale } from '@/types';
+import { getTranslations } from 'next-intl/server';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function apiPostSendEmailAction(
-  data: TContactFormValues
+  data: TContactFormValues,
+  locale: TLocale
 ): Promise<{
   success: boolean;
   message: string;
 }> {
+  const t = await getTranslations({
+    locale,
+    namespace: "Email"
+  })
   try {
     // Correo para mi
     const { error: adminError } = await resend.emails.send({
@@ -36,18 +43,18 @@ export async function apiPostSendEmailAction(
     const { error: confirmationError } = await resend.emails.send({
       from: 'Kevin Julio <contact@kevinjp.dev>',
       to: data.email,
-      subject: 'He recibido tu mensaje',
+      subject: t("confirmation.subject"),
       react: (
         <ConfirmationEmailTemplate
           name={data.name}
-          inquiryType={data.inquiryType}
+          t={t}
+          locale={locale}
         />
       ),
     });
 
     if (confirmationError) {
       console.error(confirmationError);
-      // No fallamos toda la acción si el correo de confirmación falla.
     }
 
     return {

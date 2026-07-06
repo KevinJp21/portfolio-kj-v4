@@ -2,7 +2,7 @@
 
 import { useRef, useState, useEffect } from "react";
 import { Link } from "@/i18n/navigation";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import gsap from "gsap";
 import { TextReveal } from "@/components";
 import { ContactForm } from "..";
@@ -10,9 +10,11 @@ import type { TContactFormValues } from "..";
 import { channels } from "..";
 import { Dot, MoveLeft, RotateCcw } from "lucide-react";
 import { apiPostSendEmailAction } from "..";
+import type { TLocale } from "@/types";
 
 export function ContactTemplate() {
   const t = useTranslations("ContactPage");
+  const locale = useLocale() as TLocale;
   const ref = useRef<HTMLElement>(null);
   const successRef = useRef<HTMLDivElement>(null);
   const [submitted, setSubmitted] = useState(false);
@@ -48,7 +50,7 @@ export function ContactTemplate() {
   const onSubmit = async (data: TContactFormValues) => {
     setFormData(data);
     setSubmitted(true);
-    await apiPostSendEmailAction(data);
+    await apiPostSendEmailAction(data, locale);
   };
 
   const name = formData?.name ?? "";

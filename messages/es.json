@@ -315,7 +315,10 @@
       "briefPlaceholder": "Describe tu iniciativa, proyecto o propuesta. Incluye cualquier detalle relevante para entender cómo puedo sumarme.",
       "inquiryTypeLabel": "¿Eres...?"
     },
-    "inquiryTypes": ["Una empresa contratando talento", "Un cliente con un proyecto"],
+    "inquiryTypes": [
+      "Una empresa contratando talento",
+      "Un cliente con un proyecto"
+    ],
     "scope": {
       "code": "C/02",
       "eyebrow": "Scope · presupuesto y tiempos",
@@ -355,7 +358,12 @@
       "COP $2M — $3.5M",
       "No estoy seguro"
     ],
-    "timelines": ["Inmediato", "1 — 2 meses", "Próximo trimestre", "Aún explorando"]
+    "timelines": [
+      "Inmediato",
+      "1 — 2 meses",
+      "Próximo trimestre",
+      "Aún explorando"
+    ]
   },
   "AboutPage": {
     "metaTitle": "Sobre mí",
@@ -400,6 +408,28 @@
         "title": "Actualidad",
         "year": "2024 — Presente",
         "body": "Actualmente me enfoco en crecer como Frontend Developer con visión full-stack, fortaleciendo arquitectura frontend, rendimiento y desarrollo de productos digitales escalables con impacto real en usuarios y negocio."
+      }
+    }
+  },
+  "Email": {
+    "confirmation": {
+      "preview": "{firstName}, recibí tu mensaje. Te responderé lo antes posible.",
+      "subject": "He recibido tu mensaje",
+      "badge": "Confirmación",
+      "title": "Mensaje recibido",
+      "description": "Gracias por contactarme. He recibido tu mensaje correctamente y revisaré la información para responderte tan pronto como sea posible.",
+      "cta": {
+        "label": "Ver proyectos recientes"
+      },
+      "links": {
+        "blog": "Blog",
+        "linkedin": "LinkedIn",
+        "github": "GitHub"
+      },
+      "footer": {
+        "name": "Kevin Julio Pineda",
+        "role": "Ingeniero de Sistemas · Frontend Developer",
+        "note": "Este es un correo automático de confirmación. No es necesario responder."
       }
     }
   }

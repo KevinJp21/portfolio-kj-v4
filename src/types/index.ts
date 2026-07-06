@@ -1,4 +1,7 @@
 import { BLOG_CATEGORY_KEYS } from "@/const";
+import { routing } from "@/i18n/routing";
+
+export type TLocale = (typeof routing.locales)[number];
 
 export type TPageProps = {
   params: Promise<{ locale: string, slug?: string }>;
