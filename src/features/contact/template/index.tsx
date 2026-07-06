@@ -106,7 +106,7 @@ export function ContactTemplate() {
         </ul>
       </div>
 
-      {!submitted ? (
+      {submitted ? (
         <div
           ref={successRef}
           className="mt-20 rounded-3xl border border-signal/40 bg-ink-850/60 p-12 text-center"
