@@ -6,16 +6,17 @@ import { useTranslations } from "next-intl";
 import gsap from "gsap";
 import { TextReveal } from "@/components";
 import { ContactForm } from "..";
-import type { ContactFormValues } from "..";
+import type { TContactFormValues } from "..";
 import { channels } from "..";
 import { Dot, MoveLeft } from "lucide-react";
+import { apiPostSendEmailAction } from "..";
 
 export function ContactTemplate() {
   const t = useTranslations("ContactPage");
   const ref = useRef<HTMLElement>(null);
   const successRef = useRef<HTMLDivElement>(null);
   const [submitted, setSubmitted] = useState(false);
-  const [formData, setFormData] = useState<ContactFormValues | null>(null);
+  const [formData, setFormData] = useState<TContactFormValues | null>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -44,9 +45,8 @@ export function ContactTemplate() {
     );
   }, [submitted]);
 
-  const onSubmit = (data: ContactFormValues) => {
-    setFormData(data);
-    setSubmitted(true);
+  const onSubmit = async (data: TContactFormValues) => {
+    await apiPostSendEmailAction(data)
   };
 
   const name = formData?.name ?? "";
@@ -79,9 +79,9 @@ export function ContactTemplate() {
             </span>
           </h1>
 
-            <TextReveal as="p" trigger="mount" className="contact-line mt-6 max-w-xl text-base leading-relaxed text-bone-300">
-              {t("description")}
-            </TextReveal>
+          <TextReveal as="p" trigger="mount" className="contact-line mt-6 max-w-xl text-base leading-relaxed text-bone-300">
+            {t("description")}
+          </TextReveal>
         </div>
         <ul className="md:col-span-3 space-y-3">
           {channels.map((c) => (

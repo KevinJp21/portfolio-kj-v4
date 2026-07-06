@@ -4,27 +4,19 @@ import { useForm } from "react-hook-form";
 import { useEffect } from "react";
 import { useTranslations } from "next-intl";
 import { ScopeFrame, SectionHeader } from "@/components";
-import { ContactField, ContactSummary } from "..";
+import { ContactField, ContactSummary, TContactFormValues } from "..";
 import { MoveRight } from "lucide-react";
 
-type ContactFormValues = {
-  name: string;
-  email: string;
-  brief: string;
-  inquiryType: string;
-  interest: string;
-  budget: string;
-  timeline: string;
-};
+
 
 type ContactFormProps = {
-  onSubmit: (data: ContactFormValues) => void;
+  onSubmit: (data:TContactFormValues) => void;
 };
 
 export function ContactForm({ onSubmit }: ContactFormProps) {
   const t = useTranslations("ContactPage");
   const { register, handleSubmit, control, watch, setValue, formState: { errors } } =
-    useForm<ContactFormValues>({
+    useForm<TContactFormValues>({
       defaultValues: {
         name: "",
         email: "",
@@ -190,5 +182,3 @@ export function ContactForm({ onSubmit }: ContactFormProps) {
     </form>
   );
 }
-
-export type { ContactFormValues };
