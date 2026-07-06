@@ -15,7 +15,7 @@ type ContactFormProps = {
 
 export function ContactForm({ onSubmit }: ContactFormProps) {
   const t = useTranslations("ContactPage");
-  const { register, handleSubmit, control, watch, setValue, formState: { errors, isSubmitting } } =
+  const { register, handleSubmit, watch, setValue, formState: { errors, isSubmitting } } =
     useForm<TContactFormValues>({
       defaultValues: {
         name: "",
