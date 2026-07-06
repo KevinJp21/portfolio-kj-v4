@@ -338,7 +338,8 @@
       "briefRequired": "Cuéntame más"
     },
     "form": {
-      "submit": "Enviar el brief"
+      "submit": "Enviar el brief",
+      "sending": "Enviando..."
     },
     "interests": [
       "Frontend / Web App",

@@ -15,7 +15,7 @@ type ContactFormProps = {
 
 export function ContactForm({ onSubmit }: ContactFormProps) {
   const t = useTranslations("ContactPage");
-  const { register, handleSubmit, control, watch, setValue, formState: { errors } } =
+  const { register, handleSubmit, control, watch, setValue, formState: { errors, isSubmitting } } =
     useForm<TContactFormValues>({
       defaultValues: {
         name: "",
@@ -162,18 +162,22 @@ export function ContactForm({ onSubmit }: ContactFormProps) {
 
           <button
             type="submit"
+            disabled={isSubmitting}
             data-cursor="cta"
-            data-cursor-label={t("form.submit")}
-            className="group relative inline-flex w-full items-center justify-between gap-3 overflow-hidden rounded-full bg-bone-100 px-5 py-4 text-sm font-medium text-ink-900 transition-transform hover:scale-[1.01]"
+            data-cursor-label={isSubmitting ? t("form.sending") : t("form.submit")}
+            className="group relative inline-flex w-full items-center justify-between gap-3 overflow-hidden rounded-full bg-bone-100 px-5 py-4 text-sm font-medium text-ink-900 transition-transform hover:scale-[1.01] disabled:cursor-not-allowed disabled:opacity-60"
           >
-            <span className="relative z-10">{t("form.submit")}</span>
+            <span className="relative z-10">
+              {isSubmitting ? t("form.sending") : t("form.submit")}
+            </span>
             <span className="relative z-10 flex items-center gap-2">
-              <span className="font-mono text-xs uppercase tracking-widest text-ink-700">
-                /send
-              </span>
-              <span aria-hidden>
-                <MoveRight className="size-3.5 stroke-2" />
-              </span>
+              {isSubmitting ? (
+                <span className="inline-block size-3.5 animate-spin rounded-full border-2 border-ink-700 border-t-transparent" />
+              ) : (
+                <span aria-hidden>
+                  <MoveRight className="size-3.5 stroke-2" />
+                </span>
+              )}
             </span>
             <span className="absolute inset-y-0 left-0 z-0 w-0 bg-signal transition-[width] duration-500 group-hover:w-full" />
           </button>

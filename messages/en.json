@@ -338,7 +338,8 @@
       "briefRequired": "Tell me more"
     },
     "form": {
-      "submit": "Send the brief"
+      "submit": "Send the brief",
+      "sending": "Sending..."
     },
     "interests": [
       "Frontend / Web App",

@@ -8,7 +8,7 @@ import { TextReveal } from "@/components";
 import { ContactForm } from "..";
 import type { TContactFormValues } from "..";
 import { channels } from "..";
-import { Dot, MoveLeft } from "lucide-react";
+import { Dot, MoveLeft, RotateCcw } from "lucide-react";
 import { apiPostSendEmailAction } from "..";
 
 export function ContactTemplate() {
@@ -46,7 +46,9 @@ export function ContactTemplate() {
   }, [submitted]);
 
   const onSubmit = async (data: TContactFormValues) => {
-    await apiPostSendEmailAction(data)
+    setFormData(data);
+    setSubmitted(true);
+    await apiPostSendEmailAction(data);
   };
 
   const name = formData?.name ?? "";
@@ -104,7 +106,7 @@ export function ContactTemplate() {
         </ul>
       </div>
 
-      {submitted ? (
+      {!submitted ? (
         <div
           ref={successRef}
           className="mt-20 rounded-3xl border border-signal/40 bg-ink-850/60 p-12 text-center"
@@ -133,7 +135,8 @@ export function ContactTemplate() {
             className="mt-8 inline-flex items-center gap-2 rounded-full border border-rule-strong px-4 py-2 text-sm text-bone-100 transition-colors hover:border-signal"
           >
             {t("success.resetButton")}
-            <span aria-hidden>↻</span>
+            
+            <RotateCcw className="size-4"/>
           </button>
         </div>
       ) : (
