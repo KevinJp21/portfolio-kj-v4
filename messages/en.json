@@ -412,6 +412,10 @@
     }
   },
   "Email": {
+    "emailBtn": {
+      "mailtoSubject": "Message for Kevin Julio",
+      "mailtoBody": "Hi Kevin,\n\nI'd like to discuss a project.\n\nName:\nCompany (optional):\nProject details:\n\nThanks."
+    },
     "confirmation": {
       "preview": "{firstName}, I've received your message. I'll get back to you as soon as possible.",
       "subject": "I've received your message",

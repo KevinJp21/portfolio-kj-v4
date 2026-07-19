@@ -3,21 +3,15 @@
 import Link from "next/link";
 import { useEffect, useRef } from "react";
 import { useLocale, useTranslations } from "next-intl";
-
-const social = [
-  {
-    label: "LinkedIn",
-    href: "https://www.linkedin.com/in/kevin-julio-667280240/",
-  },
-  { label: "GitHub", href: "https://github.com/KevinJp21" },
-  { label: "Email", href: "mailto:contact@kevinjp.dev" },
-];
+import { getSocialLinks } from "@/lib";
 
 export function Footer() {
   const t = useTranslations("Footer");
+  const et = useTranslations("Email.emailBtn")
   const locale = useLocale();
   const clockRef = useRef<HTMLSpanElement>(null);
-
+  const social = getSocialLinks(et)
+  
   useEffect(() => {
     if (!clockRef.current) return;
     const fmt = new Intl.DateTimeFormat(locale === "es" ? "es-CO" : "en-US", {

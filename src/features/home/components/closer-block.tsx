@@ -9,6 +9,7 @@ import { SectionHeader } from "@/components";
 
 export function CloserBlock() {
   const t = useTranslations("HomePage.closer");
+  const et = useTranslations("Email.emailBtn");
   const ref = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -93,7 +94,7 @@ export function CloserBlock() {
             </Link>
 
             <a
-              href="mailto:contact@kevinjp.dev"
+              href={`mailto:contact@kevinjp.dev?subject=${et("mailtoSubject")}&body=${encodeURIComponent(et("mailtoBody"))}`}
               data-cursor="link"
               data-cursor-label={t("emailCursor")}
               className="closer-meta group flex items-center justify-between rounded-full border border-rule-strong px-6 py-4 text-sm text-bone-100 transition-colors hover:border-signal"

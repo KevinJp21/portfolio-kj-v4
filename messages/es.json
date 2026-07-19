@@ -412,6 +412,10 @@
     }
   },
   "Email": {
+    "emailBtn": {
+      "mailtoSubject": "Consulta para Kevin Julio",
+      "mailtoBody": "Hola Kevin,\n\nMe gustaría hablar contigo sobre un proyecto.\n\nNombre:\nEmpresa (opcional):\nDetalles:\n\nGracias."
+    },
     "confirmation": {
       "preview": "{firstName}, recibí tu mensaje. Te responderé lo antes posible.",
       "subject": "He recibido tu mensaje",

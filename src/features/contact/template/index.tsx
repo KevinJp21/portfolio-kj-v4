@@ -7,18 +7,20 @@ import gsap from "gsap";
 import { TextReveal } from "@/components";
 import { ContactForm } from "..";
 import type { TContactFormValues } from "..";
-import { channels } from "..";
 import { Dot, MoveLeft, RotateCcw } from "lucide-react";
 import { apiPostSendEmailAction } from "..";
 import type { TLocale } from "@/types";
+import { getSocialLinks } from "@/lib";
 
 export function ContactTemplate() {
   const t = useTranslations("ContactPage");
+  const et = useTranslations("Email.emailBtn");
   const locale = useLocale() as TLocale;
   const ref = useRef<HTMLElement>(null);
   const successRef = useRef<HTMLDivElement>(null);
   const [submitted, setSubmitted] = useState(false);
   const [formData, setFormData] = useState<TContactFormValues | null>(null);
+  const social = getSocialLinks(et)
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -88,7 +90,7 @@ export function ContactTemplate() {
           </TextReveal>
         </div>
         <ul className="md:col-span-3 space-y-3">
-          {channels.map((c) => (
+          {social.map((c) => (
             <li key={c.label}>
               <a
                 href={c.href}
