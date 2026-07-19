@@ -10,7 +10,7 @@ const social = [
     href: "https://www.linkedin.com/in/kevin-julio-667280240/",
   },
   { label: "GitHub", href: "https://github.com/KevinJp21" },
-  { label: "Email", href: "mailto:kevinjp821@gmail.com" },
+  { label: "Email", href: "mailto:contact@kevinjp.dev" },
 ];
 
 export function Footer() {

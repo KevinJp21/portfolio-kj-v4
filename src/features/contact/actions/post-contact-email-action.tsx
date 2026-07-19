@@ -24,7 +24,7 @@ export async function apiPostSendEmailAction(
     // Correo para mi
     const { error: adminError } = await resend.emails.send({
       from: 'Kevin Julio <contact@kevinjp.dev>',
-      to: 'kevinjp821@gmail.com',
+      to: 'contact@kevinjp.dev',
       replyTo: data.email,
       subject: `Nuevo contacto — ${data.name}`,
       react: <EmailTemplate {...data} />,

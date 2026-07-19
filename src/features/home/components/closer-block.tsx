@@ -93,7 +93,7 @@ export function CloserBlock() {
             </Link>
 
             <a
-              href="mailto:kevinjp821@gmail.com"
+              href="mailto:contact@kevinjp.dev"
               data-cursor="link"
               data-cursor-label={t("emailCursor")}
               className="closer-meta group flex items-center justify-between rounded-full border border-rule-strong px-6 py-4 text-sm text-bone-100 transition-colors hover:border-signal"
