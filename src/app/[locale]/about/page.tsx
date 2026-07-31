@@ -68,6 +68,34 @@ export async function generateMetadata({ params }: PageProps) {
   }
 };
 
-export default function AboutPage() {
-  return <AboutTemplate />
+export default async function AboutPage({ params }: PageProps) {
+  const { locale } = await params;
+  if (!hasLocale(routing.locales, locale)) return <AboutTemplate />;
+
+  const t = await getTranslations({ locale, namespace: "AboutPage" });
+  const canonical = getPathname({ locale, href: "/about" });
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: t("metaTitle"),
+    description: t("metaDescription"),
+    url: canonical,
+    inLanguage: locale === "es" ? "es-CO" : "en-US",
+    publisher: {
+      "@type": "Organization",
+      name: siteName,
+      url: siteUrl,
+    },
+  };
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <AboutTemplate />
+    </>
+  );
 }

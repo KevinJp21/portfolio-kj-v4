@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { siteName, siteUrl } from "@/const";
+import { siteName, siteUrl, siteTwitter } from "@/const";
 import { getPathname } from "@/i18n/navigation";
 import { routing } from "@/i18n/routing";
 import type { TTBlogPostMeta } from "@/types";
@@ -53,12 +53,15 @@ export function buildBlogIndexMetadata(
       images: [
         {
           url: blogOgImage,
+          width: 1200,
+          height: 630,
           alt: title,
         },
       ],
     },
     twitter: {
       card: "summary_large_image",
+      site: siteTwitter,
       title,
       description,
       images: [blogOgImage],
@@ -93,12 +96,15 @@ export function buildPostMetadata(post: TTBlogPostMeta): Metadata {
       images: [
         {
           url: post.cover,
+          width: 1200,
+          height: 630,
           alt: post.title,
         },
       ],
     },
     twitter: {
       card: "summary_large_image",
+      site: siteTwitter,
       title: post.title,
       description: post.description,
       images: [post.cover],

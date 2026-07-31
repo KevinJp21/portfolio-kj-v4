@@ -6,6 +6,7 @@ import { buildBlogIndexMetadata } from "@/lib/blog/seo";
 import { getAllPosts } from "@/lib/blog/posts";
 import { BlogTemplate } from "@/features";
 import { TPageProps } from "@/types";
+import { siteName, siteUrl } from "@/const";
 
 export async function generateMetadata({ params }: TPageProps) {
   const { locale } = await params;
@@ -24,35 +25,55 @@ export default async function BlogPage({ params }: TPageProps) {
   const t = await getTranslations("BlogPage.index");
   const posts = getAllPosts(locale);
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    name: t("metaTitle"),
+    description: t("metaDescription"),
+    url: `${siteUrl}/${locale}/blog`,
+    inLanguage: locale === "es" ? "es-CO" : "en-US",
+    publisher: {
+      "@type": "Organization",
+      name: siteName,
+      url: siteUrl,
+    },
+  };
+
   return (
-    <BlogTemplate
-      posts={posts}
-      labels={{
-        code: t("code"),
-        titleLead: t("titleLead"),
-        titleAccent: t("titleAccent"),
-        description: t("description"),
-        filterLabel: t("filterLabel"),
-        filters: {
-          All: t("filters.All"),
-          ecommerce: t("filters.ecommerce"),
-          restaurant: t("filters.restaurant"),
-          ai: t("filters.ai"),
-        },
-        views: {
-          grid: t("views.grid"),
-          list: t("views.list"),
-          matrix: t("views.matrix"),
-        },
-        matrix: {
-          index: t("matrix.index"),
-          project: t("matrix.project"),
-          client: t("matrix.client"),
-          stack: t("matrix.stack"),
-          year: t("matrix.year"),
-          open: t("matrix.open"),
-        },
-      }}
-    />
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <BlogTemplate
+        posts={posts}
+        labels={{
+          code: t("code"),
+          titleLead: t("titleLead"),
+          titleAccent: t("titleAccent"),
+          description: t("description"),
+          filterLabel: t("filterLabel"),
+          filters: {
+            All: t("filters.All"),
+            ecommerce: t("filters.ecommerce"),
+            restaurant: t("filters.restaurant"),
+            ai: t("filters.ai"),
+          },
+          views: {
+            grid: t("views.grid"),
+            list: t("views.list"),
+            matrix: t("views.matrix"),
+          },
+          matrix: {
+            index: t("matrix.index"),
+            project: t("matrix.project"),
+            client: t("matrix.client"),
+            stack: t("matrix.stack"),
+            year: t("matrix.year"),
+            open: t("matrix.open"),
+          },
+        }}
+      />
+    </>
   );
 }
