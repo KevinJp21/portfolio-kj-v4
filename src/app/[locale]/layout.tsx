@@ -8,7 +8,7 @@ import { notFound } from 'next/navigation';
 import { Geist, Geist_Mono, Fraunces } from "next/font/google";
 import { SmoothScroll, ScrollProgress, PageTransition, Navbar, Footer } from "@/components";
 import { ThemeProvider } from "@/hooks";
-import { siteName, siteUrl } from "@/const";
+import { siteName, siteUrl, siteTwitter } from "@/const";
 import { resolveTheme, THEME_STORAGE_KEY } from "@/lib/theme";
 import "../globals.css";
 
@@ -107,6 +107,7 @@ export async function generateMetadata({
     },
     twitter: {
       card: "summary_large_image",
+      site: siteTwitter,
       title: {
         default: t("title"),
         template: `%s | ${siteName}`,
