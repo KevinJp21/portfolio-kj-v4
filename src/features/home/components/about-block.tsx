@@ -2,20 +2,18 @@
 
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Link } from "@/i18n/navigation";
 import { useTranslations } from "next-intl";
 import { SectionHeader } from "@/components";
 
-type AboutStat = {
-  value: string;
-  suffix?: string;
+type AboutSnapshot = {
   label: string;
+  value: string;
 };
 
 export function AboutBlock() {
   const t = useTranslations("HomePage.about");
-  const stats = t.raw("stats") as AboutStat[];
+  const snapshot = t.raw("snapshot") as AboutSnapshot[];
   const ref = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -38,32 +36,21 @@ export function AboutBlock() {
         );
       });
 
-      gsap.utils.toArray<HTMLElement>(".about-stat").forEach((stat) => {
-        const target = stat.querySelector<HTMLSpanElement>("[data-count]");
-        if (!target) return;
-        const raw = stat.dataset.value ?? "0";
-        const value = parseInt(raw, 10);
-        const padLength = raw.length;
-        ScrollTrigger.create({
-          trigger: stat,
-          start: "top 85%",
-          once: true,
-          onEnter: () => {
-            const obj = { v: 0 };
-            gsap.to(obj, {
-              v: value,
-              duration: 1.6,
-              ease: "power2.out",
-              onUpdate: () => {
-                target.textContent = String(Math.round(obj.v)).padStart(
-                  padLength,
-                  "0"
-                );
-              },
-            });
+      gsap.fromTo(
+        ".about-snapshot > *",
+        { y: 20, autoAlpha: 0 },
+        {
+          y: 0,
+          autoAlpha: 1,
+          duration: 0.75,
+          ease: "power3.out",
+          stagger: 0.07,
+          scrollTrigger: {
+            trigger: ".about-snapshot",
+            start: "top 85%",
           },
-        });
-      });
+        }
+      );
     }, ref);
 
     return () => ctx.revert();
@@ -100,25 +87,15 @@ export function AboutBlock() {
             </p>
           </div>
 
-          <div className="md:col-span-5">
-            <ul className="grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-rule bg-rule">
-              {stats.map((s) => (
+          <div className="about-snapshot md:col-span-5">
+            <ul>
+              {snapshot.map((item) => (
                 <li
-                  key={s.label}
-                  data-value={s.value.replace(/\D/g, "")}
-                  className="about-stat group relative bg-ink-900 p-6 transition-colors hover:bg-ink-850"
+                  key={item.label}
+                  className="flex items-baseline justify-between gap-4 border-b border-rule-soft py-3 text-sm first:border-t"
                 >
-                  <span className="chip-mono text-bone-500">{s.label}</span>
-                  <p className="mt-4 font-display text-[clamp(2rem,5vw,3.5rem)] leading-none text-bone-100">
-                    <span data-count>0</span>
-                    {s.suffix ? (
-                      <span className="text-signal">{s.suffix}</span>
-                    ) : null}
-                  </p>
-                  <span
-                    aria-hidden
-                    className="absolute right-3 top-3 h-1.5 w-1.5 rounded-full bg-rule-strong transition-colors group-hover:bg-signal"
-                  />
+                  <span className="chip-mono text-bone-500">{item.label}</span>
+                  <span className="text-right text-bone-100">{item.value}</span>
                 </li>
               ))}
             </ul>

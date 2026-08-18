@@ -1,15 +1,15 @@
 ---
 title: "Chikos Gourmet"
-subtitle: "Sitio oficial y panel administrativo para una marca gastronómica de Barranquilla."
-description: "Caso de estudio: sitio Remix SSR con menú interactivo, panel admin y Cloudflare Images para Chikos Gourmet."
-summary: "Diseñé e implementé el sitio oficial de Chikos Gourmet desde cero, con un panel administrativo que permite gestionar menú, ubicaciones y contenido sin asistencia técnica."
-date: "2024-10-20"
+subtitle: "Solución web full-stack: sitio, panel administrativo, base de datos e infraestructura de despliegue."
+description: "Caso de estudio: sitio y panel administrativo para Chikos Gourmet, con MySQL, Cloudflare Images y despliegue en VPS con Linux y Nginx."
+summary: "Desarrollé una solución web full-stack para Chikos Gourmet: sitio público, panel administrativo, persistencia con MySQL y despliegue en un VPS con Linux y Nginx. El cliente gestiona menú, imágenes y contenido de forma autónoma."
+date: "2024-10-04"
 slug: chikos-gourmet
 locale: es
 index: "03"
 year: "2024"
-role: "Full-stack Developer · Lead frontend"
-client: "Chikos Gourmet — Barranquilla, CO"
+role: "Desarrollador Web Full-Stack"
+client: "Chikos Gourmet"
 categoryKey: restaurant
 category: "Restaurante"
 stack:
@@ -31,19 +31,19 @@ highlights:
     value: Remix
   - label: Imágenes
     value: Cloudflare
-  - label: Admin
-    value: Full
+  - label: Deploy
+    value: Nginx
 ---
 
-Chikos Gourmet quería dejar de operar con menús en PDF y un sitio estático. Necesitaban una experiencia que reflejara el cuidado de cada plato y, al mismo tiempo, una herramienta interna para mover precios y fotografías en minutos.
+Chikos Gourmet necesitaba dejar atrás menús en PDF y un sitio estático. Desarrollé una solución web completa para el restaurante: sitio público, panel administrativo, base de datos e infraestructura de despliegue, para que el equipo pudiera actualizar platos, precios e imágenes sin asistencia técnica.
 
-## Sistema editable end-to-end
+## Sitio + panel administrativo
 
-Construí un panel administrativo donde el equipo puede actualizar platos, fotos, ubicaciones y campañas. Las imágenes se almacenan y sirven desde Cloudflare Images con variantes optimizadas por dispositivo.
+Implementé un panel administrativo para gestionar platos del menú, imágenes publicitarias y contenido del sitio. Las imágenes se almacenan y sirven desde Cloudflare Images, con variantes optimizadas por dispositivo.
 
 <MetaGrid>
   <MetaItem label="Stack" value="Remix · MySQL · Cloudflare" />
-  <MetaItem label="Tipo" value="Sitio + admin" />
+  <MetaItem label="Infra" value="Linux · Nginx" />
 </MetaGrid>
 
 <Gallery>
@@ -67,9 +67,10 @@ Construí un panel administrativo donde el equipo puede actualizar platos, fotos
   />
 </Gallery>
 
-## Decisiones clave
+## Decisiones de arquitectura
 
-- Arquitectura Remix para SSR sin penalizar SEO.
-- Optimización de imágenes con variantes AVIF/WebP.
-- Panel administrativo con gestión por sucursal.
-- Sistema de menús versionado para campañas estacionales.
+- Capa de persistencia con MySQL para menú, contenido y recursos del sitio.
+- Cloudflare Images para optimización y entrega de fotografías.
+- Arquitectura Remix con SSR, sin penalizar el SEO del sitio público.
+- Despliegue en un VPS con Linux y Nginx, configurando el entorno de producción para operación y mantenimiento.
+- Gestión autónoma del contenido: platos, campañas e imágenes sin cambios de código.

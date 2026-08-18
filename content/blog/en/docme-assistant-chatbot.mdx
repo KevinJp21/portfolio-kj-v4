@@ -1,8 +1,8 @@
 ---
 title: "DocMe Assistant"
-subtitle: "Intelligent chatbot to improve access to medical services in Colombia."
-description: "Case study: chatbot with TensorFlow/Keras, Flask, and MySQL to classify intents and manage medical appointments in Colombia."
-summary: "I designed and built the full chatbot architecture, from TensorFlow/Keras model training to Flask integration with MySQL for users and appointments."
+subtitle: "Chatbot to classify intents and manage medical appointments in Colombia."
+description: "Case study: chatbot with TensorFlow/Keras, Flask, and MySQL to classify intents and manage medical appointments."
+summary: "I designed the architecture of a medical-appointment chatbot: TensorFlow/Keras model training, a Flask backend with SQLAlchemy and MySQL, and natural language processing with NLTK."
 date: "2024-05-12"
 slug: docme-assistant-chatbot
 locale: en
@@ -36,21 +36,21 @@ highlights:
     value: Healthcare
 ---
 
-Colombia's healthcare system faces overloaded hotlines and delays accessing medical services. DocMe addresses these limitations with a conversational assistant that classifies intents, schedules appointments, and provides basic emotional support.
+DocMe is a conversational assistant designed to ease overloaded medical hotlines: it classifies user intents, schedules appointments, and provides basic emotional support.
 
-## NLP + neural networks
+## NLP and neural networks
 
-I trained neural networks with TensorFlow and Keras to classify user intents. Combined with NLTK and PySpellChecker for natural language processing and spell correction, the bot understands greetings, symptoms, emotional support requests, and appointment requests.
+I trained neural networks with TensorFlow and Keras to classify intents. Combined with NLTK and PySpellChecker, the bot interprets greetings, symptoms, emotional-support requests, and appointment requests, including spell correction.
 
 <MetaGrid>
   <MetaItem label="Models" value="TensorFlow · Keras" />
   <MetaItem label="NLP" value="NLTK · PySpellChecker" />
 </MetaGrid>
 
-## What I contributed
+## What I implemented
 
-- End-to-end chatbot architecture.
+- End-to-end chatbot architecture, from the model to the API.
 - Intent classification model training.
-- Flask backend with SQLAlchemy + MySQL.
+- Flask backend with SQLAlchemy and MySQL for users and appointments.
 - Production server with Waitress (WSGI).
-- NLP processing, spell correction, and responses.
+- NLP processing, spell correction, and response generation.
