@@ -44,7 +44,7 @@
         },
         "backend": {
           "label": "Backend",
-          "value": "Node · Laravel · MySQL · GraphQL"
+          "value": ".NET · C# · PostgreSQL · Docker"
         },
         "status": {
           "label": "Status",
@@ -63,6 +63,7 @@
         "items": [
           "Frontend Engineer",
           "React · Next.js · TypeScript · Redux",
+          ".NET · C# · PostgreSQL · Docker",
           "Systems Engineer",
           "Barranquilla, Colombia",
           "Available for new projects"
@@ -255,7 +256,8 @@
         "All": "All",
         "ecommerce": "E-commerce",
         "restaurant": "Restaurant",
-        "ai": "AI"
+        "ai": "AI",
+        "saas": "SaaS"
       },
       "views": {
         "grid": "Grid",
@@ -364,8 +366,8 @@
   },
   "AboutPage": {
     "metaTitle": "About",
-    "metaDescription": "Kevin Julio Pineda, Systems Engineer and Frontend Engineer with 2+ years of experience in React, Next.js, and TypeScript. Specialized in enterprise platforms, fintech, and e-commerce.",
-    "ogImageAlt": "About | Kevin Julio Pineda — Frontend Engineer",
+    "metaDescription": "Kevin Julio Pineda, Systems Engineer and Frontend Engineer with 2+ years of experience. React, Next.js, TypeScript, .NET, C#, and PostgreSQL. Enterprise platforms, fintech, e-commerce, and SaaS.",
+    "ogImageAlt": "About | Kevin Julio Pineda · Frontend Engineer",
     "returnLink": "Home",
     "code": "A/00",
     "eyebrow": "About",
@@ -373,38 +375,38 @@
     "header": {
       "kicker": "A short story",
       "title": "Kevin Julio",
-      "subtitle": "Frontend Engineer specialized in web products."
+      "subtitle": "Frontend Engineer with full-stack capability for web products."
     },
     "chapters": {
       "formacion": {
         "code": "CH/01",
         "title": "Education",
         "year": "Universidad Simón Bolívar · 2026",
-        "body": "Systems Engineering at Universidad Simón Bolívar. During my studies I worked on programming fundamentals, data structures, networks, and relational databases — the foundation to understand how a complete application is connected, from the user interface to server-side logic."
+        "body": "Systems Engineering at Universidad Simón Bolívar. During my studies I worked on programming fundamentals, data structures, networks, and relational databases. That foundation helps me understand how a complete application fits together, from the interface to persistence and deployment."
       },
       "frontend": {
         "code": "CH/02",
         "title": "Frontend",
-        "year": "React · Next.js · TypeScript",
-        "body": "My main focus is frontend development. I build web applications with React, Next.js, and TypeScript, using Redux for state management and REST APIs for integration. I specialize in enterprise platforms, financial applications, and e-commerce, with Feature-Sliced Design (FSD) architectures built to scale and stay maintainable."
+        "year": "React · Next.js · TypeScript · Redux",
+        "body": "My main focus remains frontend development. I build applications with React, Next.js, and TypeScript, Redux for state management, and REST API integration. I apply Feature-Sliced Design (FSD) on projects that need to scale: domain modules, server actions, Zod-typed forms, and permission guards aligned with what the backend returns. I specialize in enterprise platforms, fintech, and e-commerce."
       },
       "fullstack": {
         "code": "CH/03",
         "title": "Full-stack",
-        "year": "APIs · MySQL · Deploy · Docker",
-        "body": "I also cover the full cycle when a project needs it: API integration, MySQL persistence, admin panels, and deployment. I have shipped applications to production on Linux VPS with Nginx, and worked with Docker in agile environments alongside Backend, QA, and DevOps."
+        "year": ".NET · C# · PostgreSQL · Docker",
+        "body": "When the product requires it, I cover the full cycle. On Molaryx I built a multi-tenant SaaS for clinical practices end to end: ASP.NET Core API with Clean Architecture and a custom CQRS mediator, PostgreSQL with EF Core, and a Next.js panel with Redux and SignalR. The backend runs on AWS EC2 with Docker Compose; both repos deploy via tags with CI/CD (image on GHCR and deploy via SSM on EC2, prebuilt build on Vercel for the frontend). I have also integrated APIs, admin panels, and VPS deployments with Linux and Nginx."
       },
       "experiencia": {
         "code": "CH/04",
         "title": "Experience",
-        "year": "2024 — 2026",
-        "body": "I have built real applications in professional settings: a financial platform and a travel rewards redemption system at Silver Holdings S.A.S., Ferretería Rueda's first Shopify e-commerce channel, a headless store with Remix and GraphQL, and a full-stack solution with an admin panel, MySQL, and VPS deployment for Chikos Gourmet."
+        "year": "2024 — Present",
+        "body": "At Silver Holdings S.A.S. I worked on a financial platform and a travel rewards redemption system. At Ferretería Rueda I launched the first Shopify e-commerce store; at Verezza, a headless store with Remix and GraphQL; at Chikos Gourmet, a full-stack solution with an admin panel and MySQL. Today I am building Molaryx, a SaaS that centralizes patients, appointments, clinical records, payments, and team management for clinical practices."
       },
       "actualidad": {
         "code": "CH/05",
         "title": "Current focus",
         "year": "2026 — Present",
-        "body": "I am available for remote, hybrid, or on-site roles, and open to relocating to any city in Colombia. I keep deepening frontend architecture, performance, and scalable digital products with real impact on users and business."
+        "body": "I keep deepening frontend and backend architecture. I build interfaces with React and Next.js, integrate REST APIs, work with relational databases, and ship applications to production. I am available for remote, hybrid, or on-site roles, and open to relocating to any city in Colombia."
       }
     }
   },

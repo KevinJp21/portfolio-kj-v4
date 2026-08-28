@@ -1,0 +1,378 @@
+---
+title: "Molaryx"
+subtitle: "Multi-tenant SaaS for end-to-end clinical practice management."
+description: "Full-stack case study: Molaryx, a platform for patients, appointments, clinical records, payments, and team management. Backend with Clean Architecture and CQRS; frontend with Feature-Sliced Design, Next.js, and Redux."
+summary: "I built Molaryx end to end: a multi-tenant API with Clean Architecture, CQRS, and PostgreSQL, and a frontend with Feature-Sliced Design, Next.js, Redux, and SignalR. Patients, scheduling, appointments, clinical records, payments, roles, and a platform admin panel."
+date: "2026-08-28"
+slug: molaryx
+locale: en
+index: "05"
+year: "2026"
+role: "Full-Stack Developer"
+client: "Molaryx · SaaS for clinics"
+categoryKey: saas
+category: "SaaS"
+stack:
+  - Next.js
+  - React
+  - TypeScript
+  - Redux
+  - ASP.NET Core
+  - PostgreSQL
+  - SignalR
+cover: "https://c98agni2tvccp34z.public.blob.vercel-storage.com/molaryx_dashboard.webp"
+accent: "#6366f1"
+url: "https://molaryx-frontend.vercel.app"
+tags:
+  - SaaS
+  - Multi-tenant
+  - Clean Architecture
+  - CQRS
+  - Feature-Sliced Design
+highlights:
+  - label: Backend
+    value: Clean + CQRS
+  - label: Frontend
+    value: FSD
+  - label: Model
+    value: Multi-tenant
+---
+
+Molaryx is a SaaS for practices of any specialty: it centralizes patients, scheduling, appointments, clinical records, payments, procedures, treatments, and team management in one platform. I built the API in ASP.NET Core and the panel in Next.js, with architectures designed to scale per clinic (tenant), not for a single client.
+
+## The product
+
+The platform covers a practice's operational flow from patient registration through payment collection:
+
+- **Patients** with profile, identification, and history linked to appointments and treatments.
+- **Scheduling and appointments** with a calendar (day, week, month, and per-professional views), lifecycle states, and overlap detection.
+- **Clinical records** with entries for reason, diagnosis, progress notes, and PDF export.
+- **Procedures and treatments** as practice catalogs, with pricing, duration, and per-patient treatment plans.
+- **Payments and partial payments** linked to care, outstanding balances, and exportable reports.
+- **Team** with roles (owner, professional, assistant), granular permissions, and member management.
+- **Platform panel** for tenant, plan, and subscription administration.
+- **Real-time notifications** via SignalR.
+
+<MetaGrid>
+  <MetaItem label="Backend" value="ASP.NET Core · PostgreSQL · EF Core" />
+  <MetaItem label="Frontend" value="Next.js · React · TS · Redux" />
+  <MetaItem label="Architecture" value="Clean Architecture · FSD" />
+  <MetaItem label="Pattern" value="CQRS · Multi-tenant" />
+</MetaGrid>
+
+## Backend: Clean Architecture and custom CQRS
+
+The API (`molaryx-admin`, .NET 10) follows **Clean Architecture** in a single project, with explicit layers and unidirectional dependencies:
+
+```
+Presentation → Application → Domain ← Infrastructure
+```
+
+<MetaGrid>
+  <MetaItem label="Application" value="CQRS features, FluentValidation validators, custom mediator" />
+  <MetaItem label="Domain" value="Entities, enums, specifications, contracts, status rules, permissions" />
+  <MetaItem label="Infrastructure" value="Services, repos, EF Core + Npgsql, email, PDF, SignalR" />
+  <MetaItem label="Presentation" value="Controllers, JWT, exception handler" />
+</MetaGrid>
+
+Backend folder structure:
+
+```
+molaryx-admin/
+├── Application/
+│   ├── Features/                     # CQRS per business module
+│   │   ├── Appointment/
+│   │   │   ├── Command/CreateAppointment/
+│   │   │   │   ├── CreateAppointmentCommand.cs
+│   │   │   │   ├── CreateAppointmentCommandHandler.cs
+│   │   │   │   └── CreateAppointmentCommandValidator.cs
+│   │   │   └── Query/GetAppointments/
+│   │   ├── Auth/
+│   │   ├── ClinicalRecord/
+│   │   ├── Dashboard/
+│   │   ├── Payment/
+│   │   ├── Patients/
+│   │   ├── PatientTreatment/
+│   │   ├── Procedure/
+│   │   ├── Treatment/
+│   │   ├── Users/
+│   │   └── Platform/Tenant/
+│   ├── Common/
+│   │   └── Mediator/                 # IRequest, IMediator, IPipelineBehavior
+│   └── Behaviors/
+│       └── ValidationBehavior.cs
+├── Domain/
+│   ├── Entities/
+│   ├── Specifications/
+│   ├── Contracts/
+│   │   ├── IServices/                # IAppointmentService, ITenantService…
+│   │   └── IRepositories/
+│   ├── Common/
+│   │   └── Appointments/             # AppointmentStatusRules
+│   ├── Constants/                    # PermissionCodes
+│   └── Exceptions/
+├── Infrastructure/
+│   ├── Services/                     # Tenant-scoped business logic
+│   ├── Persistence/
+│   │   ├── Configuration/            # EF Core IEntityTypeConfiguration
+│   │   ├── Repositories/
+│   │   └── Seeds/                    # Permissions, roles, modules
+│   ├── Pdf/                          # Clinical records
+│   └── Email/                        # Transactional templates
+├── Migrations/                       # EF Core
+├── Presentation/
+│   ├── Controllers/                  # Auth, Patient, Appointment, Payment…
+│   │   └── Platform/                 # PlatformTenantsController
+│   ├── Hubs/                         # SignalR (notifications)
+│   └── Handlers/                     # Global ExceptionHandler
+└── Shared/
+    └── Common/ApiResponse.cs
+```
+
+Every feature in Application follows the same convention: **Command** or **Query** + **Handler** + **Validator** (FluentValidation). Commands delegate to `IXxxService`; queries use `IUnitOfWork` + specifications.
+
+**I did not use MediatR.** I implemented a custom mediator (`IRequest`, `IRequestHandler`, `IMediator`) with a behavior pipeline. The main one is `ValidationBehavior`: it runs FluentValidation before the handler and throws `CustomValidationException` with structured errors.
+
+The decision was to keep the CQRS pattern without coupling Application to an external library. MediatR solves the same problem, but adds conventions, registration, and abstractions that did not pay off in this project: the custom mediator is a few lines long, registers handlers via reflection in the same `ServiceRegistration`, and keeps the pipeline fully under control. If I need a logging or tenant behavior tomorrow, I add it as `IPipelineBehavior` without depending on a package API or its release cycle. Also, `ValidationBehavior` is already aligned with our exceptions and the error format the frontend consumes (`ApiResponse<T>`), not MediatR's generic model.
+
+The request flow looks like this:
+
+```
+Controller → IMediator.Send
+  → ValidationBehavior (FluentValidation)
+  → Handler
+      Command: delegates to IXxxService (Infrastructure)
+      Query:   ITenantAccessService + IUnitOfWork + Specification
+  → ApiResponse<T>
+```
+
+### Multi-tenant and permissions
+
+Each practice is a **tenant** with an active subscription. Business commands go through `ITenantAccessService.RequireActiveAsync`, which validates tenant and subscription before persisting. Entities carry `IdTenant` and specifications filter by practice.
+
+The **module-based permission** system (patients, appointments, payments, clinical records, team, etc.) is seeded in the database and assigned by role. Each permission is tied to a specific code (`PermissionCodes.*`) and an authorization policy. On every endpoint, the backend validates whether the authenticated user can perform that action before processing the request: if they lack the permission, the API responds with 403 and the handler never runs. Controllers use `[Authorize(Policy = PermissionCodes.*)]` with no business logic in the HTTP layer; authorization is the backend's responsibility, not the client's.
+
+### Lifecycle rules
+
+Aggregates with states (appointments, patient treatments) have **StatusRules** in Domain: transition graphs, `EnsureCanEdit`, and `EnsureCanTransition`. The validator only checks that the enum is valid; business rules live in Domain, not in the controller or handler.
+
+### Persistence and queries
+
+- **PostgreSQL** with EF Core, snake_case columns, soft-delete with `DeletedAt`, and filtered uniques.
+- **Specifications** in Domain for reusable queries; thin repositories on top of `BaseRepository`.
+- **Unit of Work** centralized with repos per aggregate.
+
+### Cross-cutting capabilities
+
+- **JWT** authentication with refresh, tenant registration, password recovery, and transactional emails (Resend).
+- **SignalR** for push notifications to the frontend (`mark_as_viewed`, `mark_all_as_viewed`).
+- **PDF** generation for clinical records (PDFsharp/MigraDoc) and **Excel** payment reports (ClosedXML).
+- OpenAPI documentation with Scalar.
+
+## Frontend: Feature-Sliced Design
+
+The frontend (`molaryx-frontend`, Next.js 16 + React 19) organizes code by **features** with clear internal layers.
+
+General structure:
+
+```
+src/
+├── app/                              # Next.js App Router
+│   ├── (landing)/                    # / — marketing and public plans
+│   ├── (authentication)/             # sign-in, sign-up, forgot/reset password
+│   ├── dashboard/                    # practice panel (protected)
+│   │   ├── layout.tsx                # DashboardTemplate (header + sidebar)
+│   │   ├── page.tsx                  # home with charts
+│   │   ├── patients/page.tsx
+│   │   ├── appointments/page.tsx
+│   │   ├── clinical-records/page.tsx
+│   │   ├── payments/page.tsx
+│   │   ├── procedures/page.tsx
+│   │   ├── treatments/page.tsx
+│   │   ├── patient-treatments/page.tsx
+│   │   ├── team/page.tsx
+│   │   ├── account/                  # profile, billing, settings
+│   │   └── [...slug]/page.tsx
+│   ├── platform/                     # superadmin
+│   │   ├── layout.tsx
+│   │   ├── page.tsx
+│   │   └── tenants/page.tsx
+│   ├── [...slug]/page.tsx            # global 404
+│   └── layout.tsx                    # Providers + AuthGuard
+├── features/                         # business modules (FSD)
+│   ├── landing/
+│   ├── authentication/
+│   │   └── sign-in/, sign-up/, forgot-password/, reset-password/
+│   ├── dashboard/
+│   │   ├── template/                 # shell: header + sidebar + RouteGuard
+│   │   ├── components/               # dashboard-header, dashboard-sidebar
+│   │   ├── guards/
+│   │   ├── utils/                    # permission checks, route access
+│   │   └── modules/                  # one module per domain
+│   │       ├── patients/
+│   │       ├── appointments/
+│   │       ├── clinical-records/
+│   │       ├── payments/
+│   │       ├── procedures/
+│   │       ├── treatments/
+│   │       ├── patient-treatments/
+│   │       ├── team/
+│   │       └── account/
+│   ├── platform/
+│   │   └── modules/tenants/
+│   ├── notifications/                # SignalR + UI
+│   └── public-plans/
+├── store/                            # Redux Toolkit (slice per domain)
+│   ├── patients/
+│   ├── appointments/
+│   ├── payments/
+│   ├── clinical-records/
+│   └── notifications/
+├── components/
+│   ├── ui/                           # Radix + shadcn
+│   └── global/
+├── guard/                            # AuthGuard
+├── lib/api/                          # ApiClient + error handler
+└── consts/                           # permissions, roles, sidebar
+```
+
+Each dashboard module pattern:
+
+```
+features/dashboard/modules/<feature>/
+├── actions/           # Server Actions ('use server') to the API
+│   └── index.ts
+├── template/
+│   └── index.tsx      # Page orchestrator (list, modals, local state)
+├── components/        # Module-scoped UI
+├── schemas/           # Zod + react-hook-form
+├── interfaces/        # request/response types
+├── hooks/             # reusable UI logic
+├── consts/            # domain states, labels
+└── index.ts           # barrel export
+```
+
+Not every module includes every folder; only what the feature needs is added. Pages in `app/` stay thin: they import the corresponding module `template`.
+
+### State, permissions, and routes
+
+- **Redux Toolkit** with one slice per domain (patients, appointments, payments, team, notifications…).
+- **Permissions from the backend:** on login, the API returns the user's permissions based on their role. The frontend does not define what each role can do; it consumes that list and adapts the UI accordingly.
+- **Guards and UI checks:** `hasRouteAccess`, `checkCanCreate`, and `checkCanUpdate` filter the sidebar, routes, and buttons based on received permissions. If a user lacks access to a module, they do not see it in the menu; if they cannot create or edit, the button does not appear. This is presentation only: real validation happens in the backend on every request. If someone tries to call an endpoint without permission, the API rejects it even if the UI never showed the action.
+- Two application shells: `/dashboard` (practice) and `/platform` (superadmin), each with its own guard and sidebar.
+
+### Modules with the most UI complexity
+
+- **Appointment calendar:** day/week/month/resource views, drag & drop with `@dnd-kit`, context menu, create/edit modals, and API sync by date range.
+- **Dashboard home:** summary charts with Recharts (appointments by procedure, revenue by period).
+- **Clinical records:** multi-field forms, detail modal, and PDF export from the backend.
+- **Landing:** GSAP animations, hero video, and a features section with product mockups.
+
+### Real time
+
+I integrated **SignalR** (`@microsoft/signalr`) with a reusable hook and context provider. Notifications reach the dashboard and platform headers; users can mark them as viewed individually or in bulk.
+
+## CI/CD: tag-based deployments
+
+Both the backend and frontend deploy to production **only via Git tags** (`v*`), not on every push to `main`. The flow is intentional: merge to `main` when the code is ready; semantic tag when I want to release a version.
+
+In both repositories, the pipeline validates that the tag points to a commit on `main` before continuing. If the tag comes from another branch, the workflow aborts.
+
+### Backend → AWS EC2
+
+The backend pipeline (`MolaryxAdmin`) has two chained jobs:
+
+```
+push tag v* → build Docker image → push to GHCR → deploy via SSM on EC2
+```
+
+**Build:** when a tag is created, GitHub Actions builds the image with the project `Dockerfile` and publishes it to **GHCR** (`ghcr.io`), tagged with the version.
+
+**Deploy:** a second job assumes an AWS IAM role and runs the deployment on the **EC2** instance via **AWS Systems Manager (SSM)**, with no manual SSH or keys on the server. The remote script in `/opt/molaryx` does the following:
+
+1. Reads the current version (`IMAGE_TAG` in `.env`) and creates a **PostgreSQL backup** (`pg_dump`) before touching anything, also saving the previous tag in a `.tag` file alongside the dump.
+2. Authenticates Docker against GHCR with a token in **AWS Secrets Manager**.
+3. Runs `docker compose pull` for the new tag image, updates `IMAGE_TAG` in `.env`, and stops the API.
+4. Applies **EF Core migrations** with `dotnet molaryx-admin.dll --migrate` in an ephemeral container.
+5. Starts the API and runs **health checks** against `localhost:3000`.
+
+If the migration fails or the health check does not respond, the script runs an **automatic rollback**: restores the database from the backup, reverts to the previous tag, and restarts the API. The deploy is atomic: either the new version is healthy, or it reverts to the previous state.
+
+<MetaGrid>
+  <MetaItem label="Trigger" value="Tag v* on main" />
+  <MetaItem label="Image" value="Docker → GHCR" />
+  <MetaItem label="Server" value="EC2 · Docker Compose" />
+  <MetaItem label="Deploy" value="AWS SSM · IAM role" />
+</MetaGrid>
+
+### Frontend → Vercel
+
+The frontend (`molaryx-frontend`) has a more direct workflow: a single job triggered by the same tag pattern.
+
+```
+push tag v* → verify main → vercel pull → vercel build → vercel deploy --prebuilt --prod
+```
+
+After validating that the tag is on `main` and that Vercel secrets are configured, the pipeline installs the Vercel CLI, downloads the production environment config (`vercel pull`), builds artifacts with `vercel build --prod`, and deploys with `vercel deploy --prebuilt --prod`. The build runs in GitHub Actions; Vercel receives the precompiled bundle and does not rebuild on its infrastructure.
+
+Each release is tied to a specific tag: backend and frontend can be versioned independently, but the criterion is the same. A **tag on `main`** triggers the production deploy.
+
+<MetaGrid>
+  <MetaItem label="Trigger" value="Tag v* on main" />
+  <MetaItem label="Build" value="GitHub Actions + Vercel CLI" />
+  <MetaItem label="Target" value="Vercel Production" />
+  <MetaItem label="Artifact" value="Prebuilt (--prebuilt)" />
+</MetaGrid>
+
+<Gallery>
+  <GalleryImage
+    src="https://c98agni2tvccp34z.public.blob.vercel-storage.com/molaryx_dashboard.webp"
+    alt="Molaryx: dashboard home"
+    width="1920"
+    height="1080"
+  />
+  <GalleryImage
+    src="https://c98agni2tvccp34z.public.blob.vercel-storage.com/molaryx_appointments.webp"
+    alt="Molaryx: appointment calendar"
+    width="1920"
+    height="1080"
+  />
+  <GalleryImage
+    src="https://c98agni2tvccp34z.public.blob.vercel-storage.com/molaryx_clinical-history.webp"
+    alt="Molaryx: clinical records"
+    width="1920"
+    height="1080"
+  />
+  <GalleryImage
+    src="https://c98agni2tvccp34z.public.blob.vercel-storage.com/molaryx-payments-reports.webp"
+    alt="Molaryx: payment reports"
+    width="1920"
+    height="1080"
+  />
+</Gallery>
+
+## What I built
+
+**Backend**
+- Versioned REST API (`api/v1/[controller]/[action]`) with ~14 controllers and CQRS features per module.
+- Multi-tenant with subscriptions, soft-delete, and practice-level isolation.
+- Role-based permission system seeded in the database (owner, professional, assistant, superadmin).
+- Status rules for appointments and patient treatments.
+- Full auth: login, tenant registration, forgot/reset password, global logout.
+- SignalR notifications, clinical record PDF, and payment Excel exports.
+- FluentValidation with Spanish messages and a centralized exception handler.
+- Tag-based CI/CD: Docker image on GHCR, deploy on EC2 via AWS SSM, EF Core migrations, and automatic rollback with PostgreSQL backup.
+
+**Frontend**
+- Public landing with plans, features, and registration.
+- Practice dashboard with 10+ operational modules.
+- Platform panel for tenant management.
+- Interactive calendar with DnD and multiple views.
+- Redux + server actions + Zod-typed forms.
+- Route guards and permissions aligned with the backend.
+- Real-time notifications.
+- Tag-based CI/CD: prebuilt build in GitHub Actions and deploy to Vercel Production via the CLI.
+
+<Callout>
+  Molaryx is not a generic CRUD. Every architectural decision responds to how a real practice operates: tenant scoping in the backend, permissions on both layers, status rules in Domain, and domain slices in the frontend, with multiple professionals, distinct roles, and sensitive clinical data.
+</Callout>

@@ -7,6 +7,8 @@ import { getAllPosts } from "@/lib/blog/posts";
 import { BlogTemplate } from "@/features";
 import { TPageProps } from "@/types";
 import { siteName, siteUrl } from "@/const";
+import { BLOG_CATEGORY_FILTERS } from "@/const/blog-categories";
+import type { TBlogCategoryFilterId } from "@/types";
 
 export async function generateMetadata({ params }: TPageProps) {
   const { locale } = await params;
@@ -53,12 +55,9 @@ export default async function BlogPage({ params }: TPageProps) {
           titleAccent: t("titleAccent"),
           description: t("description"),
           filterLabel: t("filterLabel"),
-          filters: {
-            All: t("filters.All"),
-            ecommerce: t("filters.ecommerce"),
-            restaurant: t("filters.restaurant"),
-            ai: t("filters.ai"),
-          },
+          filters: Object.fromEntries(
+            BLOG_CATEGORY_FILTERS.map((id) => [id, t(`filters.${id}`)]),
+          ) as Record<TBlogCategoryFilterId, string>,
           views: {
             grid: t("views.grid"),
             list: t("views.list"),

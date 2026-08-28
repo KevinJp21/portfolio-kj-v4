@@ -76,7 +76,7 @@ export function Hero() {
                     ref={chipRef}
                     className="flex flex-wrap items-center gap-3 text-xs opacity-0 translate-y-6"
                 >
-                    <span className="flex items-center gap-2 rounded-full border border-rule px-3 py-1.5 text-[10px] uppercase tracking-[0.18em] text-bone-400 h-[29px]">
+                    <span className="flex items-center gap-2 rounded-full border border-rule px-3 py-1.5 text-[10px] uppercase tracking-[0.18em] text-bone-400 h-7.25">
                         <span className="pulse-dot inline-block h-1.5 w-1.5 rounded-full bg-signal" />
                         {t("availability", { year: getYear() })}
                     </span>
@@ -86,17 +86,17 @@ export function Hero() {
                     <div className="relative grid items-center gap-8 md:grid-cols-12 md:gap-12">
                         <div className="md:col-span-7">
                             <h1 className="hero-display font-display text-[clamp(2rem,6.4vw,6rem)] leading-[0.92] tracking-tight text-bone-100">
-                                <span className="block overflow-hidden">
+                                <span className="block">
                                     <TextReveal as="span" trigger="mount" delay={0.4} className="block">
                                         {t("headline.line1")}
                                     </TextReveal>
                                 </span>
-                                <span className="block italic overflow-hidden text-signal-deep">
+                                <span className="block italic text-signal-deep">
                                     <TextReveal as="span" trigger="mount" delay={0.65} className="block">
                                         {t("headline.line2")}
                                     </TextReveal>
                                 </span>
-                                <span className="block overflow-hidden">
+                                <span className="block">
                                     <TextReveal
                                         as="span"
                                         trigger="mount"
@@ -137,13 +137,13 @@ export function Hero() {
                     </div>
 
                     <div className="grid items-end gap-6 mt-4 md:grid-cols-12 md:gap-10">
-                        <p className="hero-meta md:col-span-5 max-w-md text-sm leading-relaxed text-bone-300 md:text-[15px] opacity-0 translate-y-[18px]">
+                        <p className="hero-meta md:col-span-5 max-w-md text-sm leading-relaxed text-bone-300 md:text-[15px] opacity-0 translate-y-4.5">
                             <span className="font-display italic text-bone-100">
                                 Kevin Julio Pineda.
                             </span>{" "}{t("bio.body")}
                         </p>
 
-                        <div className="hero-meta md:col-span-4 space-y-2 opacity-0 translate-y-[18px]">
+                        <div className="hero-meta md:col-span-4 space-y-2 opacity-0 translate-y-4.5">
                             <Row label={t("meta.focus.label")} value={t("meta.focus.value")} />
                             <Row label={t("meta.backend.label")} value={t("meta.backend.value")} />
                             <Row label={t("meta.status.label")} value={t("meta.status.value", { year: getYear() })} />

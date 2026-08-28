@@ -44,7 +44,7 @@
         },
         "backend": {
           "label": "Backend",
-          "value": "Node · Laravel · MySQL · GraphQL"
+          "value": ".NET · C# · PostgreSQL · Docker"
         },
         "status": {
           "label": "Status",
@@ -63,6 +63,7 @@
         "items": [
           "Frontend Engineer",
           "React · Next.js · TypeScript · Redux",
+          ".NET · C# · PostgreSQL · Docker",
           "Ingeniero de Sistemas",
           "Barranquilla, Colombia",
           "Disponible para nuevos proyectos"
@@ -255,7 +256,8 @@
         "All": "Todos",
         "ecommerce": "E-commerce",
         "restaurant": "Restaurante",
-        "ai": "IA"
+        "ai": "IA",
+        "saas": "SaaS"
       },
       "views": {
         "grid": "Grid",
@@ -364,8 +366,8 @@
   },
   "AboutPage": {
     "metaTitle": "Sobre mí",
-    "metaDescription": "Kevin Julio Pineda, Ingeniero de Sistemas y Frontend Engineer con más de 2 años de experiencia en React, Next.js y TypeScript. Especializado en plataformas empresariales, fintech y e-commerce.",
-    "ogImageAlt": "Sobre mí | Kevin Julio Pineda — Frontend Engineer",
+    "metaDescription": "Kevin Julio Pineda, Ingeniero de Sistemas y Frontend Engineer con más de 2 años de experiencia. React, Next.js, TypeScript, .NET, C# y PostgreSQL. Plataformas empresariales, fintech, e-commerce y SaaS.",
+    "ogImageAlt": "Sobre mí | Kevin Julio Pineda · Frontend Engineer",
     "returnLink": "Inicio",
     "code": "A/00",
     "eyebrow": "Sobre mí",
@@ -373,38 +375,38 @@
     "header": {
       "kicker": "Una historia corta",
       "title": "Kevin Julio",
-      "subtitle": "Frontend Engineer especializado en productos web."
+      "subtitle": "Frontend Engineer con capacidad full-stack en productos web."
     },
     "chapters": {
       "formacion": {
         "code": "CH/01",
         "title": "Formación",
         "year": "Universidad Simón Bolívar · 2026",
-        "body": "Ingeniería de Sistemas en la Universidad Simón Bolívar. Durante la carrera trabajé fundamentos de programación, estructuras de datos, redes y bases de datos relacionales: la base para entender cómo se conecta una aplicación completa, desde la interfaz hasta la lógica del servidor."
+        "body": "Ingeniería de Sistemas en la Universidad Simón Bolívar. Durante la carrera trabajé fundamentos de programación, estructuras de datos, redes y bases de datos relacionales. Esa base me permite entender cómo encaja una aplicación completa, desde la interfaz hasta la persistencia y el despliegue."
       },
       "frontend": {
         "code": "CH/02",
         "title": "Frontend",
-        "year": "React · Next.js · TypeScript",
-        "body": "Mi enfoque principal es el desarrollo frontend. Construyo aplicaciones web con React, Next.js y TypeScript, con gestión de estado en Redux e integración con APIs REST. Me especializo en plataformas empresariales, aplicaciones financieras y e-commerce, con arquitecturas Feature-Sliced Design (FSD) pensadas para escalar y mantenerse."
+        "year": "React · Next.js · TypeScript · Redux",
+        "body": "Mi enfoque principal sigue siendo el frontend. Construyo aplicaciones con React, Next.js y TypeScript, gestión de estado con Redux e integración con APIs REST. Aplico Feature-Sliced Design (FSD) en proyectos que necesitan escalar: módulos por dominio, server actions, formularios tipados con Zod y guards de permisos alineados con lo que devuelve el backend. Me especializo en plataformas empresariales, fintech y e-commerce."
       },
       "fullstack": {
         "code": "CH/03",
         "title": "Full-stack",
-        "year": "APIs · MySQL · Deploy · Docker",
-        "body": "También cubro el ciclo completo cuando el proyecto lo pide: integración de APIs, persistencia con MySQL, paneles administrativos y despliegue. He puesto aplicaciones en producción sobre VPS con Linux y Nginx, y he trabajado con Docker en entornos ágiles junto a Backend, QA y DevOps."
+        "year": ".NET · C# · PostgreSQL · Docker",
+        "body": "Cuando el producto lo exige, cubro el ciclo completo. En Molaryx desarrollé de punta a punta un SaaS multi-tenant para consultorios: API en ASP.NET Core con Clean Architecture y CQRS propio, PostgreSQL con EF Core, y panel en Next.js con Redux y SignalR. El backend corre en AWS EC2 con Docker Compose; ambos repos se despliegan por tags con CI/CD (imagen en GHCR y deploy vía SSM en EC2, build prebuilt en Vercel para el frontend). También he integrado APIs, paneles administrativos y despliegues en VPS con Linux y Nginx."
       },
       "experiencia": {
         "code": "CH/04",
         "title": "Experiencia",
-        "year": "2024 — 2026",
-        "body": "He desarrollado aplicaciones reales en entornos profesionales: una plataforma financiera y un sistema de redención de puntos en Silver Holdings S.A.S., el primer canal e-commerce de Ferretería Rueda sobre Shopify, una tienda headless con Remix y GraphQL, y una solución full-stack con panel administrativo, MySQL y despliegue en VPS para Chikos Gourmet."
+        "year": "2024 — Presente",
+        "body": "En Silver Holdings S.A.S. participé en una plataforma financiera y un sistema de redención de puntos para viajes. En Ferretería Rueda levanté el primer e-commerce sobre Shopify; en Verezza, una tienda headless con Remix y GraphQL; en Chikos Gourmet, una solución full-stack con panel administrativo y MySQL. Hoy desarrollo Molaryx, un SaaS que centraliza pacientes, citas, historia clínica, pagos y equipo para consultorios clínicos."
       },
       "actualidad": {
         "code": "CH/05",
         "title": "Actualidad",
         "year": "2026 — Presente",
-        "body": "Estoy disponible para roles remotos, híbridos o presenciales, con apertura a reubicación en cualquier ciudad de Colombia. Sigo profundizando en arquitectura frontend, rendimiento y productos digitales escalables, con impacto real en usuarios y negocio."
+        "body": "Sigo profundizando en arquitectura frontend y backend. Desarrollo interfaces con React y Next.js, integro APIs REST, trabajo con bases de datos relacionales y llevo aplicaciones a producción. Estoy disponible para roles remotos, híbridos o presenciales, con apertura a reubicación en cualquier ciudad de Colombia."
       }
     }
   },

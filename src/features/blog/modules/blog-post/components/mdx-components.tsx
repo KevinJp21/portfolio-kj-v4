@@ -130,20 +130,20 @@ export const mdxComponents: MDXComponents = {
   ul: ({ className, ...props }) => (
     <ul
       data-fade
-      className={cn("my-6 space-y-3 pl-0", className)}
+      className={cn("my-6 list-none divide-y divide-rule-soft pl-0", className)}
       {...props}
     />
   ),
   ol: ({ className, ...props }) => (
     <ol
-      className={cn("my-6 space-y-3 pl-0", className)}
+      className={cn("my-6 list-none divide-y divide-rule-soft pl-0", className)}
       {...props}
     />
   ),
   li: ({ className, ...props }) => (
     <li
       className={cn(
-        "flex items-start gap-4 border-t border-rule-soft pt-3 text-base text-bone-300",
+        "py-2.5 text-base leading-relaxed text-bone-300",
         className
       )}
       {...props}
