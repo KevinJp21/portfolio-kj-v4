@@ -161,13 +161,33 @@ export const mdxComponents: MDXComponents = {
   strong: ({ className, ...props }) => (
     <strong className={cn("font-medium text-bone-100", className)} {...props} />
   ),
-  code: ({ className, ...props }) => (
-    <code
+  pre: ({ className, ...props }) => (
+    <pre
+      data-fade
       className={cn(
-        "rounded bg-ink-800 px-1.5 py-0.5 font-mono text-sm text-signal",
+        "my-6 max-w-full min-w-0 overflow-x-auto rounded-2xl border border-rule bg-ink-850 p-4",
+        "font-mono text-[0.8rem] leading-relaxed text-signal",
+        "whitespace-pre-wrap break-all wrap-anywhere",
+        "[&>code]:m-0 [&>code]:block [&>code]:max-w-full [&>code]:bg-transparent [&>code]:p-0 [&>code]:text-inherit [&>code]:whitespace-inherit [&>code]:break-all",
         className
       )}
       {...props}
     />
   ),
+  code: ({ className, ...props }) => {
+    const isBlock = Boolean(className?.includes("language-")) || className?.includes("hljs");
+
+    return (
+      <code
+        className={cn(
+          "font-mono text-sm text-signal",
+          isBlock
+            ? "block max-w-full whitespace-pre-wrap break-all wrap-anywhere"
+            : "rounded bg-ink-800 px-1.5 py-0.5 wrap-break-word",
+          className
+        )}
+        {...props}
+      />
+    );
+  },
 };

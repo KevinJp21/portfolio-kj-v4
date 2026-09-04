@@ -149,7 +149,7 @@ export function Hero() {
                             <Row label={t("meta.status.label")} value={t("meta.status.value", { year: getYear() })} />
                         </div>
 
-                        <div className="hero-meta md:col-span-3 flex flex-col gap-2.5 opacity-0 translate-y-[18px]">
+                        <div className="hero-meta md:col-span-3 flex flex-col gap-2.5 opacity-0 translate-y-4.5">
                             <Link
                                 href="/contact"
                                 data-cursor="cta"

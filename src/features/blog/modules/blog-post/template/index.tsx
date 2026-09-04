@@ -33,14 +33,14 @@ export async function TBlogPostTemplate({ post, nextPost, labels, }: TTBlogPostT
               />
             </ArticleCover>
     
-            <section className="section-x mx-auto mt-24 grid max-w-[1320px] gap-12 md:grid-cols-12">
+            <section className="section-x mx-auto mt-24 grid max-w-330 gap-12 md:grid-cols-12">
               <ArticleAside
                 post={post}
                 stackLabel={labels.stack}
                 readingTimeLabel={labels.readingTime}
               />
     
-              <div className="md:col-span-8">
+              <div className="min-w-0 md:col-span-8">
                 <p
                   data-fade
                   className="mb-12 font-display text-[clamp(1.35rem,2.4vw,2rem)] leading-snug text-bone-100"
