@@ -40,7 +40,7 @@ export type TBlogHighlight = {
     cover: string;
     accent: string;
     url?: string;
-    github?: string;
+    github?: string | { label: string; href: string }[];
     tags: string[];
     highlights: TBlogHighlight[];
   };

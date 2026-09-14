@@ -23,6 +23,17 @@ function MetaField({ label, value }: { label: string; value: string }) {
     );
 }
 
+function githubLinks(
+    github: TTBlogPostMeta["github"],
+    fallbackLabel: string,
+): { label: string; href: string }[] {
+    if (!github) return [];
+    if (typeof github === "string") {
+        return [{ label: fallbackLabel, href: github }];
+    }
+    return github;
+}
+
 export const ArticleHeader = ({
     post,
     backLabel,
@@ -82,18 +93,19 @@ export const ArticleHeader = ({
                                 {viewSiteLabel} ↗
                             </a>
                         ) : null}
-                        {post.github ? (
+                        {githubLinks(post.github, githubLabel).map((link) => (
                             <a
-                                href={post.github}
+                                key={link.href}
+                                href={link.href}
                                 target="_blank"
                                 rel="noreferrer noopener"
                                 data-cursor="link"
-                                data-cursor-label={githubLabel}
+                                data-cursor-label={link.label}
                                 className="inline-flex items-center gap-2 rounded-full border border-rule-strong px-4 py-2 text-sm text-bone-100 transition-colors hover:border-signal"
                             >
-                                {githubLabel} ↗
+                                {link.label} ↗
                             </a>
-                        ) : null}
+                        ))}
                     </div>
                 </div>
             </div>
