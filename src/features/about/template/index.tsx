@@ -132,7 +132,6 @@ export function AboutTemplate() {
 
                             <h2 className="chapter-line mt-6 font-display text-[clamp(2.25rem,5.5vw,4.5rem)] leading-[0.95] text-bone-100">
                                 {c.title}
-                                <em className="ml-3 inline-block text-bone-400 italic">·</em>
                             </h2>
 
                             <p className="chapter-line mt-6 max-w-xl text-base leading-relaxed text-bone-300">

@@ -1,13 +1,13 @@
 {
   "Metadata": {
-    "title": "Kevin Julio Pineda | Frontend Engineer",
-    "description": "Systems Engineer and Frontend Engineer. I build web applications with React, Next.js, and TypeScript: enterprise platforms, fintech, and e-commerce.",
-    "ogDescription": "Kevin Julio Pineda portfolio — Frontend Engineer specialized in React, Next.js, and TypeScript.",
-    "ogImageAlt": "Kevin Julio Pineda — Frontend Engineer",
-    "keywords": "Kevin Julio Pineda, frontend engineer, React, Next.js, TypeScript, portfolio"
+    "title": "Kevin Julio Pineda | Full Stack Developer",
+    "description": "Systems Engineer and Full Stack Developer. Frontend specialist with React, Next.js, and TypeScript; backend with C# and .NET. Enterprise platforms, SaaS, and e-commerce.",
+    "ogDescription": "Kevin Julio Pineda portfolio. Full Stack Developer and frontend specialist: React, Next.js, TypeScript, C#, and .NET.",
+    "ogImageAlt": "Kevin Julio Pineda · Full Stack Developer",
+    "keywords": "Kevin Julio Pineda, full stack developer, frontend specialist, React, Next.js, TypeScript, C#, .NET, portfolio"
   },
   "Navbar": {
-    "role": "frontend engineer",
+    "role": "full stack developer",
     "startProject": "Start a project",
     "openMenu": "Open menu",
     "closeMenu": "Close menu",
@@ -26,16 +26,16 @@
     "hero": {
       "availability": "available · {year}",
       "headline": {
-        "line1": "Frontend engineer",
-        "line2": "systems engineer,",
-        "line3": "specialized in web products."
+        "line1": "Full stack developer",
+        "line2": "frontend specialist,",
+        "line3": "systems engineer."
       },
       "avatar": {
         "caption": "KJP · Barranquilla"
       },
       "bio": {
         "name": "Kevin Julio Pineda.",
-        "body": "Systems Engineer and Frontend Engineer with 2+ years of experience. I build web applications with React, Next.js, and TypeScript, focused on enterprise platforms, fintech, and e-commerce."
+        "body": "Systems Engineer and Full Stack Developer with 2+ years of experience. I build web applications with React, Next.js, TypeScript, C#, and .NET: scalable frontend, REST APIs, and relational databases."
       },
       "meta": {
         "focus": {
@@ -61,9 +61,10 @@
       },
       "marquee": {
         "items": [
-          "Frontend Engineer",
+          "Full Stack Developer",
+          "Frontend Specialist",
           "React · Next.js · TypeScript · Redux",
-          ".NET · C# · PostgreSQL · Docker",
+          "C# · .NET · PostgreSQL · Docker",
           "Systems Engineer",
           "Barranquilla, Colombia",
           "Available for new projects"
@@ -76,11 +77,9 @@
       "headline": {
         "line1": "I build",
         "line1Accent": "web",
-        "line2": "applications with React, Next.js, and Tailwind,",
-        "line3": "from the interface down to",
-        "line4": "the backend that supports it."
+        "line2": "applications with React, Next.js, and .NET."
       },
-      "body": "Systems Engineer and Frontend Engineer with 2+ years of experience building web applications with React, Next.js, and TypeScript. Specialized in enterprise platforms, financial applications, and e-commerce solutions through scalable frontend architectures, REST API integration, and state management with Redux. I have collaborated with Backend, UX/UI, QA, and DevOps teams to ship maintainable, scalable applications focused on user experience.",
+      "body": "Systems Engineer and Full Stack Developer with 2+ years of experience building web applications with React, Next.js, TypeScript, C#, and .NET. Specialized in enterprise platforms and web products: scalable frontend, REST API integration, backend services, and relational databases with PostgreSQL and MySQL. I apply Clean Architecture and CQRS, and work with Docker, AWS, and agile methodologies alongside multidisciplinary teams.",
       "snapshot": [
         {
           "label": "Location",
@@ -112,11 +111,29 @@
       "currentBadge": "Current",
       "items": [
         {
+          "period": "Jun 2026 — Present",
+          "role": "Full-Stack Developer",
+          "company": "Molaryx",
+          "location": "Personal project · Multi-tenant SaaS",
+          "description": "Full-stack design and development of a SaaS for clinics: React, Next.js, and TypeScript on the frontend; C# and .NET on the backend. REST APIs, PostgreSQL with Entity Framework Core, authentication, roles, and per-module permissions in a multi-tenant architecture. Clean Architecture, CQRS, Repository, and Unit of Work. Patients, appointments, treatments, clinical records, payments, and real-time notifications. Docker containerization and backend deployment on AWS EC2 (Linux, services, and API exposure).",
+          "stack": [
+            "React",
+            "Next.js",
+            "TypeScript",
+            "C#",
+            ".NET",
+            "PostgreSQL",
+            "Docker",
+            "AWS"
+          ],
+          "current": true
+        },
+        {
           "period": "Jan 2026 — Jun 2026",
           "role": "Frontend Developer",
           "company": "Silver Holdings S.A.S.",
           "location": "Barranquilla, Colombia",
-          "description": "Contributed to a financial platform with authentication, digital signature, document management, and REST API integration. Led the frontend of a travel rewards redemption system, defining the architecture with Feature-Sliced Design. Built enterprise applications with React, Next.js, TypeScript, and Redux, collaborating with Backend, UX/UI, QA, and DevOps in agile environments using Docker.",
+          "description": "Contributed to a financial platform with authentication, digital signature, document management, and REST API integration. Led the frontend of a travel rewards redemption system, with autonomy to define the architecture and core features. Built enterprise applications with React, Next.js, TypeScript, and Redux, applying Feature-Sliced Design. Collaborated with Backend, UX/UI, QA, and DevOps in agile environments using Docker.",
           "stack": [
             "React",
             "Next.js",
@@ -129,8 +146,8 @@
           "period": "Nov 2024 — May 2025",
           "role": "Shopify Frontend Developer",
           "company": "Ferretería Rueda",
-          "location": "Barranquilla, Colombia",
-          "description": "Built the company's first e-commerce store from scratch, enabling its first digital sales channel. Delivered a complete shopping experience with predictive search, dynamic filters, a persistent cart, and interactive components. Improved technical SEO on Shopify for organic indexing of products and categories, and designed reusable, fully configurable sections managed from the admin.",
+          "location": "Official online store",
+          "description": "Built the company's first e-commerce store from scratch and its first digital sales channel. Implemented predictive search, dynamic filters, a persistent cart, and interactive components. Improved technical SEO on Shopify so products and categories could be indexed and ranked on Google. Designed reusable, fully configurable sections so the team can manage content without changing code.",
           "stack": [
             "Shopify",
             "Liquid",
@@ -142,7 +159,7 @@
           "role": "Frontend Developer · Headless",
           "company": "Verezza E-commerce",
           "location": "Independent project",
-          "description": "Built a headless e-commerce store from scratch with React, TypeScript, Remix, and GraphQL, integrating Shopify through the Storefront API. Implemented authentication, a product catalog with dynamic filters, a persistent cart, wishlist, and checkout. Designed a mobile-first interface with i18n (ES/EN) and multi-currency support (COP/USD/EUR), and optimized performance with SSR, lazy loading, intelligent caching, and Content Security Policy.",
+          "description": "Built a headless store from scratch with React, TypeScript, Remix, and GraphQL, integrated with the Shopify Storefront API. Authentication, catalog with filters, persistent cart, wishlist, and checkout. Mobile-first UI with i18n (ES/EN) and multi-currency (COP/USD/EUR). Performance with SSR, lazy loading, intelligent caching, and Content Security Policy.",
           "stack": [
             "Remix",
             "React",
@@ -156,27 +173,13 @@
           "role": "Full-Stack Web Developer",
           "company": "Chikos Gourmet",
           "location": "Barranquilla, Colombia",
-          "description": "Delivered a full-stack web solution for the restaurant: public site, admin panel, database, and deployment infrastructure. The admin panel lets the client manage menu dishes, promotional images, and site content autonomously. Implemented persistence with MySQL, image delivery with Cloudflare Images, and production deployment on a Linux VPS with Nginx.",
+          "description": "Delivered a full-stack solution for the restaurant: site, admin panel, database, and infrastructure. The panel manages dishes, promotional images, and content autonomously. Persistence with MySQL, images with Cloudflare Images, and deployment on a Linux VPS with Nginx.",
           "stack": [
             "Remix",
             "React",
             "TypeScript",
             "MySQL",
             "Nginx"
-          ]
-        },
-        {
-          "period": "May 2024",
-          "role": "Backend Developer · ML",
-          "company": "DocMe Assistant Chatbot",
-          "location": "Academic project",
-          "description": "Designed the architecture of a chatbot for medical appointments: Flask backend with SQLAlchemy and MySQL, TensorFlow/Keras neural networks for intent classification, and NLTK for natural language processing.",
-          "stack": [
-            "Python",
-            "Flask",
-            "TensorFlow",
-            "Keras",
-            "MySQL"
           ]
         }
       ]
@@ -219,7 +222,7 @@
       "titleAccent": "in mind?",
       "titleLine3": "Let's build it together!",
       "availability": "Available for new projects",
-      "body": "Frontend Engineer: enterprise platforms, e-commerce, and API integrations. If you have a concrete idea or need an extra pair of hands, let's talk.",
+      "body": "Full Stack Developer and frontend specialist: enterprise platforms, SaaS, e-commerce, and APIs. If you have a concrete idea or need an extra pair of hands, let's talk.",
       "cta": "Start a conversation",
       "ctaCursor": "Talk",
       "email": "Write by email",
@@ -227,7 +230,7 @@
     }
   },
   "Footer": {
-    "copyright": "© 2026 Kevin Julio Pineda · Systems Engineer · Frontend Engineer"
+    "copyright": "© 2026 Kevin Julio Pineda · Systems Engineer · Full Stack Developer"
   },
   "LanguageSwitch": {
     "toggle": "Change language",
@@ -288,14 +291,14 @@
   },
   "ContactPage": {
     "metaTitle": "Contact",
-    "metaDescription": "Contact Kevin Julio Pineda to build frontend applications with React, Next.js, and TypeScript: enterprise platforms, e-commerce, and API integrations.",
+    "metaDescription": "Contact Kevin Julio Pineda to build full stack and frontend applications with React, Next.js, TypeScript, C#, and .NET: enterprise platforms, SaaS, e-commerce, and API integrations.",
     "returnLink": "Home",
     "code": "C/00",
     "breadcrumb": "contact · let's build",
     "kicker": "Start here",
     "titleLine1": "Let's build",
     "titleAccent": "something real.",
-    "description": "Tell me what you're building. I develop frontend applications with React, Next.js, and TypeScript: enterprise platforms, e-commerce, and API integrations, focused on performance, scalability, and user experience.",
+    "description": "Tell me what you're building. I develop full stack applications with a frontend focus: React, Next.js, TypeScript, C#, and .NET. Enterprise platforms, SaaS, e-commerce, and APIs, with performance, scalability, and user experience in mind.",
     "success": {
       "title": "Message sent.",
       "body": "Thanks{name}. I'll write to {email} within 48h. Meanwhile, check out <link>some recent work</link>.",
@@ -366,8 +369,8 @@
   },
   "AboutPage": {
     "metaTitle": "About",
-    "metaDescription": "Kevin Julio Pineda, Systems Engineer and Frontend Engineer with 2+ years of experience. React, Next.js, TypeScript, .NET, C#, and PostgreSQL. Enterprise platforms, fintech, e-commerce, and SaaS.",
-    "ogImageAlt": "About | Kevin Julio Pineda · Frontend Engineer",
+    "metaDescription": "Kevin Julio Pineda, Systems Engineer and Full Stack Developer with 2+ years of experience. Frontend specialist in React, Next.js, and TypeScript; backend with C# and .NET. Enterprise platforms, SaaS, and e-commerce.",
+    "ogImageAlt": "About | Kevin Julio Pineda · Full Stack Developer",
     "returnLink": "Home",
     "code": "A/00",
     "eyebrow": "About",
@@ -375,7 +378,7 @@
     "header": {
       "kicker": "A short story",
       "title": "Kevin Julio",
-      "subtitle": "Frontend Engineer with full-stack capability for web products."
+      "subtitle": "Full Stack Developer and frontend specialist."
     },
     "chapters": {
       "formacion": {
@@ -388,25 +391,25 @@
         "code": "CH/02",
         "title": "Frontend",
         "year": "React · Next.js · TypeScript · Redux",
-        "body": "My main focus remains frontend development. I build applications with React, Next.js, and TypeScript, Redux for state management, and REST API integration. I apply Feature-Sliced Design (FSD) on projects that need to scale: domain modules, server actions, Zod-typed forms, and permission guards aligned with what the backend returns. I specialize in enterprise platforms, fintech, and e-commerce."
+        "body": "Frontend is my specialty. I build applications with React, Next.js, and TypeScript, Redux for state management, and REST API integration. I apply Feature-Sliced Design (FSD) to scale by domain. I focus on enterprise platforms, e-commerce, and products with a maintainable frontend architecture."
       },
       "fullstack": {
         "code": "CH/03",
         "title": "Full-stack",
         "year": ".NET · C# · PostgreSQL · Docker",
-        "body": "When the product requires it, I cover the full cycle. On Molaryx I built a multi-tenant SaaS for clinical practices end to end: ASP.NET Core API with Clean Architecture and a custom CQRS mediator, PostgreSQL with EF Core, and a Next.js panel with Redux and SignalR. The backend runs on AWS EC2 with Docker Compose; both repos deploy via tags with CI/CD (image on GHCR and deploy via SSM on EC2, prebuilt build on Vercel for the frontend). I have also integrated APIs, admin panels, and VPS deployments with Linux and Nginx."
+        "body": "I also cover the full cycle: REST APIs, business logic, PostgreSQL and MySQL, authentication, roles, and deployment. I work with C# and .NET, Entity Framework Core, Clean Architecture, CQRS, Repository, and Unit of Work. I containerize with Docker and deploy on Linux, Nginx, and AWS EC2 when the product needs it."
       },
       "experiencia": {
         "code": "CH/04",
         "title": "Experience",
         "year": "2024 — Present",
-        "body": "At Silver Holdings S.A.S. I worked on a financial platform and a travel rewards redemption system. At Ferretería Rueda I launched the first Shopify e-commerce store; at Verezza, a headless store with Remix and GraphQL; at Chikos Gourmet, a full-stack solution with an admin panel and MySQL. Today I am building Molaryx, a SaaS that centralizes patients, appointments, clinical records, payments, and team management for clinical practices."
+        "body": "At Silver Holdings S.A.S. I contributed to a financial platform with authentication, digital signature, document management, and REST API integration. I led the frontend of a travel rewards redemption system: I defined the architecture with Feature-Sliced Design and implemented the core features with React, Next.js, TypeScript, and Redux, in an agile team with Backend, UX/UI, QA, and DevOps. I also built Molaryx, a multi-tenant SaaS for clinics; Ferretería Rueda's first Shopify e-commerce store; a headless store with Remix and GraphQL for Verezza; and a full-stack solution with an admin panel, MySQL, and VPS for Chikos Gourmet."
       },
       "actualidad": {
         "code": "CH/05",
         "title": "Current focus",
         "year": "2026 — Present",
-        "body": "I keep deepening frontend and backend architecture. I build interfaces with React and Next.js, integrate REST APIs, work with relational databases, and ship applications to production. I am available for remote, hybrid, or on-site roles, and open to relocating to any city in Colombia."
+        "body": "I keep deepening frontend and backend architecture. I build interfaces with React and Next.js, design REST APIs, work with relational databases, and ship applications to production with Docker and AWS. Available for remote, hybrid, or on-site roles, and open to relocating to any city in Colombia."
       }
     }
   },
@@ -431,7 +434,7 @@
       },
       "footer": {
         "name": "Kevin Julio Pineda",
-        "role": "Systems Engineer · Frontend Engineer",
+        "role": "Systems Engineer · Full Stack Developer",
         "note": "This is an automated confirmation email. No reply is necessary."
       }
     }

@@ -73,14 +73,6 @@ export function AboutBlock() {
               <span className="block">
                 <span className="about-line block">{t("headline.line2")}</span>
               </span>
-              <span className="block">
-                <span className="about-line block">{t("headline.line3")}</span>
-              </span>
-              <span className="block">
-                <span className="about-line block italic text-bone-400">
-                  {t("headline.line4")}
-                </span>
-              </span>
             </p>
             <p className="mt-10 max-w-xl text-base leading-relaxed text-bone-300">
               {t("body")}
